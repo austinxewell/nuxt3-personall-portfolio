@@ -150,13 +150,6 @@ export default withNuxt(
       "vue/component-definition-name-casing": ["error", "PascalCase"],
       "no-unreachable": "error",
       complexity: ["warn", { max: 10 }],
-      "vue/multi-word-component-names": "error",
     },
   },
-  {
-    files: ["layouts/*.vue", "components/**/index.vue", "pages/**/index.vue"],
-    rules: {
-      "vue/multi-word-component-names": "off",
-    },
-  }
 );
