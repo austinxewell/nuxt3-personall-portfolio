@@ -4,6 +4,7 @@
         <LayoutHero />
         <LayoutPortfolio />
         <LayoutAbout />
+        <LayoutServices />
     </div>
 </template>
 

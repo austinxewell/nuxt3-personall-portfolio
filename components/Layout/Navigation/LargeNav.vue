@@ -19,8 +19,12 @@
                     v-for="item in items"
                     :key="item.href"
                     :href="item.href"
-                    class="flex items-center text-gray-700 hover:text-black transition-colors cursor-pointer"
-                    :class="{ 'text-yellow-600': item.isActive }"
+                    class="flex items-center text-gray-900 dark:text-white hover:text-gray-600 dark:hover:text-gray-400 transition-colors cursor-pointer"
+                    :class="[
+                        item.isActive 
+                            ? 'text-yellow-600 dark:text-yellow-400' 
+                            : 'text-gray-900 dark:text-white hover:text-gray-600 dark:hover:text-gray-400'
+                    ]"
                     @click.prevent="scrollToSection(item.href)"
                 >
                     <UIcon :name="item.icon" class="mr-2" />
