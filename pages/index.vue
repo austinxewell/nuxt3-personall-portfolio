@@ -1,7 +1,9 @@
 
 <template>
-    <div class="flex justify-center">
+    <div class="flex flex-col justify-center">
         <LayoutHero />
+        <LayoutPortfolio />
+        <LayoutAbout />
     </div>
 </template>
 

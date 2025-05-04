@@ -1,18 +1,27 @@
 <template>
-    <section id="hero" class="px-32">
+    <section id="hero" class="px-32 pt-32 h-[60vh]">
         <UiAvatar class="mb-4" />
         <div class="flex gap-16">
             <div class="w-28 text-center">
                 <p class="text-2xl font-bold">Hey! I'm Austin Ewell</p>
             </div>
-            <div class="flex">
-                <h1 class="text-6xl font-bold">The <span class="text-yellow-600">Gold</span> Standard in Creative Solutions.</h1>
-            </div>
+            <aside class="flex flex-col">
+                <h1 class="text-6xl font-bold text-center">The <span class="text-yellow-600 font-extrabold">Gold</span> Standard in Creative Solutions.</h1>
+                <BaseButton class="mt-6 w-fit flex justify-center" @click="navigateToServices">
+                    <span>My Services</span>
+                    <UIcon name="lucide:arrow-right" class="size-5 ml-2" />
+                </BaseButton>
+            </aside>
         </div>
-
     </section>
 </template>
 
 <script setup lang='ts'>
+
+function navigateToServices() {
+    const element = document.getElementById('services')
+    if (element) 
+        element.scrollIntoView({ behavior: 'smooth' })
+}
 
 </script>

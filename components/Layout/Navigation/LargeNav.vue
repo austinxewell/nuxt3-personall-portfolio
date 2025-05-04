@@ -22,7 +22,7 @@
                     :key="item.href"
                     :href="item.href"
                     class="flex items-center text-gray-700 hover:text-black transition-colors cursor-pointer"
-                    :class="{ 'text-red-500': item.isActive }"
+                    :class="{ 'text-yellow-600': item.isActive }"
                     @click.prevent="scrollToSection(item.href)"
                 >
                     <UIcon :name="item.icon" class="mr-2" />
