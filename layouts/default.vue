@@ -2,13 +2,14 @@
     <!-- Show when screens are larger than sm (>=640px) -->
     <div v-if="isDesktop">
         <LayoutNavigationLargeNav />
-
         <slot />
+        <LayoutFooter />
     </div>
     
     <!-- Show when screens are smaller than sm (<640px) -->
     <div v-else>
         <slot />
+        <LayoutFooter />
         <LayoutNavigationSmallNav />
     </div>
 </template>

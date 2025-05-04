@@ -5,6 +5,7 @@
         <LayoutPortfolio />
         <LayoutAbout />
         <LayoutServices />
+        <LayoutContact />
     </div>
 </template>
 

@@ -1,6 +1,6 @@
 <template>
     <div
-        class="group relative w-80 h-80 rounded-2xl p-8 bg-white border border-gray-900 dark:bg-gradient-to-br dark:from-gray-800 dark:to-gray-600 text-gray-900 dark:text-white shadow-md dark:shadow-lg dark:shadow-gray-900 transition-all duration-500 ease-in-out transform hover:scale-105 dark:hover:shadow-yellow-500/40"
+        class="group relative w-80 min-h-[24rem] rounded-2xl p-8 bg-white border border-gray-900 dark:bg-gradient-to-br dark:from-gray-800 dark:to-gray-600 text-gray-900 dark:text-white shadow-md dark:shadow-lg dark:shadow-gray-900 transition-all duration-500 ease-in-out transform hover:scale-105 dark:hover:shadow-yellow-500/40"
     >
         <div
             class="flex items-center justify-center w-20 h-20 rounded-full bg-gray-100 text-gray-900 mb-6 text-4xl transition-all duration-500 group-hover:rotate-[20deg] group-hover:scale-125 group-hover:bg-yellow-400 group-hover:text-gray-900 dark:bg-white dark:group-hover:bg-yellow-500"

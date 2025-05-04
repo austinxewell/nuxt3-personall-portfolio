@@ -1,5 +1,5 @@
 <template>
-    <section id="services" class="px-32 pt-24">
+    <section id="services" class="px-32 pt-24 pb-12">
         <h2 class="text-4xl ml-20 mb-6 font-semibold">
             Bringing Ideas to Life. <span class="text-yellow-600 font-bold">Pure</span>
             Intent. <span class="text-yellow-600 font-bold">Precise</span> Execution.
@@ -22,6 +22,8 @@
                 icon="i-lucide-layout-dashboard"
             />
         </div>
+
+        <UiElevatorPitch />
     </section>
 </template>
 
