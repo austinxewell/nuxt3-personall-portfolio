@@ -1,7 +1,6 @@
 <template>
     <div class="fixed top-0 left-0 right-0 z-50 bg-white dark:bg-gray-900">
         <div class="flex items-center justify-between px-4 py-4 relative">
-            <!-- Left: Logo -->
             <div class="flex items-center gap-2">
                 <img
                     class="w-14 h-14"
@@ -15,7 +14,6 @@
                 />
             </div>
 
-            <!-- Center: Navigation -->
             <nav class="absolute left-1/2 transform -translate-x-1/2 flex gap-6 text-sm font-medium">
                 <a
                     v-for="item in items"
@@ -30,7 +28,6 @@
                 </a>
             </nav>
 
-            <!-- Right: Dark mode toggle -->
             <div class="flex justify-center">
                 <UiDarkModeButton />
             </div>
