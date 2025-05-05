@@ -16,8 +16,16 @@
         </a>
 
         <div class="flex justify-center gap-6 text-sm">
-            <a href="#portfolio" class="hover:text-yellow-600 transition-colors">Projects</a>
-            <a href="#contact" class="hover:text-yellow-600 transition-colors">Contact</a>
+            <a
+                href="#portfolio"
+                class="hover:text-yellow-600 transition-colors"
+                @click.prevent="navigateTo('portfolio')"
+            >Projects</a>
+            <a
+                href="#contact"
+                class="hover:text-yellow-600 transition-colors"
+                @click.prevent="navigateTo('contact')"
+            >Contact</a>
             <a
                 href="/Austin_Ewell_Resume.pdf"
                 download
@@ -28,7 +36,15 @@
         </div>
 
         <div class="text-xs text-gray-400 justify-end hidden md:flex">
-            &copy; {{ new Date().getFullYear() }} Austin Ewell. All rights reserved.
+            &copy; {{ new Date().getFullYear() }}
+            <a
+                href="about"
+                class="ml-1"
+                @click.prevent="navigateTo('about')"
+            >
+                Austin Ewell
+            </a>
+            . All rights reserved.
         </div>
     </footer>
 </template>

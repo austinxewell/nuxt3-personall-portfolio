@@ -1,8 +1,15 @@
 <template>
     <div class="relative w-20 h-20 rounded-2xl border border-gray-900 shadow-lg shadow-gray-900 dark:border-white dark:shadow-md dark:shadow-white group">
-        <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 translate-y-2 opacity-0 group-hover:opacity-100 group-hover:translate-y-[-10px] transition-all duration-500 ease-in-out border border-gray-900 bg-white dark:bg-gray-900 dark:border-white text-sm rounded-md py-1 px-2 font-bold whitespace-nowrap">
+        <div
+            class="absolute bottom-full left-1/2 transform -translate-x-1/2 translate-y-2 opacity-0 group-hover:opacity-100 group-hover:-translate-y-2 transition-all duration-500 ease-in-out border border-gray-900 bg-white dark:bg-gray-900 dark:border-white text-sm rounded-md py-1 px-2 font-bold whitespace-nowrap"
+        >
             {{ toolName }}
         </div>
+
+        <div v-if="isFavorite" class="absolute top-1 right-1 text-yellow-400">
+            <UIcon name="heroicons:star-20-solid" class="w-4 h-4" />
+        </div>
+
         <div class="flex items-center justify-center h-full rounded-2xl">
             <UIcon :name="icon" class="size-14 rounded-2xl" />
         </div>
@@ -18,10 +25,10 @@ defineProps({
     icon: {
         type: String,
         required: true
+    },
+    isFavorite: {
+        type: Boolean,
+        required: false
     }
 })
 </script>
-
-<style scoped>
-/* You can add additional scoped styles here if needed */
-</style>

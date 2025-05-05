@@ -18,16 +18,7 @@
                 </h3>
             </div>
 
-            <div class="flex justify-center mt-10">
-                <div class="flex flex-wrap gap-4 max-w-6xl justify-center">
-                    <UiToolCard
-                        v-for="tool in proficiencies"
-                        :key="tool.id"
-                        :tool-name="tool.name"
-                        :icon="tool.icon"
-                    />
-                </div>
-            </div>
+            <UiTechStack />
 
             <div class="flex justify-center items-center gap-10 mt-10">
                 <BaseButton class="w-fit flex items-center justify-center" @click="navigateToContact">
@@ -51,8 +42,6 @@
 </template>
 
 <script setup lang='ts'>
-import { proficiencies } from '~/data/proficiencies'
-
 function navigateToContact() {
     const element = document.getElementById('contact')
     if (element) 
