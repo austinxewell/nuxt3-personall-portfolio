@@ -1,5 +1,5 @@
 <template>
-    <section id="hero" class="px-32 pt-32 h-[60vh]">
+    <header id="hero" class="px-32 pt-32 h-[60vh]">
         <button class="cursor-pointer" @click="navigateTo('about')">
             <UiAvatar class="mb-4" />
         </button>
@@ -16,7 +16,7 @@
                 </BaseButton>
             </aside>
         </div>
-    </section>
+    </header>
 </template>
 
 <script setup lang='ts'>
