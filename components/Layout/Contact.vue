@@ -56,9 +56,16 @@
             <a
                 href="/Austin_Ewell_Resume.pdf"
                 download="AustinEwell_Resume.pdf"
-                class="transform transition-transform duration-200 hover:scale-120"
+                class="relative transform transition-transform duration-200 hover:scale-120 group"
             >
                 <UIcon name="mdi:file-document-outline" class="size-8" />
+                <div
+                    class="absolute left-full top-1/2 -translate-y-1/2 ml-2 bg-gray-800 text-white text-xs px-3 py-1 rounded whitespace-nowrap
+               opacity-0 scale-x-0 group-hover:opacity-100 group-hover:scale-x-100 origin-left
+               transition-transform transition-opacity duration-300 pointer-events-none"
+                >
+                    Download Resume
+                </div>
             </a>
         </div>
     </section>
