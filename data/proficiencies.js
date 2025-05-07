@@ -38,4 +38,5 @@ export const proficiencies = [
     { id: 37, name: 'Prettier', icon: 'logos:prettier', isFavorite: false },
     { id: 38, name: 'GitHub', icon: 'skill-icons:github-dark', isFavorite: true },
     { id: 39, name: 'GitLab', icon: 'logos:gitlab', isFavorite: true },
+    { id: 40, name: 'PWA', icon: 'logos:pwa', isFavorite: false}
 ];
