@@ -8,7 +8,7 @@
             }"
         >
             <div class="flex items-center justify-between px-4 py-4 relative">
-                <a href="#hero" @click.prevent="scrollToSection('#hero')">
+                <a href="/#hero" @click.prevent="scrollToSection('#hero')">
                     <div class="flex items-center gap-2">
                         <img
                             class="w-14 h-14"

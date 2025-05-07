@@ -7,7 +7,7 @@
         <UiCarousel />
 
         <div class="flex justify-end mt-6">
-            <NuxtLink to="">
+            <NuxtLink to="/projects">
                 <BaseButton color="primary">
                     <span>View All Projects</span>
                     <UIcon name="lucide:list" class="size-5 ml-2" />

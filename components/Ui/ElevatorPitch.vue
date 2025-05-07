@@ -10,8 +10,9 @@
             If you're looking for solutions <span class="text-yellow-600 font-bold">forged</span> with technical skill and
             <span class="text-yellow-600 font-bold">polished like gold</span> — you're in the right place.
         </p>
+        <p class="text-xl text-yellow-600 font-bold mt-4 leading-relaxed">Let's Get To Work.</p>
         <div class="flex justify-end mt-8">
-            <NuxtLink to="">
+            <NuxtLink to="/projects">
                 <BaseButton class="w-fit flex justify-center">
                     <span>View My Work</span>
                     <UIcon name="i-lucide-arrow-right" class="size-5 ml-2" />

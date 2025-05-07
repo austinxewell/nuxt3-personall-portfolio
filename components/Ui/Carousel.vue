@@ -1,22 +1,24 @@
 <template>
     <div class="relative">
-        <BaseButton
-            class="absolute right-0 top-0 mt-2 mr-2 z-10 w-fit flex items-center justify-center"
-            :color="'secondary'"
-        >
-            <span>View Project</span>
-            <UIcon name="lucide:external-link" class="size-5 ml-2" />
-        </BaseButton>
-
         <Carousel
             id="gallery"
             v-bind="galleryConfig"
             v-model="currentSlide"
         >
-            <Slide v-for="image in images" :key="image.id">
+            <Slide v-for="project in projects" :key="project.id">
+                <NuxtLink :to="`/projects/${project.id}`">
+                    <BaseButton
+                        class="absolute right-0 top-0 mt-2 mr-2 z-10 w-fit flex items-center justify-center"
+                        :color="'secondary'"
+                    >
+                        <span>View Project</span>
+                        <UIcon name="lucide:external-link" class="size-5 ml-2 yell" />
+                    </BaseButton>
+                </NuxtLink>
+
                 <img
-                    :src="image.url"
-                    alt="Gallery Image"
+                    :src="findThumbnailImage(project.images)?.img_url"
+                    :alt="findThumbnailImage(project.images)?.img_name"
                     class="gallery-image"
                 />
             </Slide>
@@ -29,24 +31,25 @@
         v-model="currentSlide"
         class="mt-4"
     >
-        <Slide v-for="image in images" :key="image.id">
+        <Slide v-for="project in projects" :key="project.id">
             <template #default="{ currentIndex, isActive }">
                 <div
                     :class="['thumbnail', { 'is-active': isActive }]"
                     @click="slideTo(currentIndex)"
                 >
                     <img
-                        :src="image.url"
-                        alt="Thumbnail Image"
+                        :src="findThumbnailImage(project.images)?.img_url"
+                        :alt="findThumbnailImage(project.images)?.img_name"
                         class="thumbnail-image"
                     />
 
-                    <div class="mt-1 text-xs text-center w-full">
-                        <p>{{ image.project }}</p>
+                    <div class="mt-1 text-center w-full ">
+                        <p class="text-sm text-bold mb-1">{{ project.project_name }}</p>
                         <div class="flex justify-center gap-2">
                             <div
-                                v-for="tag in image.tags"
+                                v-for="tag in project.tech_tags"
                                 :key="tag"
+                                class="text-[.6rem] border bg-gray-800 text-white dark:bg-white dark:text-gray-800 rounded-sm px-1"
                             >
                                 {{ tag }}
                             </div>
@@ -65,14 +68,9 @@
 <script setup lang="ts">
 import 'vue3-carousel/carousel.css'
 import { Carousel, Slide, Navigation } from 'vue3-carousel'
-import { ref } from 'vue'
+import { projects } from '~/data/projects'
+import type { ProjectImage } from '~/types/projects'
 
-interface Image {
-    id: number
-    project: string
-    tags: string[]
-    url: string
-}
 
 const currentSlide = ref<number>(0)
 
@@ -97,12 +95,9 @@ const thumbnailsConfig: Record<string, unknown> = {
     gap: 10
 }
 
-const images: Image[] = Array.from({ length: 10 }, (_, index) => ({
-    id: index + 1,
-    project: `Project ${index + 1}`,
-    tags: ['TypeScript', 'Nuxt3'],
-    url: `https://picsum.photos/seed/${Math.random()}/800/600`
-}))
+function findThumbnailImage(images: ProjectImage[]): ProjectImage | undefined {
+    return images.find(image => image.is_thumbnail)
+}
 </script>
 
 <style scoped>
@@ -124,9 +119,15 @@ img {
 
 .gallery-image {
     border-radius: 16px;
-    height: 100%;
+    height: 50vh;
     width: 100%;
     object-fit: cover;
+    object-position: top;
+    border: 1px solid black
+}
+
+html.dark .gallery-image {
+    border: 1px solid #c88700;
 }
 
 #thumbnails {
