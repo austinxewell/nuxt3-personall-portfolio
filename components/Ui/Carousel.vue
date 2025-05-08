@@ -87,10 +87,15 @@ const galleryConfig: Record<string, unknown> = {
 
 const thumbnailsConfig: Record<string, unknown> = {
     height: 150,
-    itemsToShow: 6,
+    itemsToShow: 2,
     wrapAround: true,
     touchDrag: false,
-    gap: 10
+    gap: 10,
+    breakpoints: { 
+        640: { itemsToShow: 3 },
+        768: { itemsToShow: 4 },
+        1280: { itemsToShow: 6 }
+    }
 }
 </script>
 

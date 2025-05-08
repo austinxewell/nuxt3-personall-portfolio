@@ -16,7 +16,7 @@
                             alt=""
                         />
                         <img
-                            class="h-6"
+                            class="h-6 hidden lg:block"
                             src="../../../assets/images/text-logo.png"
                             alt=""
                         />

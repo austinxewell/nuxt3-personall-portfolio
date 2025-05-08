@@ -1,13 +1,12 @@
 <template>
-    <header id="hero" class="px-32 pt-32 h-[60vh]">
-        <button class="cursor-pointer" @click="navigateTo('about')">
+    <header id="hero" class="lg:px-32 px-6 py-4 sm:pt-24 sm:pb-8 sm:h-[60vh]">
+        <button class="cursor-pointer flex gap-4 items-center lg:block" @click="navigateTo('about')">
             <UiAvatar class="mb-4" />
+            <p class="text-2xl font-bold lg:hidden">Hey! I'm Austin Ewell</p>
         </button>
 
-        <div class="flex gap-16">
-            <div class="w-28 text-center">
-                <p class="text-2xl font-bold">Hey! I'm Austin Ewell</p>
-            </div>
+        <div class="flex lg:gap-16">
+            <p class="w-28 text-center text-2xl font-bold hidden lg:block">Hey! I'm Austin Ewell</p>
             <aside class="flex flex-col">
                 <h1 class="text-6xl font-bold text-center">The <span class="text-yellow-600 font-extrabold">Gold</span> Standard in Creative Solutions.</h1>
                 <BaseButton class="mt-6 w-fit flex justify-center" @click="navigateTo('services')">

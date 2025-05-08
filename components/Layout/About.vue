@@ -1,16 +1,16 @@
 <template>
-    <section id="about" class="px-32 pt-24">
-        <h2 class="text-4xl ml-20 mb-6 font-semibold">
+    <section id="about" class="lg:px-32 px-6 py-4 sm:py-8">
+        <h2 class="text-4xl md:ml-20 mb-6 font-semibold">
             Rooted in Passion. Refined in <span class="text-yellow-600 font-bold">Gold</span>.
         </h2>
-        <div class="flex items-center justify-center gap-14">
-            <img class="h-[50vh] rounded-2xl object-cover" src="../../assets/images/cartoon-avatar.png" />
-            <div class="w-1/3">
+        <div class="md:flex items-center justify-center gap-14">
+            <img class="h-[30vh] md:h-[50vh] rounded-2xl object-cover mx-auto mb-4 md:mb-0 md:mx-0" src="../../assets/images/cartoon-avatar.png" />
+            <div class="md:w-1/3">
                 <UiAboutText />
-            </div>
+            </div> 
         </div>
         <div>
-            <div class="flex justify-center mt-20">
+            <div class="flex justify-center mt-12">
                 <h3 class="text-3xl font-semibold tracking-wide text-center max-w-4xl">
                     Technologies That Power My
                     <span class="text-yellow-600 font-bold">Golden</span>

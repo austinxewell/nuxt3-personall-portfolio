@@ -10,7 +10,7 @@
                 <img
                     src="@/assets/images/text-logo.png"
                     alt="Text Logo"
-                    class="h-5"
+                    class="h-5 hidden sm:block"
                 />
             </div>
         </a>

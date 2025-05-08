@@ -4,7 +4,7 @@
             class="w-[17rem] h-[20rem] border dark:border-yellow-600 rounded-2xl shadow-lg shadow-black  cursor-pointer bg-white dark:bg-gray-800 transform transition-transform duration-300 hover:scale-120 hover:z-10"
         >
             <img 
-                class="rounded-2xl"
+                class="rounded-t-2xl"
                 :src="findThumbnailImage(project.images)?.img_url" 
                 :alt="findThumbnailImage(project.images)?.img_name"
             />
