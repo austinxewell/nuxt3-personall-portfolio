@@ -51,7 +51,7 @@ export const projects = [
             },
             {
                 img_name: 'Login',
-                img_url: 'https://i.postimg.cc/sgRHs1Jj/pulse-login.png',
+                img_url: 'https://i.postimg.cc/bvTph7cJ/pulse-login.png',
                 is_thumbnail: false,
             },
             {
