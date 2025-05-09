@@ -84,7 +84,8 @@ const galleryConfig: Record<string, unknown> = {
     wrapAround: true,
     slideEffect: 'fade',
     mouseDrag: false,
-    touchDrag: false
+    touchDrag: false,
+    height: '60vh'
 }
 
 const thumbnailsConfig: Record<string, unknown> = {
@@ -122,8 +123,13 @@ img {
     border-radius: 16px;
     height: 100%;
     width: 100%;
-    object-fit: contain;
+    object-fit: cover;
     object-position: top;
+    border: 1px solid black
+}
+
+html.dark .gallery-image {
+    border: 1px solid #d08500
 }
 
 #thumbnails {
