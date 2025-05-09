@@ -1,7 +1,12 @@
 <template>
-    <div class="relative w-20 h-20 rounded-2xl border border-gray-900 shadow-lg shadow-gray-900 dark:border-white dark:shadow-md dark:shadow-white group">
+    <div class="relative w-20 h-20 mt-4 sm:mt-0 rounded-2xl border border-gray-900 shadow-lg shadow-gray-900 dark:border-white dark:shadow-md dark:shadow-white group">
         <div
-            class="absolute bottom-full left-1/2 transform -translate-x-1/2 translate-y-2 opacity-0 group-hover:opacity-100 group-hover:-translate-y-2 transition-all duration-500 ease-in-out border border-gray-900 bg-white dark:bg-gray-900 dark:border-white text-sm rounded-md py-1 px-2 font-bold whitespace-nowrap"
+            class="
+        absolute bottom-full left-1/2 transform -translate-x-1/2 translate-y-2
+        text-sm rounded-md py-1 px-2 font-bold whitespace-nowrap
+        border border-gray-900 bg-white text-black dark:bg-gray-900 dark:border-white dark:text-white
+        sm:opacity-0 sm:group-hover:opacity-100 sm:group-hover:-translate-y-2 sm:transition-all sm:duration-500 sm:ease-in-out
+    "
         >
             {{ toolName }}
         </div>

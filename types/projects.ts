@@ -6,6 +6,7 @@ export type Project = {
     description: string
     isFavorite: boolean
     live_url: string
+    github_url: string
     tech_tags: ProjectTag[]
     images: ProjectImage[];
 }

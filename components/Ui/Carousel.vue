@@ -5,14 +5,15 @@
             v-bind="galleryConfig"
             v-model="currentSlide"
         >
-            <Slide v-for="project in findFavoriteProjects(projects)" :key="project.id">
+
+            <Slide v-for="project in findFavoriteProjects(projects as Project[])" :key="project.id">
                 <NuxtLink :to="`/projects/${project.slug}`">
                     <BaseButton
                         class="absolute right-0 top-0 mt-2 mr-2 z-10 w-fit flex items-center justify-center"
                         :color="'secondary'"
                     >
-                        <span>View Project</span>
-                        <UIcon name="lucide:external-link" class="size-5 ml-2 yell" />
+                        <span class="hidden sm:block">View Project</span>
+                        <UIcon name="lucide:external-link" class="size-5 ml-0 sm:ml-2 yell" />
                     </BaseButton>
                 </NuxtLink>
 
@@ -31,7 +32,7 @@
         v-model="currentSlide"
         class="mt-4"
     >
-        <Slide v-for="project in findFavoriteProjects(projects)" :key="project.id">
+        <Slide v-for="project in findFavoriteProjects(projects as Project[])" :key="project.id">
             <template #default="{ currentIndex, isActive }">
                 <div
                     :class="['thumbnail', { 'is-active': isActive }]"
@@ -68,6 +69,7 @@ import 'vue3-carousel/carousel.css'
 import { findThumbnailImage, findPrimaryTags, findFavoriteProjects } from '../../utils/projectHelpers'
 import { Carousel, Slide, Navigation } from 'vue3-carousel'
 import { projects } from '~/data/projects'
+import type { Project } from '~/types/projects'
 
 
 const currentSlide = ref<number>(0)
@@ -76,20 +78,20 @@ function slideTo(nextSlide: number): void {
     currentSlide.value = nextSlide
 }
 
+
 const galleryConfig: Record<string, unknown> = {
     itemsToShow: 1,
     wrapAround: true,
     slideEffect: 'fade',
     mouseDrag: false,
-    touchDrag: false,
-    height: '50vh'
+    touchDrag: false
 }
 
 const thumbnailsConfig: Record<string, unknown> = {
     height: 150,
     itemsToShow: 2,
     wrapAround: true,
-    touchDrag: false,
+    touchDrag: true,
     gap: 10,
     breakpoints: { 
         640: { itemsToShow: 3 },
@@ -113,20 +115,15 @@ img {
     border-radius: 8px;
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
 }
 
 .gallery-image {
     border-radius: 16px;
-    height: 50vh;
+    height: 100%;
     width: 100%;
-    object-fit: cover;
+    object-fit: contain;
     object-position: top;
-    border: 1px solid black
-}
-
-html.dark .gallery-image {
-    border: 1px solid #c88700;
 }
 
 #thumbnails {

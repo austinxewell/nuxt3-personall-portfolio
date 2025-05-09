@@ -14,7 +14,7 @@
             >
                 <h2 class="text-2xl font-bold mb-6">{{ project.overview }}</h2>
                 <p class="text-sm mt-2 dark:text-gray-500 font-bold mb-6">
-                    {{ project.project_name }}
+                    &mdash; {{ project.project_name }}
                 </p>
 
                 <div class="flex flex-wrap gap-2 mb-6">
@@ -25,11 +25,22 @@
                     />
                 </div>
 
-                <p v-html="project.description" />
+                <div v-html="project.description" />
 
-                <div v-if="project.live_url" class="flex justify-center mt-6">
-                    <a :href="project.live_url" target="_blank">
+                <div class="mt-6 w-full mx-auto flex flex-col items-center gap-4">
+                    <a
+                        v-if="project.live_url"
+                        :href="project.live_url"
+                        target="_blank"
+                    >
                         <BaseButton>View Live Project</BaseButton>
+                    </a>
+                    <a
+                        v-if="project.github_url"
+                        :href="project.github_url"
+                        target="_blank"
+                    >
+                        <BaseButton>View Gitlab Repository</BaseButton>
                     </a>
                 </div>
             </section>
@@ -41,9 +52,13 @@
         >
             <h2 class="text-2xl mt-14 sm:mt-0 font-bold mb-6">Project Views:</h2>
 
-            <div class="flex flex-wrap gap-6 text-center">
+            <div class="flex justify-center flex-wrap gap-6 text-center">
                 <div v-for="image in project.images" :key="image.img_name">
-                    <img :src="image.img_url" :alt="image.img_name" />
+                    <img
+                        class="max-h-[80vh]"
+                        :src="image.img_url"
+                        :alt="image.img_name"
+                    />
                     <p class="font-bold mt-1">{{ image.img_name }}</p>
                 </div>
             </div>
@@ -54,13 +69,12 @@
 <script setup lang="ts">
 import { useRoute } from 'vue-router'
 import { projects } from '~/data/projects'
-import type { Project } from '~/types/projects'
 import { createError } from 'h3'
 import { useWindowSize } from '@vueuse/core'
 
 const route = useRoute()
 const slug = route.params.slug
-const project: Project | undefined = projects.find((project) => project.slug === slug)
+const project = projects.find((project) => project.slug === slug)!
 
 if (!project)
     throw createError({
