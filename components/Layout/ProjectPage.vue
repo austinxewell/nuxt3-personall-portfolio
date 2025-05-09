@@ -1,7 +1,7 @@
 <template>
     <div v-if="project" class="flex h-screen overflow-hidden relative">
         <BaseButton
-            class="w-fit z-20 absolute top-4 left-4 sm:left-auto sm:right-24 lg:hidden"
+            class="w-fit z-20 absolute top-4 left-4 sm:left-auto sm:right-24 lg:hidden bg-white"
             @click="drawerOpen = !drawerOpen"
         >
             {{ drawerOpen ? 'Views' : 'Details' }}
@@ -55,7 +55,7 @@
             <div class="flex justify-center flex-wrap gap-6 text-center">
                 <div v-for="image in project.images" :key="image.img_name">
                     <img
-                        class="max-h-[80vh]"
+                        class="max-h-[80vh] rounded-md"
                         :src="image.img_url"
                         :alt="image.img_name"
                     />

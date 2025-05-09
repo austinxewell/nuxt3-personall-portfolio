@@ -4,17 +4,19 @@
         class="hover:cursor-pointer"
         @click="toggleDarkMode"
     >
-        <UIcon :name="isDark ? 'lucide:sun' : 'lucide:moon'" />
+        <UIcon :name="isDark ? 'lucide:sun' : 'lucide:moon'" :class="props.iconSize" />
     </button>
 </template>
 
 <script setup lang="ts">
 import { useDarkModeStore } from '~/stores/useDarkModeStore'
-import { computed, ref, onMounted } from 'vue'
+
+const props = withDefaults(defineProps<{
+    iconSize?: string
+}>(), { iconSize: 'w-4 h-4' })
 
 const darkModeStore = useDarkModeStore()
 
-// Local "hydrated" flag
 const ready = ref(false)
 
 const isDark = computed(() => darkModeStore.isDark)

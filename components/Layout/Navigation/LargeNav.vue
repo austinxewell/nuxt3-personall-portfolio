@@ -31,7 +31,7 @@
                         class="flex items-center text-gray-900 dark:text-white hover:text-gray-600 dark:hover:text-gray-400 transition-colors cursor-pointer"
                         :class="[
                             item.isActive
-                                ? 'text-yellow-600 dark:text-yellow-400'
+                                ? 'text-yellow-600 dark:text-yellow-600'
                                 : 'text-gray-900 dark:text-white hover:text-gray-600 dark:hover:text-gray-400'
                         ]"
                         @click.prevent="scrollToSection(item.href)"
