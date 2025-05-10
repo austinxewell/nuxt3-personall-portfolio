@@ -85,7 +85,14 @@ const galleryConfig: Record<string, unknown> = {
     slideEffect: 'fade',
     mouseDrag: false,
     touchDrag: false,
-    height: '60vh'
+    width: '100%',
+    height: 'auto',
+    breakpoints: {
+        640: {
+            height: '60vh',
+            width: '100%' 
+        }
+    }
 }
 
 const thumbnailsConfig: Record<string, unknown> = {
