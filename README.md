@@ -10,7 +10,7 @@
 
 > A professional online portfolio developed to showcase my skills and services as a developer.
 
-![Hero image or preview](https://i.postimg.cc/sMhRJM2g/portfolio-about.png)
+![Hero image or preview](https://i.postimg.cc/L8y62fKL/portfolio-about.png)
 
 ---
 
@@ -54,22 +54,22 @@ AuEwellify is a professional online portfolio that highlights my skills, project
 
 | Feature                | Preview                                          |
 |------------------------|--------------------------------------------------|
-| Landing Page           | ![](https://i.postimg.cc/xkGDWBMr/Portfolio-landing.png) |
-| About Section          | ![](https://i.postimg.cc/sMhRJM2g/portfolio-about.png) |
-| Contact Page           | ![](https://i.postimg.cc/Yjdk2cVM/portfolio-contact.png) |
-| Mobile Landing Page    | ![](https://i.postimg.cc/KkNbgC87/potfolio-landing-dark.png) |
-| Mobile About Section   | ![](https://i.postimg.cc/872T8hYv/portfolio-mobile-about-dark.png) |
-| Mobile Contact Page    | ![](https://i.postimg.cc/zHzJt8cP/portfolio-mobile-contact-dark.png) |
-| Mobile Project Details | ![](https://i.postimg.cc/0rn56K6g/portfolio-mobile-view-project-details-dark.png) |
-| Mobile Project Views   | ![](https://i.postimg.cc/w3gTTQjc/portfolio-mobile-view-project-views-dark.png) |
-| Mobile Services        | ![](https://i.postimg.cc/xXJ9Fs6Y/portfolio-mobile-services-dark.png) |
-| Mobile Tech Section    | ![](https://i.postimg.cc/v15bG4RN/portfolio-mobile-tech-dark.png) |
-| Mobile Project Section | ![](https://i.postimg.cc/3dbK1MCn/portfolio-mobile-projects-dark.png) |
-| Project Section        | ![](https://i.postimg.cc/qtHHDptX/portfolio-projects.png) |
-| Services Section       | ![](https://i.postimg.cc/Yhj7hnKg/portfolio-services.png) |
-| Tech Stack Section     | ![](https://i.postimg.cc/4mMgt6s0/portfolio-tech.png) |
-| View Project Details   | ![](https://i.postimg.cc/DmvnKfxx/portfolio-view-project.png) |
-| View Projects Section  | ![](https://i.postimg.cc/n9hJKTXy/portfolio-view-projects.png) |
+| Landing Page           | ![](https://i.postimg.cc/jjmxJbjj/Portfolio-landing.png) |
+| About Section          | ![](https://i.postimg.cc/L8y62fKL/portfolio-about.png) |
+| Contact Page           | ![](https://i.postimg.cc/MKSGDqmM/portfolio-contact.png) |
+| Mobile Landing Page    | ![](https://i.postimg.cc/WzR1xvRy/potfolio-landing-dark.png) |
+| Mobile About Section   | ![](https://i.postimg.cc/Bv6bKpcm/portfolio-mobile-about-dark.png) |
+| Mobile Contact Page    | ![](https://i.postimg.cc/1X6fzzcP/portfolio-mobile-contact-dark.png) |
+| Mobile Project Details | ![](https://i.postimg.cc/NfqKz1B0/portfolio-mobile-view-project-details-dark.png) |
+| Mobile Project Views   | ![](https://i.postimg.cc/RCn3dPr8/portfolio-mobile-view-project-views-dark.png) |
+| Mobile Services        | ![](https://i.postimg.cc/L8vh5wfq/portfolio-mobile-services-dark.png) |
+| Mobile Tech Section    | ![](https://i.postimg.cc/W4H36Z5T/portfolio-mobile-tech-dark.png) |
+| Mobile Project Section | ![](https://i.postimg.cc/GmbHcdBw/portfolio-mobile-projects-dark.png) |
+| Project Section        | ![](https://i.postimg.cc/vmc8BBbj/portfolio-projects.png) |
+| Services Section       | ![](https://i.postimg.cc/4NQx2qW8/portfolio-services.png) |
+| Tech Stack Section     | ![](https://i.postimg.cc/YC2q5RVt/portfolio-tech.png) |
+| View Project Details   | ![](https://i.postimg.cc/PfZxYPYn/portfolio-view-project.png) |
+| View Projects Section  | ![](https://i.postimg.cc/sxpgrNsg/portfolio-view-projects.png) |
 
 ---
 
@@ -77,23 +77,23 @@ AuEwellify is a professional online portfolio that highlights my skills, project
 
 ### Clone & Install
 
-````bash
+\`\`\`bash
 git clone https://github.com/austinxewell/auewellify.git
 cd auewellify
 npm install
-````
+\`\`\`
 
 ### Run Dev Server
 
-````bash
+\`\`\`bash
 npm run dev
-````
+\`\`\`
 
 ### Build for Production
 
-````bash
+\`\`\`bash
 npm run build
-````
+\`\`\`
 
 ---
 
