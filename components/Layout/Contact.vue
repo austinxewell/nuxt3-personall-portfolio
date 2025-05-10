@@ -1,7 +1,7 @@
 <template>
     <section
         id="contact"
-        class="h-[90vh] bg-gray-900 dark:bg-white text-white dark:text-gray-800 flex flex-col justify-center items-center px-6 text-center"
+        class="lg:h-[90vh] py-6 lg:py-0 bg-gray-900 dark:bg-white text-white dark:text-gray-800 flex flex-col justify-center items-center px-6 text-center"
     >
         <div class="flex items-center gap-2 mb-6">
             <img

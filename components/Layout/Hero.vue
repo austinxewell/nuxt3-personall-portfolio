@@ -1,5 +1,5 @@
 <template>
-    <header id="hero" class="lg:px-32 px-6 py-4 sm:pt-24 sm:pb-8 sm:h-[60vh]">
+    <header id="hero" class="lg:px-32 px-6 py-4 sm:pb-8 lg:pt-16 lg:h-[60vh]">
         <button class="cursor-pointer flex gap-4 items-center lg:block" @click="navigateTo('about')">
             <UiAvatar class="mb-4" />
             <p class="text-2xl font-bold lg:hidden">Hey! I'm Austin Ewell</p>

@@ -12,7 +12,6 @@
         >
             <UIcon :name="item.icon" size="48" />
         </NuxtLink>
-        <UiDarkModeButton icon-size="w-11 h-11" />
     </nav>
 </template>
 

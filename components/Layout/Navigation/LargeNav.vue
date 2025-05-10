@@ -16,14 +16,14 @@
                             alt=""
                         />
                         <img
-                            class="h-6 hidden lg:block"
+                            class="h-6 sm:hidden lg:block"
                             src="../../../assets/images/text-logo.png"
                             alt=""
                         />
                     </div>
                 </a>
 
-                <nav class="absolute left-1/2 transform -translate-x-1/2 flex gap-6 text-sm font-medium">
+                <nav class="hidden absolute left-1/2 transform -translate-x-1/2 sm:flex gap-6 text-sm font-medium">
                     <a
                         v-for="item in items"
                         :key="item.href"
