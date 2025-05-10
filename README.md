@@ -78,23 +78,23 @@ AuEwellify is a professional online portfolio that highlights my skills, project
 
 ### Clone & Install
 
-\`\`\`bash
+```bash
 git clone https://github.com/austinxewell/auewellify.git
 cd auewellify
 npm install
-\`\`\`
+```
 
 ### Run Dev Server
 
-\`\`\`bash
+```bash
 npm run dev
-\`\`\`
+```
 
 ### Build for Production
 
-\`\`\`bash
+```bash
 npm run build
-\`\`\`
+```
 
 ---
 
