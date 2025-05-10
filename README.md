@@ -1,6 +1,7 @@
 # Professional Online Portfolio (AuEwellify)
 
 <!-- Status badges -->
+[![Netlify Status](https://api.netlify.com/api/v1/badges/36e62ffb-26f0-492b-8919-700adf74dcfc/deploy-status)](https://app.netlify.com/sites/auewellify/deploys)
 ![Nuxt 3](https://img.shields.io/badge/Nuxt%203-3.17.x-green?style=flat-square&logo=nuxtdotjs&logoColor=white)
 ![Vue 3](https://img.shields.io/badge/Vue%203-3.5.x-green?style=flat-square&logo=vue.js&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.8.x-blue?style=flat-square&logo=typescript&logoColor=white)
