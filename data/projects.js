@@ -112,10 +112,16 @@ export const projects = [
             <p>The app uses the <strong>Spoonacular API</strong> to generate balanced meal plans for breakfast, lunch, and dinner, each with full recipes accessible via modal popups. Users can save and compare different plans using localStorage for persistent state management on the client side.</p>
             <br>
             <p>Workout routines were originally powered by the <strong>ExerciseDB API</strong>, allowing users to target specific muscle groups. <strong>Note:</strong> Due to a business model change, the ExerciseDB API now requires a paid key, and the live version currently lacks this functionality.</p>
-            <br
+            <br>
             <p>The UI is built using the <strong>Bulma CSS framework</strong> for layout and form control, enhanced with <strong>GSAP animations</strong> for smooth transitions. Font Awesome provides iconography, and all state is managed via vanilla JavaScript for lightweight performance.</p>
             <br>
             <p><strong>Key Contributions:</strong> API integration, dynamic DOM manipulation, modular JS structure, responsive design, form handling, local storage persistence, custom modal logic, and graceful error handling. Designed and built end-to-end with performance and UX in mind.</p>
+            <br>
+            <strong><p>Contributors:</p></strong>
+            <p>— <a href="https://github.com/SadboiTay" target="_blank">Taylor Hakes</a></p>
+            <p>— <a href="https://github.com/michaelheinhold" target="_blank">Michael Heinhold</a></p>
+            <p>— <a href="https://github.com/austinxewell" target="_blank">Austin Ewell</a></p>
+            <p>— <a href="https://github.com/CorySlsbry" target="_blank">CorySlsbry</a></p>
         `,
         isFavorite: true,
         live_url: 'https://austinxewell.github.io/git-n-shape/',
@@ -246,7 +252,7 @@ export const projects = [
             - CRUD operations for site content via REST API<br />
             - Real-world deployment structure with separate frontend and backend repos</p>
             <br />
-            <p><strong>Backend Repository:</strong> <a href="https://github.com/austinxewell/CDPhoto-Backend/tree/dev" target="_blank">GitHub - Backend</a></p>
+            <p><strong>Backend Repository:</strong> <a href="https://github.com/austinxewell/CDPhoto-Backend" target="_blank">GitHub - Backend</a></p>
         `,
         isFavorite: true,
         live_url: '',
@@ -308,8 +314,10 @@ export const projects = [
         slug: 'bag-of-tricks',
         overview: 'A customizable trick selector that stores your moves locally and filters them by attributes.',
         description: `
-            <p><strong>Bag of Tricks</strong> is a fully client-side trick selector built with <strong>Vue 3</strong>, designed to let users create, categorize, and filter their own tricks without a backend. State is managed using <strong>Pinia</strong>, with data persisted in <strong>localStorage</strong> to support offline use.</p>
+            <p><strong>Bag of Tricks</strong> is a fully client-side trick selector built with <strong>Vue 3</strong> and <strong>TypeScript</strong>, designed to let users create, categorize, and filter their own tricks without a backend. State is managed using <strong>Pinia</strong>, with data persisted in <strong>localStorage</strong> to support offline use.</p>
+            <br />
             <p>The app features dynamic form handling with validation, success toasts, error states, and full CRUD functionality. Users can define specific properties for tricks like terrain or type, then selectively filter which are included in the random selection pool. The UI includes <strong>dark mode</strong> support and advanced filtering options built using the <strong>VueUse</strong> composables and <strong>Nuxt UI</strong> components.</p>
+            <br />
             <p>This project highlights my ability to architect SPAs, write maintainable TypeScript with <strong>Composition API</strong>, and deliver clean, scalable UX using modern frontend best practices.</p>
         `,
         isFavorite: true,
@@ -321,7 +329,6 @@ export const projects = [
             { tag_name: 'TypeScript', is_primary: true },
             { tag_name: 'Vue Router', is_primary: false },
             { tag_name: 'Nuxt UI', is_primary: false },
-            { tag_name: 'Vue3 Carousel', is_primary: false },
             { tag_name: 'localStorage', is_primary: false },
             { tag_name: 'Composition API', is_primary: false },
             { tag_name: 'Dark Mode Support', is_primary: false },
@@ -341,4 +348,55 @@ export const projects = [
             { img_name: 'Bag Of Tricks - View bag', img_url: 'https://i.postimg.cc/x8QqzVRM/bot-view-bag.png', is_thumbnail: false }
         ]
     },
+    {
+        id: 6,
+        project_name: 'adoptABLE',
+        slug: 'adoptable',
+        overview: '(MVP) A platform for DV survivors with anonymous donors through Stripe-powered support.',
+        description: `
+            <p><strong>adoptABLE</strong> is a full-stack MERN application built to support domestic violence survivors by enabling anonymous connections between families in need and donors who want to help. The core goal was to create a secure, private, and compassionate space for vulnerable users, while maintaining a robust, modern web architecture.</p>
+            <br />
+            <p>The frontend is developed using <strong>React 18</strong> and styled with custom components. It includes dynamic routing, authenticated views, and conditional rendering based on user roles. Donors and families can both create accounts, but families are anonymized by default to protect their identities. The app allows users to browse a list of families in need and view details about what each family requires. Once a donor selects a family to help, they can initiate real-time conversations and send donations through a <strong>Stripe-powered</strong> payment system.</p>
+            <br />
+            <p>The backend is powered by <strong>Node.js</strong> with <strong>Express</strong>, and leverages <strong>GraphQL</strong> via <strong>Apollo Server</strong> for flexible API queries. Data is stored in <strong>MongoDB</strong> using <strong>Mongoose</strong> as an ODM layer. Authentication is handled via <strong>JWT</strong>, allowing for secure, stateless login sessions across the app. Protected routes and role-based logic are implemented on both the server and client sides.</p>
+            <br />
+            <p><strong>Key features include:</strong></p>
+            <ul>
+            <li>● Anonymous family profiles, viewable by donors without exposing sensitive information</li>
+            <li>● Donor accounts with the ability to "adopt" families and initiate financial support</li>
+            <li>● Real-time, in-app messaging between families and donors using Apollo subscriptions (where supported)</li>
+            <li>● Stripe integration for handling donations, tied directly to individual family profiles</li>
+            <li>● Profile management for users, allowing them to update information or view adoption history</li>
+            <li>● Modular, scalable component structure on the frontend with reusable UI patterns</li>
+            </ul>
+            <br />
+            <p>This project highlights my ability to build secure, mission-driven applications using a modern full-stack JavaScript stack. It demonstrates technical proficiency across both frontend and backend development, effective use of GraphQL and RESTful patterns, and third-party service integrations like <strong>Stripe</strong> and <strong>JWT</strong>. adoptABLE was a team collaboration, but I led the architecture, data modeling, and end-to-end feature development, ensuring high-quality UX and maintainable code practices throughout.</p>
+        `,
+        isFavorite: false,
+        live_url: '',
+        github_url: 'https://github.com/austinxewell/adoptABLE',
+        tech_tags: [
+            { tag_name: 'MVP', is_primary: false },
+            { tag_name: 'React', is_primary: true },
+            { tag_name: 'Node.js', is_primary: true },
+            { tag_name: 'GraphQL', is_primary: true },
+            { tag_name: 'Express.js', is_primary: false },
+            { tag_name: 'MongoDB', is_primary: false },
+            { tag_name: 'Mongoose', is_primary: false },
+            { tag_name: 'Apollo', is_primary: false },
+            { tag_name: 'JWT', is_primary: false },
+            { tag_name: 'Stripe', is_primary: false }
+        ],
+        images: [
+            { img_name: 'Homepage', img_url: 'https://user-images.githubusercontent.com/86080954/148338421-6a894e08-4c57-4b61-8ab4-42c6057ba4ad.JPG', is_thumbnail: true },
+            { img_name: 'Family Listings', img_url: 'https://user-images.githubusercontent.com/86080954/148338424-c575129f-378d-45d1-b810-406482a16225.JPG', is_thumbnail: false },
+            { img_name: 'Adoption Page', img_url: 'https://user-images.githubusercontent.com/86080954/148338430-51664fba-c67e-42bc-8b6c-c1930cf10657.JPG', is_thumbnail: false },
+            { img_name: 'Messaging Interface', img_url: 'https://user-images.githubusercontent.com/86080954/148338437-c2c9c488-a469-4301-a5b6-32f116f19a69.JPG', is_thumbnail: false },
+            { img_name: 'Profile View', img_url: 'https://user-images.githubusercontent.com/86080954/148338441-9485fc56-95ef-4d61-8081-4746c6c75e71.JPG', is_thumbnail: false },
+            { img_name: 'Donation Page', img_url: 'https://user-images.githubusercontent.com/86080954/148338450-94740a7b-dc27-45e2-99b2-4a82daab2f9d.JPG', is_thumbnail: false },
+            { img_name: 'Product Management', img_url: 'https://user-images.githubusercontent.com/86080954/148338480-d65cb95e-19c1-4ca7-bc54-4c2de211b864.JPG', is_thumbnail: false },
+            { img_name: 'Edit Account Info', img_url: 'https://user-images.githubusercontent.com/86080954/148338499-ce9c3550-b957-4519-ac9b-2c9cac544152.JPG', is_thumbnail: false },
+            { img_name: 'Adopted Families Overview', img_url: 'https://user-images.githubusercontent.com/86080954/148338504-f18c34a2-8187-4e75-b92c-476081d0f37d.JPG', is_thumbnail: false }
+        ]
+    }
 ]
