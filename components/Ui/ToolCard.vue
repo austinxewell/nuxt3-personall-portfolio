@@ -1,12 +1,13 @@
 <template>
     <div class="relative w-20 h-20 mt-4 sm:mt-0 rounded-2xl border border-gray-900 shadow-lg shadow-gray-900 dark:border-white dark:shadow-md dark:shadow-white group">
         <div
-            class="
-        absolute bottom-full left-1/2 transform -translate-x-1/2 translate-y-2
-        text-sm rounded-md py-1 px-2 font-bold whitespace-nowrap
-        border border-gray-900 bg-white text-black dark:bg-gray-900 dark:border-white dark:text-white
-        sm:opacity-0 sm:group-hover:opacity-100 sm:group-hover:-translate-y-2 sm:transition-all sm:duration-500 sm:ease-in-out
-    "
+            class="absolute bottom-full left-1/2 transform -translate-x-1/2 translate-y-2 text-sm rounded-md py-1 px-2 font-bold whitespace-nowrap border border-gray-900 bg-white dark:bg-gray-900 dark:border-white transition-all duration-500 ease-in-out"
+            :class="[
+                isFavorite ? 'dark:text-yellow-500 text-yellow-600 sm:text-white sm:dark:text-white' : 'text-black dark:text-white sm:text-black sm:dark:text-white',
+                showToolName 
+                    ? 'opacity-100 -translate-y-2' 
+                    : 'sm:opacity-0 sm:group-hover:opacity-100 sm:group-hover:-translate-y-2'
+            ]"
         >
             {{ toolName }}
         </div>
@@ -15,7 +16,7 @@
             <UIcon name="heroicons:star-20-solid" class="w-4 h-4" />
         </div>
 
-        <div class="flex items-center justify-center h-full rounded-2xl">
+        <div class="flex items-center justify-center h-full rounded-2xl" @click="toggleToolName">
             <UIcon :name="icon" class="size-14 rounded-2xl" />
         </div>
     </div>
@@ -36,4 +37,10 @@ defineProps({
         required: false
     }
 })
+
+const showToolName = ref(false)
+
+function toggleToolName() {
+    showToolName.value  = !showToolName.value
+}
 </script>

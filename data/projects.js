@@ -302,4 +302,43 @@ export const projects = [
             { img_name: 'CDP Admin Modify Data', img_url: 'https://i.postimg.cc/76byg6c8/cdp-modify-data.png', is_thumbnail: false }
         ]
     },
+    {
+        id: 5,
+        project_name: 'Bag of Tricks',
+        slug: 'bag-of-tricks',
+        overview: 'A customizable trick selector that stores your moves locally and filters them by attributes.',
+        description: `
+            <p><strong>Bag of Tricks</strong> is a fully client-side trick selector built with <strong>Vue 3</strong>, designed to let users create, categorize, and filter their own tricks without a backend. State is managed using <strong>Pinia</strong>, with data persisted in <strong>localStorage</strong> to support offline use.</p>
+            <p>The app features dynamic form handling with validation, success toasts, error states, and full CRUD functionality. Users can define specific properties for tricks like terrain or type, then selectively filter which are included in the random selection pool. The UI includes <strong>dark mode</strong> support and advanced filtering options built using the <strong>VueUse</strong> composables and <strong>Nuxt UI</strong> components.</p>
+            <p>This project highlights my ability to architect SPAs, write maintainable TypeScript with <strong>Composition API</strong>, and deliver clean, scalable UX using modern frontend best practices.</p>
+        `,
+        isFavorite: true,
+        live_url: 'https://profound-stardust-16a045.netlify.app/',
+        github_url: 'https://github.com/austinxewell/bag-of-tricks',
+        tech_tags: [
+            { tag_name: 'Vue 3', is_primary: true },
+            { tag_name: 'Pinia', is_primary: true },
+            { tag_name: 'TypeScript', is_primary: true },
+            { tag_name: 'Vue Router', is_primary: false },
+            { tag_name: 'Nuxt UI', is_primary: false },
+            { tag_name: 'Vue3 Carousel', is_primary: false },
+            { tag_name: 'localStorage', is_primary: false },
+            { tag_name: 'Composition API', is_primary: false },
+            { tag_name: 'Dark Mode Support', is_primary: false },
+            { tag_name: 'Responsive Design', is_primary: false },
+        ],
+        images: [
+            { img_name: 'Bag Of Tricks - Landing', img_url: 'https://i.postimg.cc/HL7Lvkvb/bot-landing-light.png', is_thumbnail: true },
+            { img_name: 'Bag Of Tricks - Landing - Dark Mode', img_url: 'https://i.postimg.cc/DwNZcX62/bot-landing-dark.png', is_thumbnail: false },
+            { img_name: 'Bag Of Tricks - Terrain Filter', img_url: 'https://i.postimg.cc/X7QXphyB/bot-terrain-filter.png', is_thumbnail: false },
+            { img_name: 'Bag Of Tricks - Trick Type Filter', img_url: 'https://i.postimg.cc/fRyyXKx2/bot-trick-type-filter.png', is_thumbnail: false },
+            { img_name: 'Bag Of Tricks - Selected Trick', img_url: 'https://i.postimg.cc/dtqLQvDK/bot-trick-selection.png', is_thumbnail: false },
+            { img_name: 'Bag Of Tricks - Modify Options', img_url: 'https://i.postimg.cc/ryGDLzVJ/bot-modify-bag.png', is_thumbnail: false },
+            { img_name: 'Bag Of Tricks - Add Trick Form', img_url: 'https://i.postimg.cc/QCqCgY4P/bot-add-trick.png', is_thumbnail: false },
+            { img_name: 'Bag Of Tricks - Add Trick Form: Errors', img_url: 'https://i.postimg.cc/ydckx8F7/bot-trick-error-state.png', is_thumbnail: false },
+            { img_name: 'Bag Of Tricks - Success Toast', img_url: 'https://i.postimg.cc/R033rRh6/bot-success-toast.png', is_thumbnail: false },
+            { img_name: 'Bag Of Tricks - Edit Bag', img_url: 'https://i.postimg.cc/vmp4GVxP/bot-edit-bag.png', is_thumbnail: false },
+            { img_name: 'Bag Of Tricks - View bag', img_url: 'https://i.postimg.cc/x8QqzVRM/bot-view-bag.png', is_thumbnail: false }
+        ]
+    },
 ]

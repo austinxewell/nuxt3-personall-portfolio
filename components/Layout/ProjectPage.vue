@@ -49,6 +49,7 @@
         <section
             class="p-6 h-full overflow-y-auto transition-all duration-300"
             :class="{ 'ml-[24rem]': screenIsLgUp }"
+            @click="drawerOpen = false"
         >
             <h2 class="text-2xl mt-14 sm:mt-0 font-bold mb-6">Project Views:</h2>
 
