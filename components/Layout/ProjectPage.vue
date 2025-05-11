@@ -51,7 +51,7 @@
             :class="{ 'ml-[24rem]': screenIsLgUp }"
             @click="drawerOpen = false"
         >
-            <h2 class="text-2xl mt-14 sm:mt-0 font-bold mb-6">Project Views:</h2>
+            <h2 class="text-2xl mt-14 sm:mt-0 font-bold mb-6 pb-1 border-b-1 w-fit">Project Views:</h2>
 
             <div class="flex justify-center flex-wrap gap-6 text-center">
                 <div v-for="image in project.images" :key="image.img_name">

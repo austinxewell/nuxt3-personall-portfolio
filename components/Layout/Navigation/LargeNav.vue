@@ -102,21 +102,21 @@ function scrollToSection(href: string) {
 
 function observeSections() {
     const sections = document.querySelectorAll('[id]')
-    const options = { threshold: 0.5 }
+    const options = { threshold: 0.25 }
 
     observer = new IntersectionObserver(entries => {
         let activeItemFound = false
         entries.forEach(entry => {
             const sectionId = entry.target.id
             const navItem = items.value.find(item => item.href === `#${sectionId}`)
+    
             if (navItem) 
                 if (entry.isIntersecting && !activeItemFound) {
                     navItem.isActive = true
                     activeItemFound = true
-                } else {
+                } else if (!entry.isIntersecting) {
                     navItem.isActive = false
                 }
-        
         })
     }, options)
 
