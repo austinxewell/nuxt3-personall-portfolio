@@ -398,5 +398,44 @@ export const projects = [
             { img_name: 'Edit Account Info', img_url: 'https://user-images.githubusercontent.com/86080954/148338499-ce9c3550-b957-4519-ac9b-2c9cac544152.JPG', is_thumbnail: false },
             { img_name: 'Adopted Families Overview', img_url: 'https://user-images.githubusercontent.com/86080954/148338504-f18c34a2-8187-4e75-b92c-476081d0f37d.JPG', is_thumbnail: false }
         ]
+    },
+    {
+        id: 6,
+        project_name: 'README.md Generator',
+        slug: 'readme-generator',
+        overview: 'A command-line application that generates high-quality, professional README.md files based on user input.',
+        description: `
+            <p><strong>README.md Generator</strong> is a command-line application designed to quickly generate well-structured, professional README.md files for developers. By answering a series of prompts in the terminal, users can create consistent documentation for their projects, saving time and adhering to best practices. This tool is ideal for solo developers, bootcamp students, and teams looking to standardize their repository documentation.</p>
+            <br />
+            <p>The application guides users through a set of questions, such as project description, installation instructions, usage guidelines, contributors, tests, and license type. Once the responses are gathered, it dynamically generates a complete README.md file. The tool utilizes <strong>Node.js</strong>, <strong>Express</strong>, <strong>Inquirer</strong> for interactive prompts, and <strong>Clipboardy</strong> for copying the generated README to the clipboard.</p>
+            <br />
+            <strong><p>Key Features of the App Include:</p></strong>
+            <ul>
+            <li>● Interactive command-line prompts for gathering project details</li>
+            <li>● Dynamic generation of a README.md file</li>
+            <li>● Clipboardy integration for easily copying the generated README</li>
+            <li>● Configurable options for license selection and list creation</li>
+            </ul>
+            <br />
+            <p>This project showcases proficiency in building command-line tools using <strong>Node.js</strong> and <strong>JavaScript</strong>. It demonstrates best practices for user interaction, modular coding, and efficient file handling.</p>
+        `,
+        isFavorite: false,
+        live_url: '',
+        github_url: 'https://github.com/austinxewell/readme-generator',
+        tech_tags: [
+            { tag_name: 'Node.js', is_primary: false },
+            { tag_name: 'Express.js', is_primary: true },
+            { tag_name: 'JavaScript', is_primary: true },
+            { tag_name: 'TypeScript', is_primary: false },
+            { tag_name: 'Inquirer', is_primary: true },
+            { tag_name: 'Clipboardy', is_primary: false }
+        ],
+        images: [
+            { img_name: 'Initial Prompt', img_url: 'https://i.postimg.cc/bYsKgJz3/readme-prompt-1.png', is_thumbnail: false },
+            { img_name: 'Selecting License', img_url: 'https://i.postimg.cc/RFbLq4y0/readme-selecting-license.png', is_thumbnail: false },
+            { img_name: 'Creating Lists', img_url: 'https://i.postimg.cc/6q2LvFxf/readme-creating-lists.png', is_thumbnail: false },
+            { img_name: 'Final Confirmation Screen', img_url: 'https://i.postimg.cc/tJKdtDXQ/readme-final-screen.png', is_thumbnail: true },
+            { img_name: 'Success Notification', img_url: 'https://i.postimg.cc/ydNTVkf5/readme-success-notification.png', is_thumbnail: false }
+        ]
     }
 ]

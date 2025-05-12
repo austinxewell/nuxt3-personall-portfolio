@@ -9,5 +9,8 @@
 </template>
 
 <script setup lang="ts">
-useHead({ bodyAttrs: { class: 'scroll-smooth' } })
+useHead({
+    titleTemplate: '%s | Austin Ewell – AuEwellify',
+    bodyAttrs: { class: 'scroll-smooth' } 
+})
 </script>
