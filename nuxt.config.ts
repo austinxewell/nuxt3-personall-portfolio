@@ -74,9 +74,11 @@ export default defineNuxtConfig({
                     rel: 'apple-touch-icon',
                     sizes: '180x180',
                     href: '/apple-touch-icon.png' 
+                },
+                {
+                    rel: 'canonical',
+                    href: 'https://auewellify.dev/' 
                 }
-                //TODO: Add when You have official domain.
-                // { rel: 'canonical', href: 'https://yourdomain.com' }
             ]
         }
     },

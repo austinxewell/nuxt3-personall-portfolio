@@ -23,8 +23,7 @@ useSeoMeta({
     ogTitle: `${title.value} | Austin Ewell - AuEwellify`,
     ogDescription: `View Project "${title.value}" by Austin Ewell at AuEwellify`,
     ogImage: image.value,
-    // TODO: add correct domain when available
-    // ogUrl: 'https://yourdomain.com/projects',
+    ogUrl: `https://auewellify.dev/projects/${slug}`,
     twitterTitle: `${title.value} | Austin Ewell - AuEwellify`,
     twitterDescription: `View Project "${title.value}" by Austin Ewell at AuEwellify`,
     twitterImage: image.value

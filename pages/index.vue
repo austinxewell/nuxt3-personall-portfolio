@@ -17,8 +17,7 @@ useSeoMeta({
     ogTitle: 'Austin Ewell - AuEwellify',
     ogDescription: 'Explore development by Austin Ewell at AuEwellify, a full-stack developer specializing in front-end excellence.',
     ogImage: 'https://i.postimg.cc/gkXvpDLb/portfolio-hero-dark.png',
-    // TODO: add correct domain when available
-    // ogUrl: 'https://yourdomain.com/projects',
+    ogUrl: 'https://auewellify.dev/',
     twitterTitle: 'Austin Ewell - AuEwellify',
     twitterDescription: 'A showcase of projects by Austin Ewell at AuEwellify, a full-stack developer specializing in front-end excellence.',
     twitterImage: 'https://i.postimg.cc/gkXvpDLb/portfolio-hero-dark.png'
