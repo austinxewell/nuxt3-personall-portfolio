@@ -23,7 +23,7 @@
                     </div>
                 </a>
 
-                <nav class="hidden absolute left-1/2 transform -translate-x-1/2 sm:flex gap-6 text-sm font-medium">
+                <nav class="hidden absolute left-1/2 transform -translate-x-1/2 sm:flex gap-6 text-sm md:text-base font-medium">
                     <a
                         v-for="item in items"
                         :key="item.href"
