@@ -12,18 +12,18 @@
                     <div class="flex items-center gap-2">
                         <img
                             class="w-14 h-14"
-                            src="../../../assets/images/small-logo.png"
-                            alt=""
+                            :src="smallLogo"
+                            alt="Small Logo"
                         />
                         <img
                             class="h-6 sm:hidden lg:block"
-                            src="../../../assets/images/text-logo.png"
-                            alt=""
+                            :src="textLogo"
+                            alt="Text Logo"
                         />
                     </div>
                 </a>
 
-                <nav class="hidden absolute left-1/2 transform -translate-x-1/2 sm:flex gap-6 text-sm font-medium">
+                <nav class="hidden absolute left-1/2 transform -translate-x-1/2 sm:flex gap-6 text-sm md:text-base font-medium">
                     <a
                         v-for="item in items"
                         :key="item.href"
@@ -42,7 +42,7 @@
                 </nav>
 
                 <div class="flex justify-center gap-4">
-                    <UiDarkModeButton />
+                    <BaseDarkModeButton />
                     <button
                         v-if="isNavVisible"
                         class="cursor-pointer"
@@ -71,8 +71,10 @@
 </template>
 
 <script setup lang="ts">
-
 import { navItems } from '~/data/navigation'
+
+const smallLogo = '/images/small-logo.png'
+const textLogo = '/images/text-logo.png'
 
 interface NavItem {
 label: string

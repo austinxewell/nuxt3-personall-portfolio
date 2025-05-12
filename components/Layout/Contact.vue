@@ -6,13 +6,13 @@
         <div class="flex items-center gap-2 mb-6">
             <img
                 class="w-20 h-20"
-                src="@/assets/images/small-logo.png"
-                alt=""
+                :src="smallLogo"
+                alt="Small Logo"
             />
             <img
                 class="h-10"
-                src="@/assets/images/text-logo.png"
-                alt=""
+                :src="textLogo"
+                alt="Test Logo"
             />
         </div>
 
@@ -77,4 +77,6 @@ import { useDarkModeStore } from '@/stores/useDarkModeStore'
 const darkModeStore = useDarkModeStore()
 
 const isDark = computed(() => darkModeStore.isDark)
+const smallLogo = '/images/small-logo.png'
+const textLogo = '/images/text-logo.png'
 </script>

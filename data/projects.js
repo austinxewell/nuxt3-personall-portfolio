@@ -360,17 +360,23 @@ export const projects = [
             <br />
             <p>The backend is powered by <strong>Node.js</strong> with <strong>Express</strong>, and leverages <strong>GraphQL</strong> via <strong>Apollo Server</strong> for flexible API queries. Data is stored in <strong>MongoDB</strong> using <strong>Mongoose</strong> as an ODM layer. Authentication is handled via <strong>JWT</strong>, allowing for secure, stateless login sessions across the app. Protected routes and role-based logic are implemented on both the server and client sides.</p>
             <br />
-            <p><strong>Key features include:</strong></p>
+            <p><strong>Key features:</strong></p>
             <ul>
-            <li>● Anonymous family profiles, viewable by donors without exposing sensitive information</li>
-            <li>● Donor accounts with the ability to "adopt" families and initiate financial support</li>
-            <li>● Real-time, in-app messaging between families and donors using Apollo subscriptions (where supported)</li>
-            <li>● Stripe integration for handling donations, tied directly to individual family profiles</li>
-            <li>● Profile management for users, allowing them to update information or view adoption history</li>
-            <li>● Modular, scalable component structure on the frontend with reusable UI patterns</li>
+            <li>- Anonymous family profiles, viewable by donors without exposing sensitive information</li>
+            <li>- Donor accounts with the ability to "adopt" families and initiate financial support</li>
+            <li>- Real-time, in-app messaging between families and donors using Apollo subscriptions (where supported)</li>
+            <li>- Stripe integration for handling donations, tied directly to individual family profiles</li>
+            <li>- Profile management for users, allowing them to update information or view adoption history</li>
+            <li>- Modular, scalable component structure on the frontend with reusable UI patterns</li>
             </ul>
             <br />
             <p>This project highlights my ability to build secure, mission-driven applications using a modern full-stack JavaScript stack. It demonstrates technical proficiency across both frontend and backend development, effective use of GraphQL and RESTful patterns, and third-party service integrations like <strong>Stripe</strong> and <strong>JWT</strong>. adoptABLE was a team collaboration, but I led the architecture, data modeling, and end-to-end feature development, ensuring high-quality UX and maintainable code practices throughout.</p>
+            <br />
+            <strong><p>Contributors:</p></strong>
+            <p>— <a href="https://github.com/jazzmbarry" target="_blank">Matthew Barry</a></p>
+            <p>— <a href="https://github.com/Aphillip22" target="_blank">Amber Phillip</a></p>
+            <p>— <a href="https://github.com/austinxewell" target="_blank">Austin Ewell</a></p>
+            <p>— <a href="https://github.com/grsmith35" target="_blank">Riley Smith</a></p>
         `,
         isFavorite: false,
         live_url: '',
@@ -409,12 +415,12 @@ export const projects = [
             <br />
             <p>The application guides users through a set of questions, such as project description, installation instructions, usage guidelines, contributors, tests, and license type. Once the responses are gathered, it dynamically generates a complete README.md file. The tool utilizes <strong>Node.js</strong>, <strong>Express</strong>, <strong>Inquirer</strong> for interactive prompts, and <strong>Clipboardy</strong> for copying the generated README to the clipboard.</p>
             <br />
-            <strong><p>Key Features of the App Include:</p></strong>
+            <strong><p>Key Features:</p></strong>
             <ul>
-            <li>● Interactive command-line prompts for gathering project details</li>
-            <li>● Dynamic generation of a README.md file</li>
-            <li>● Clipboardy integration for easily copying the generated README</li>
-            <li>● Configurable options for license selection and list creation</li>
+            <li>- Interactive command-line prompts for gathering project details</li>
+            <li>- Dynamic generation of a README.md file</li>
+            <li>- Clipboardy integration for easily copying the generated README</li>
+            <li>- Configurable options for license selection and list creation</li>
             </ul>
             <br />
             <p>This project showcases proficiency in building command-line tools using <strong>Node.js</strong> and <strong>JavaScript</strong>. It demonstrates best practices for user interaction, modular coding, and efficient file handling.</p>

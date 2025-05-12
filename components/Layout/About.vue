@@ -4,7 +4,11 @@
             Rooted in Passion. Refined in <span class="text-yellow-600 font-bold">Gold</span>.
         </h2>
         <div class="md:flex items-center justify-center gap-14">
-            <img class="h-[30vh] md:h-[50vh] rounded-2xl object-cover mx-auto mb-4 md:mb-0 md:mx-0" src="../../assets/images/cartoon-avatar.png" />
+            <img 
+                class="h-[30vh] md:h-[50vh] rounded-2xl object-cover mx-auto mb-4 md:mb-0 md:mx-0" 
+                :src="cartoonAviSrc"
+                alt="Cartoon Avatar"
+            />
             <div class="md:w-1/3">
                 <UiAboutText />
             </div> 
@@ -34,7 +38,7 @@
                 >
                     <img
                         class="h-10"
-                        src="../../assets/images/linkedIn.png"
+                        :src="linkedInSrc"
                         alt="LinkedIn Logo"
                     />
                 </a>
@@ -50,4 +54,7 @@ function navigateToContact() {
     if (element) 
         element.scrollIntoView({ behavior: 'smooth' })
 }
+
+const linkedInSrc = '/images/linkedin.png'
+const cartoonAviSrc = '/images/cartoon-avatar.png'
 </script>

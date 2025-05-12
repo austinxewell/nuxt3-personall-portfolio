@@ -1,6 +1,6 @@
 <template>
     <section>
-        <h3 class="text-3xl font-semibold tracking-wide text-center max-w-4xl">
+        <h3 class="text-3xl mx-auto font-semibold tracking-wide text-center max-w-4xl">
             <span class="text-yellow-600 font-bold">Gold</span>
             Standard Collaborations.
         </h3>

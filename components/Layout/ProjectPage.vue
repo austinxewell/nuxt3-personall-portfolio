@@ -10,7 +10,7 @@
         <transition name="slide" mode="out-in">
             <section
                 v-if="drawerOpen || screenIsLgUp"
-                class="fixed md:absolute z-10 top-0 left-0 h-full w-[24rem] p-6 bg-gray-300 dark:bg-gray-950 overflow-y-auto pt-20 sm:pt-6"
+                class="fixed md:absolute z-10 top-0 left-0 h-full w-full sm:w-[24rem] 2xl:w-1/4 p-6 bg-gray-300 dark:bg-gray-950 overflow-y-auto pt-20 sm:pt-6"
             >
                 <h2 class="text-2xl font-bold mb-6">{{ project.overview }}</h2>
                 <p class="text-sm mt-2 dark:text-gray-500 font-bold mb-6">
@@ -47,8 +47,8 @@
         </transition>
 
         <section
-            class="p-6 h-full overflow-y-auto transition-all duration-300"
-            :class="{ 'ml-[24rem]': screenIsLgUp }"
+            class="p-6 h-full overflow-y-auto transition-all duration-300 lg:ml-[24rem] 2xl:ml-[25%]"
+            
             @click="drawerOpen = false"
         >
             <h2 class="text-2xl mt-14 sm:mt-0 font-bold mb-6 pb-1 border-b-1 w-fit">Project Views:</h2>
