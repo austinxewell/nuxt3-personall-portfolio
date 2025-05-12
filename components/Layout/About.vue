@@ -20,6 +20,8 @@
 
             <UiTechStack />
 
+            <UiPartnerCompanies class="mt-10" />
+
             <div class="flex justify-center items-center gap-10 mt-10">
                 <BaseButton class="w-fit flex items-center justify-center" @click="navigateToContact">
                     <span>Contact</span>
@@ -37,6 +39,7 @@
                     />
                 </a>
             </div>
+
         </div>
     </section>
 </template>
