@@ -1,8 +1,10 @@
 <template>
     <NuxtLink :to="`/projects/${project.slug}`">
         <div 
-            class="w-full sm:w-[17rem] h-[20rem] border dark:border-yellow-600 rounded-2xl shadow-lg shadow-black  cursor-pointer bg-white dark:bg-gray-800 transform transition-transform duration-300 hover:scale-120 hover:z-10"
+            class="relative w-full sm:w-[17rem] h-[20rem] border dark:border-yellow-600 rounded-2xl shadow-lg shadow-black  cursor-pointer bg-white dark:bg-gray-800 transform transition-transform duration-300 hover:scale-120 hover:z-10"
         >
+            <BaseFavoriteStar class="w-10 h-10" :is-favorite="project.isFavorite" />
+
             <img 
                 class="rounded-t-2xl h-1/2 w-full"
                 :src="findThumbnailImage(project.images)?.img_url" 
@@ -36,6 +38,7 @@ interface Props {
 
 const props = defineProps<Props>()
 const { project } = props
+
 const nonPrimaryTagCount = computed(() => {
     const tags = project?.tech_tags
     if (!Array.isArray(tags)) return 0

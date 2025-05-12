@@ -16,11 +16,11 @@ useSeoMeta({
     description: 'A showcase of projects by Austin Ewell at AuEwellify, a full-stack developer specializing in front-end excellence.',
     ogTitle: 'Austin Ewell - AuEwellify',
     ogDescription: 'Explore development by Austin Ewell at AuEwellify, a full-stack developer specializing in front-end excellence.',
-    ogImage: 'https://i.postimg.cc/L8y62fKL/portfolio-about.png',
+    ogImage: 'https://i.postimg.cc/gkXvpDLb/portfolio-hero-dark.png',
     // TODO: add correct domain when available
     // ogUrl: 'https://yourdomain.com/projects',
     twitterTitle: 'Austin Ewell - AuEwellify',
     twitterDescription: 'A showcase of projects by Austin Ewell at AuEwellify, a full-stack developer specializing in front-end excellence.',
-    twitterImage: 'https://i.postimg.cc/L8y62fKL/portfolio-about.png'
+    twitterImage: 'https://i.postimg.cc/gkXvpDLb/portfolio-hero-dark.png'
 })
 </script>

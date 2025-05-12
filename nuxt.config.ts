@@ -31,7 +31,7 @@ export default defineNuxtConfig({
                 },
                 {
                     property: 'og:image',
-                    content: 'https://i.postimg.cc/L8y62fKL/portfolio-about.png' 
+                    content: 'https://i.postimg.cc/gkXvpDLb/portfolio-hero-dark.png' 
                 },
                 {
                     property: 'og:image:width',
@@ -56,7 +56,7 @@ export default defineNuxtConfig({
                 },
                 {
                     name: 'twitter:image',
-                    content: 'https://i.postimg.cc/L8y62fKL/portfolio-about.png' 
+                    content: 'https://i.postimg.cc/gkXvpDLb/portfolio-hero-dark.png' 
                 }
             ],
             link: [

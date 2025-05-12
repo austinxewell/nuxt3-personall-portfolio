@@ -3,12 +3,12 @@
         <a href="#hero" @click.prevent="navigateTo('hero')">
             <div class="flex items-center gap-2 justify-start">
                 <img
-                    src="@/assets/images/small-logo.png"
-                    alt="Logo"
+                    :src="smallLogo"
+                    alt="Small Logo"
                     class="w-8 h-8"
                 />
                 <img
-                    src="@/assets/images/text-logo.png"
+                    :src="textLogo"
                     alt="Text Logo"
                     class="h-5 hidden sm:block"
                 />
@@ -50,6 +50,9 @@
 </template>
 
 <script setup lang='ts'>
+const smallLogo = '/images/small-logo.png'
+const textLogo = '/images/text-logo.png'
+
 function navigateTo(elementId: string) {
     const element = document.getElementById(elementId)
     if (element) 

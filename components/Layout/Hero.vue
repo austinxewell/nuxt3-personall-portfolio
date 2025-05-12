@@ -1,14 +1,14 @@
 <template>
     <header id="hero" class="relative lg:px-32 px-6 pb-8 sm:pb-12 pt-6 sm:pt-32 sm:h-[80vh] flex flex-col">
+        <BaseBookingProjectsBadge />
         <button class="cursor-pointer flex justify-center items-center lg:w-1/4 w-full gap-4" @click="navigateTo('about')">
-            <UiAvatar class="md:hidden mb-4" />
-            <UiAvatar class="hidden md:block xl:hidden mb-4" size="[w-7rem] h-[7rem]" />
-            <UiAvatar class="hidden xl:block mb-4" :size="'w-[12rem] h-[12rem]'" />
+            <BaseAvatar class="mb-4 w-24 h-24 md:w-28 md:h-28 xl:w-48 xl:h-48" />
             <p class="text-2xl font-bold lg:hidden">Hey! I'm Austin Ewell</p>
         </button>
 
         <div class="flex flex-col lg:flex-row items-center mt-4 lg:mt-0 gap-2 xl:gap-16">
-            <p class="w-full mb-auto lg:w-1/4 text-center text-2xl font-bold lg:block hidden">Hey! I'm Austin Ewell</p>
+            <UiHeroAbout />
+
             <aside class="flex flex-col lg:w-2/3 text-center mt-6 lg:mt-0">
                 <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold font-serif text-center">
                     The <span class="text-yellow-600 font-extrabold">Gold</span> Standard in Creative Solutions.
