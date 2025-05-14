@@ -55,7 +55,7 @@
             </a>
             <a
                 href="/Austin_Ewell_Resume.pdf"
-                download="AustinEwell_Resume.pdf"
+                download="Austin_Ewell_Resume.pdf"
                 class="relative transform transition-transform duration-200 hover:scale-120 group"
             >
                 <UIcon name="mdi:file-document-outline" class="size-8" />
