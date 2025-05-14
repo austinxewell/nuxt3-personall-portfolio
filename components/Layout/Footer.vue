@@ -28,7 +28,7 @@
             >Contact</a>
             <a
                 href="/Austin_Ewell_Resume.pdf"
-                download
+                download="Austin_Ewell_Resume"
                 class="hover:text-yellow-600 transition-colors"
             >
                 Resume

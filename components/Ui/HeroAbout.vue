@@ -1,5 +1,5 @@
 <template>
-    <div class="w-full lg:w-1/4 text-center text-2xl font-bold lg:block hidden h-full">
+    <div class="w-full lg:w-1/4 text-center mb-auto text-2xl font-bold lg:block hidden h-full">
         <p>Hey! I'm Austin Ewell</p>
         <div class="text-sm mt-2 text-gray-500">
             <p>Full Stack Engineer</p>
@@ -21,7 +21,7 @@
                 </a>
                 <a
                     href="/Austin_Ewell_Resume.pdf"
-                    download="AustinEwell_Resume.pdf"
+                    download="Austin_Ewell_Resume.pdf"
                     class="relative transform transition-transform duration-200 hover:scale-120 group"
                 >
                     <UIcon name="mdi:file-document-outline" class="size-6 text-gray-800 dark:text-white" />

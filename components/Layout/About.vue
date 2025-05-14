@@ -1,6 +1,6 @@
 <template>
     <section id="about" class="lg:px-32 px-6 py-4 sm:py-8">
-        <h2 class="text-4xl md:ml-20 mb-6 font-semibold">
+        <h2 class="text-2xl sm:text-3xl lg:text-4xl md:ml-20 mb-6 font-semibold">
             Rooted in Passion. Refined in <span class="text-yellow-600 font-bold">Gold</span>.
         </h2>
         <div class="md:flex items-center justify-center gap-14">
@@ -15,7 +15,7 @@
         </div>
         <div>
             <div class="flex justify-center mt-12">
-                <h3 class="text-3xl font-semibold tracking-wide text-center max-w-4xl">
+                <h3 class="text-xl sm:text-2xl lg:text-3xl font-semibold tracking-wide text-center max-w-4xl">
                     Technologies That Power My
                     <span class="text-yellow-600 font-bold">Golden</span>
                     Standard.

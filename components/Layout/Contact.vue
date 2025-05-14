@@ -16,11 +16,11 @@
             />
         </div>
 
-        <h2 class="text-4xl font-semibold mb-6">
+        <h2 class="text-2xl sm:text-3xl lg:text-4xl font-semibold mb-6">
             <strong class="font-bold">Open to New Opportunities.</strong> Let's <span class="text-yellow-600 font-bold">Strike Gold</span> Together.
         </h2>
 
-        <p class="text-xl max-w-xl mb-6">
+        <p class="text-lg lg:text-xl max-w-xl mb-6">
             Every project is an opportunity to create something 
             <span class="text-yellow-600 font-semibold">exceptional</span>. Whether you're looking to 
             <span class="text-yellow-600 font-semibold">collaborate</span>, 
@@ -55,7 +55,7 @@
             </a>
             <a
                 href="/Austin_Ewell_Resume.pdf"
-                download="AustinEwell_Resume.pdf"
+                download="Austin_Ewell_Resume.pdf"
                 class="relative transform transition-transform duration-200 hover:scale-120 group"
             >
                 <UIcon name="mdi:file-document-outline" class="size-8" />

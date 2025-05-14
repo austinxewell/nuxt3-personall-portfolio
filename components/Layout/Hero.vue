@@ -1,5 +1,5 @@
 <template>
-    <header id="hero" class="relative lg:px-32 px-6 pb-8 sm:pb-12 pt-6 sm:pt-32 sm:h-[80vh] flex flex-col">
+    <header id="hero" class="relative lg:px-32 px-6 pb-8 sm:pb-12 pt-6 sm:pt-32 min-h-[60vh] flex flex-col">
         <BaseBookingProjectsBadge />
         <button class="cursor-pointer flex justify-center items-center lg:w-1/4 w-full gap-4" @click="navigateTo('about')">
             <BaseAvatar class="mb-4 w-24 h-24 md:w-28 md:h-28 xl:w-48 xl:h-48" />
@@ -20,7 +20,7 @@
                     </BaseButton>
                 </div>
 
-                <div class="hidden sm:block mt-8 mx-auto animate-bounce hover:cursor-pointer" @click="navigateTo('about')">
+                <div class="sm:block mt-8 mx-auto animate-bounce hover:cursor-pointer" @click="navigateTo('about')">
                     <UIcon name="lucide:chevron-down" size="64" />
                 </div>
             </aside>
