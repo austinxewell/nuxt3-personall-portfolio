@@ -1,6 +1,6 @@
 <template>
     <section id="portfolio" class="lg:px-32 px-6 py-4 sm:py-8">
-        <h2 class="text-4xl md:ml-20 mb-6 font-semibold">
+        <h2 class="text-2xl sm:text-3xl lg:text-4xl md:ml-20 mb-6 font-semibold">
             Polished Projects. <span class="text-yellow-600 font-bold">Golden</span> Results.
         </h2>
 

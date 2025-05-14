@@ -16,11 +16,11 @@
             />
         </div>
 
-        <h2 class="text-4xl font-semibold mb-6">
+        <h2 class="text-2xl sm:text-3xl lg:text-4xl font-semibold mb-6">
             <strong class="font-bold">Open to New Opportunities.</strong> Let's <span class="text-yellow-600 font-bold">Strike Gold</span> Together.
         </h2>
 
-        <p class="text-xl max-w-xl mb-6">
+        <p class="text-lg lg:text-xl max-w-xl mb-6">
             Every project is an opportunity to create something 
             <span class="text-yellow-600 font-semibold">exceptional</span>. Whether you're looking to 
             <span class="text-yellow-600 font-semibold">collaborate</span>, 

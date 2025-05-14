@@ -1,5 +1,5 @@
 <template>
-    <div class="w-full lg:w-1/4 text-center text-2xl font-bold lg:block hidden h-full">
+    <div class="w-full lg:w-1/4 text-center mb-auto text-2xl font-bold lg:block hidden h-full">
         <p>Hey! I'm Austin Ewell</p>
         <div class="text-sm mt-2 text-gray-500">
             <p>Full Stack Engineer</p>

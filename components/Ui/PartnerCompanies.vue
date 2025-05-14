@@ -1,6 +1,6 @@
 <template>
     <section>
-        <h3 class="text-3xl mx-auto font-semibold tracking-wide text-center max-w-4xl">
+        <h3 class="text-xl sm:text-2xl lg:text-3xl mx-auto font-semibold tracking-wide text-center max-w-4xl">
             <span class="text-yellow-600 font-bold">Gold</span>
             Standard Collaborations.
         </h3>
@@ -10,7 +10,7 @@
                 <div
                     v-for="(company, index) in repeatedCompanies"
                     :key="`1-${index}`"
-                    class="px-8 text-xl font-semibold text-gray-800 dark:text-white"
+                    class="px-8 text-base sm:text-lg lg:text-xl font-semibold text-gray-800 dark:text-white"
                 >
                     {{ company }}
                 </div>
