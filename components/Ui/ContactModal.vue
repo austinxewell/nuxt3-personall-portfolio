@@ -18,7 +18,7 @@
         </div>
         <div class="flex items-center space-x-3">
             <UIcon name="lucide:phone" class="text-gray-600 dark:text-gray-300" />
-            <a href="tel:3854439375" class="hover:underline">+1 (385) 443-9375</a>
+            <a href="tel:3854439375" class="hover:underline">(385) 443-9375</a>
         </div>
         <div class="flex items-center space-x-3">
             <UIcon name="lucide:mail" class="text-gray-600 dark:text-gray-300" />
