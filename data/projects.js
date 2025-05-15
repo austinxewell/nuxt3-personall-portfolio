@@ -443,5 +443,52 @@ export const projects = [
             { img_name: 'Final Confirmation Screen', img_url: 'https://i.postimg.cc/tJKdtDXQ/readme-final-screen.png', is_thumbnail: true },
             { img_name: 'Success Notification', img_url: 'https://i.postimg.cc/ydNTVkf5/readme-success-notification.png', is_thumbnail: false }
         ]
+    },
+    {
+        id: 7,
+        project_name: 'Simple Chat',
+        slug: 'simple-chat',
+        overview: 'A real-time messaging app using WebSockets for two-way communication.',
+        description: `
+            <p><strong>Simple Chat</strong> is a lightweight, real-time messaging application built using <strong>Node.js</strong>, <strong>Express</strong>, and <strong>Socket.IO</strong>. It facilitates instant communication between multiple users connected to the same server instance via WebSockets. This project demonstrates how to build a performant, minimal chat server with live bidirectional messaging capability.</p>
+            <br />
+            <p>Upon connection, users are able to send and receive messages in real time without any page refreshes or polling. The architecture uses Socket.IO on both the client and server side to maintain persistent WebSocket connections for efficient data exchange. Express serves the static frontend, while all WebSocket handling is abstracted through event-based communication in <code>index.js</code>.</p>
+            <br />
+            <p><strong>Key Features:</strong></p>
+            <ul>
+                <li>- Real-time two-way communication between users using WebSockets</li>
+                <li>- Supports multiple simultaneous connections</li>
+                <li>- Efficient Socket.IO-based architecture</li>
+                <li>- Simple and clean UI for demonstration purposes</li>
+                <li>- Nodemon integration for rapid development and live reload</li>
+                <li>- Event-based message broadcasting on both send and receive</li>
+                <li>- Minimal dependencies: Express and Socket.IO</li>
+            </ul>
+            <br />
+            <p>This project is a strong demonstration of real-time systems fundamentals and WebSocket protocol implementation, ideal for devs learning about server-client communication beyond HTTP.</p>
+        `,
+        isFavorite: false,
+        live_url: '',
+        github_url: 'https://github.com/austinxewell/simpleChat',
+        tech_tags: [
+            { tag_name: 'Node', is_primary: true },
+            { tag_name: 'Express', is_primary: false },
+            { tag_name: 'Socket.IO', is_primary: false },
+            { tag_name: 'WebSockets', is_primary: true },
+            { tag_name: 'JavaScript', is_primary: true },
+            { tag_name: 'Nodemon', is_primary: false },
+            { tag_name: 'HTML', is_primary: false },
+            { tag_name: 'CSS', is_primary: false },
+
+        ],
+        images: [
+            { img_name: 'Empty Chat Screen', img_url: 'https://i.postimg.cc/SsTp9WSp/simple-Chat-empty.png', is_thumbnail: false },
+            { img_name: 'Pre-send UI State', img_url: 'https://i.postimg.cc/W47V2Bxz/simple-Chat-pre-sent.png', is_thumbnail: false },
+            { img_name: 'Message Sent UI', img_url: 'https://i.postimg.cc/wBzHYqfn/simple-Chat-sent-message.png', is_thumbnail: false },
+            { img_name: '2-Way Communication', img_url: 'https://i.postimg.cc/Wzdcwhzq/simple-Chat-2-way-communication.png', is_thumbnail: true },
+            { img_name: 'Multiple Messages', img_url: 'https://i.postimg.cc/RFVBqPzR/simple-Chat-multiple-messages.png', is_thumbnail: false },
+            { img_name: 'Socket Connection Log', img_url: 'https://i.postimg.cc/3xm7q4Bg/simple-Chat-socket-connection.png', is_thumbnail: false }
+        ]
     }
+    
 ]

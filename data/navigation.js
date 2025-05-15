@@ -5,14 +5,14 @@ export const navItems = [
       href: '#hero'
     },
     {
-      label: 'Portfolio',
-      icon: 'i-lucide-briefcase',
-      href: '#portfolio'
-    },
-    {
       label: 'About',
       icon: 'i-lucide-user',
       href: '#about'
+    },
+    {
+      label: 'Portfolio',
+      icon: 'i-lucide-briefcase',
+      href: '#portfolio'
     },
     {
       label: 'Services',

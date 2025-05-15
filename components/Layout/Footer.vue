@@ -21,11 +21,19 @@
                 class="hover:text-yellow-600 transition-colors"
                 @click.prevent="navigateTo('portfolio')"
             >Projects</a>
-            <a
-                href="#contact"
-                class="hover:text-yellow-600 transition-colors"
-                @click.prevent="navigateTo('contact')"
-            >Contact</a>
+
+            <UModal>
+                <label class="hover:text-yellow-600 transition-colors" label="Open">Contact</label>
+
+                <template #header>
+                    <h2 class="text-2xl text-center w-full">Contact Information</h2>
+                </template>
+
+                <template #body>
+                    <UiContactModal />
+                </template>
+            </UModal>
+
             <a
                 href="/Austin_Ewell_Resume.pdf"
                 download="Austin_Ewell_Resume"

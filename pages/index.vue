@@ -2,8 +2,8 @@
 <template>
     <div class="flex flex-col justify-center">
         <LayoutHero />
-        <LayoutPortfolio />
         <LayoutAbout />
+        <LayoutPortfolio />
         <LayoutServices />
         <LayoutContact />
     </div>
