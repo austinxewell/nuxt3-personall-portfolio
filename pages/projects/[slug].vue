@@ -1,5 +1,8 @@
 <template>
-    <LayoutProjectPage />
+    <div>
+        <LayoutProjectPage />
+        <UiFullImage />
+    </div>
 </template>
 
 <script setup lang="ts">

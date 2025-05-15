@@ -59,6 +59,7 @@
                         class="max-h-[80vh] rounded-md"
                         :src="image.img_url"
                         :alt="image.img_name"
+                        @click="setSelectedImage(image)"
                     />
                     <p class="font-bold mt-1">{{ image.img_name }}</p>
                 </div>
@@ -72,7 +73,10 @@ import { useRoute } from 'vue-router'
 import { projects } from '~/data/projects'
 import { createError } from 'h3'
 import { useWindowSize } from '@vueuse/core'
+import { useImageStore } from '~/stores/useImageStore'
+import type { SelectedImage } from '~/types/image'
 
+const imageStore = useImageStore()
 const route = useRoute()
 const slug = route.params.slug
 const project = projects.find((project) => project.slug === slug)!
@@ -88,6 +92,10 @@ const drawerOpen = ref(false)
 const { width } = useWindowSize()
 const LARGE_SCREEN_SIZE = 1024
 const screenIsLgUp = computed(() => width.value >= LARGE_SCREEN_SIZE)
+
+function setSelectedImage(image: SelectedImage) {
+    imageStore.selectedImage = image
+}
 </script>
 
 <style scoped>
