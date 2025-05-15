@@ -18,11 +18,11 @@
         </div>
         <div class="flex items-center space-x-3">
             <UIcon name="lucide:phone" class="text-gray-600 dark:text-gray-300" />
-            <a href="tel:+1234567890" class="hover:underline">+1 (385) 443-9375</a>
+            <a href="tel:3854439375" class="hover:underline">+1 (385) 443-9375</a>
         </div>
         <div class="flex items-center space-x-3">
             <UIcon name="lucide:mail" class="text-gray-600 dark:text-gray-300" />
-            <a href="mailto:austin@example.com" class="hover:underline">austin.ewell86@gmail.com</a>
+            <a href="mailto:austin.ewell86@gmail.com" class="hover:underline">austin.ewell86@gmail.com</a>
         </div>
     </div>
 </template>
