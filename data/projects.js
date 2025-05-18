@@ -1,11 +1,11 @@
 export const projects = [
     {
         id: 1,
-        project_name: 'Pulse',
-        slug: 'pulse',
+        project_name: 'Pulse Project Managment',
+        slug: 'pulse-project-management',
         overview: 'A modern project management app to track, organize, and manage workflows.',
         description: `
-            <p><strong>Pulse</strong> is a full-featured <strong>project management application</strong> built with a modern frontend stack using <strong>Nuxt 3</strong>, <strong>TypeScript</strong>, and <strong>Tailwind CSS</strong>. The platform was designed to help users manage complex workflows with clarity and speed. It supports <strong>task management</strong>, <strong>project-level dashboards</strong>, <strong>collaborative workspaces</strong>, and <strong>user authentication</strong>.</p>
+            <p><strong>Pulse Project Management</strong> is a full-featured <strong>project management application</strong> built with a modern frontend stack using <strong>Nuxt 3</strong>, <strong>TypeScript</strong>, and <strong>Tailwind CSS</strong>. The platform was designed to help users manage complex workflows with clarity and speed. It supports <strong>task management</strong>, <strong>project-level dashboards</strong>, <strong>collaborative workspaces</strong>, and <strong>user authentication</strong>.</p>
             <br />
             <p>On the technical side, Pulse uses <strong>Supabase</strong> as its backend for <strong>authentication</strong>, <strong>database</strong>, and <strong>real-time features</strong>. All forms are built with <strong>FormKit</strong> for rapid scaffolding and custom validation logic. <strong>TanStack Table</strong> powers the tabular data views with full client-side filtering and sorting. <strong>State</strong> is handled via <strong>Pinia</strong>, while <strong>Reka UI</strong> and <strong>Tailwind</strong> are used for consistent design components and utility-first styling. The app is bundled with <strong>Vite</strong> for fast builds and hot module replacement.</p>
             <br />
@@ -489,6 +489,88 @@ export const projects = [
             { img_name: 'Multiple Messages', img_url: 'https://i.postimg.cc/RFVBqPzR/simple-Chat-multiple-messages.png', is_thumbnail: false },
             { img_name: 'Socket Connection Log', img_url: 'https://i.postimg.cc/3xm7q4Bg/simple-Chat-socket-connection.png', is_thumbnail: false }
         ]
+    },
+    {
+        id: 8,
+        project_name: "ESLint Auewellify Standards",
+        slug: "eslint-auewellify-standards",
+        overview: "A CLI tool that scaffolds a Nuxt 3 ESLint setup using my custom linting standards.",
+        description: `
+            <p><strong>ESLint Auewellify Standards</strong> is a fully automated CLI utility designed to streamline the ESLint setup process for Nuxt 3 projects using a customized configuration. It eliminates the repetitive setup work by installing dependencies, generating config files, and updating your project's IDE and framework configuration—all in a single command.</p>
+            <br />
+            <h3><strong>What It Does</strong></h3>
+            <ul>
+            <li>- Installs ESLint and <code>@nuxt/eslint</code></li>
+            <li>- Creates a custom <code>eslint.config.mjs</code> with predefined rules</li>
+            <li>- Updates or creates <code>.vscode/settings.json</code> for VS Code linting support</li>
+            <li>- Modifies <code>nuxt.config.ts</code> to include <code>@nuxt/eslint</code> in the <code>modules</code> array</li>
+            </ul>
+            <br />
+            <h3><strong>Project Structure:</strong></h3>
+            <pre><code>
+eslint-setup-auewellify-standards/
+├── bin/
+│   └── index.js
+├── lib/
+│   ├── install.js
+│   ├── configFile.js
+│   ├── vscodeSettings.js
+│   └── updateNuxtConfig.js
+├── utils/
+│   └── eslintRules.js
+├── package.json
+└── README.md
+            </code></pre>
+            <br />
+            <h3><strong>Installation & Usage</strong></h3>
+            <ol>
+            <li>- Clone the repo:<br><code>git clone git@github.com:austinxewell/eslint-setup-auewellify-standards.git</code></li>
+            <li>- Make CLI executable:<br><code>chmod +x bin/index.js</code></li>
+            <li>- Link the CLI globally:<br><code>npm link</code></li>
+            <li>- Run inside a Nuxt 3 project:<br><code>eslint-setup-auewellify-standards</code></li>
+            <li>- Be sure to run npm run dev to generate the correct ./nuxt files.</li>
+            </ol>
+            <br />
+            <h3><strong>Test Locally Without Linking</strong></h3>
+            <p>From your Nuxt 3 project root, run:</p>
+            <code>node path/to/eslint-setup-auewellify-standards/bin/index.js</code>
+            <br />
+            <br />
+            <h3><strong>Notes</strong></h3>
+            <ul>
+            <li>- If <code>.vscode/settings.json</code> doesn't exist, it gets created.</li>
+            <li>- If <code>nuxt.config.ts</code> is missing, the CLI throws a fatal error.</li>
+            <li>- Any existing <code>.eslint.config.mjs</code> will be overwritten.</li>
+            </ul>
+            <br />
+            <h3><strong>Windows Users</strong></h3>
+            <p>If <code>chmod</code> isn't recognized, use Git Bash or WSL. Do <strong>not</strong> use PowerShell or cmd.exe. Skip chmod and ensure <code>bin/index.js</code> starts with:</p>
+            <code>#!/usr/bin/env node</code>
+        `,
+        isFavorite: false,
+        live_url: "",
+        github_url: "https://github.com/austinxewell/eslint-setup-auewellify-standards",
+        tech_tags: [
+            { tag_name: "JavaScript", is_primary: true },
+            { tag_name: "Node.js", is_primary: true },
+            { tag_name: "ESLint", is_primary: true },
+            { tag_name: "CLI", is_primary: false },
+            { tag_name: "Nuxt 3", is_primary: false },
+            { tag_name: "VS Code", is_primary: false },
+            { tag_name: "Automation", is_primary: false }
+        ],
+        images: [
+            { img_name: "Project Structure", img_url: "https://i.postimg.cc/3JZR5qhw/eslint-project-structure.png", is_thumbnail: false },
+            { img_name: "Creating Nuxt App", img_url: "https://i.postimg.cc/c1R1wzrc/eslint-creating-nuxtapp.png", is_thumbnail: false },
+            { img_name: "Not Selecting Linters", img_url: "https://i.postimg.cc/VvWYwJ3h/eslint-not-selecting-linters.png", is_thumbnail: false },
+            { img_name: "Nuxt App Confirmation", img_url: "https://i.postimg.cc/xCHfsxgn/eslint-nuxtapp-confirmation.png", is_thumbnail: false },
+            { img_name: "Nuxt App Starter Files", img_url: "https://i.postimg.cc/k5LMv3QT/eslint-nuxtapp-starter-files.png", is_thumbnail: false },
+            { img_name: "Installing Standards", img_url: "https://i.postimg.cc/N0KfXfHy/eslint-installing-standards.png", is_thumbnail: false },
+            { img_name: "Standards Installed", img_url: "https://i.postimg.cc/13C34Nfh/eslint-standards-installed.png", is_thumbnail: false },
+            { img_name: "Updated Nuxt App Files", img_url: "https://i.postimg.cc/9QFfWBXY/eslint-updated-nuxtapp-files.png", is_thumbnail: false },
+            { img_name: "Verification of Rules", img_url: "https://i.postimg.cc/ZnSTX8D3/eslint-verification-of-rules.png", is_thumbnail: true },
+            { img_name: "Verification of VSCode Settings", img_url: "https://i.postimg.cc/BQ36z0dy/eslint-verification-of-vscode-settings.png", is_thumbnail: false },
+            { img_name: "Verification ESLint Added to Modules", img_url: "https://i.postimg.cc/dQr3n1Sr/eslint-verification-on-added-to-modules.png", is_thumbnail: false },
+        ]
     }
-    
 ]
