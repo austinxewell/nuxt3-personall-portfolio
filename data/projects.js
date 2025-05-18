@@ -572,5 +572,83 @@ eslint-setup-auewellify-standards/
             { img_name: "Verification of VSCode Settings", img_url: "https://i.postimg.cc/BQ36z0dy/eslint-verification-of-vscode-settings.png", is_thumbnail: false },
             { img_name: "Verification ESLint Added to Modules", img_url: "https://i.postimg.cc/dQr3n1Sr/eslint-verification-on-added-to-modules.png", is_thumbnail: false },
         ]
+    },
+    {
+        id: 9,
+        project_name: "Attack Spheres",
+        slug: "attack-spheres",
+        overview: "A multiplayer arena game where firing projectiles will eliminate opponents and climb you up the leaderboard.",
+        description: `
+            <p><strong>Attack Spheres</strong> is a real-time multiplayer game where players control <strong>attack spheres</strong> moving freely in an arena, firing projectiles at others. The objective is simple: <strong>destroy other players</strong> by hitting them with your projectiles to earn points, but <strong>beware—if you get hit, you’re out.</strong></p><br>
+
+            <p>The game handles <strong>player connections and disconnections automatically</strong>, with disconnections triggered after a timeout period. Each player has <strong>unique attributes</strong> managed securely on the backend to prevent cheating and maintain game integrity.</p><br>
+
+            <p>The frontend uses the <strong>HTML canvas API</strong> for smooth visual rendering and real-time updates of player movements and projectiles. The backend enforces <strong>authoritative server movement</strong>, <strong>client-side prediction</strong>, <strong>server reconciliation</strong>, and <strong>player interpolation</strong> to ensure consistent, cheat-resistant gameplay.</p><br>
+
+            <p>Projectiles and collision detection are managed server-side with a <strong>"garbage collection"</strong> mechanism that removes old projectiles to keep performance optimal. The collision logic calculates distances dynamically between projectiles and players to determine hits accurately.</p><br>
+
+            <p>The game supports <strong>device pixel ratios</strong> for crisp visuals on all displays and features a <strong>dynamic leaderboard</strong> that updates as players join, showing usernames and sorting by high score in real-time.</p><br>
+
+            <h3><strong>Key Features</strong></h3>
+            <ul>
+                <li>- Realtime multiplayer gameplay</li>
+                <li>- Canvas-based visuals using the HTML canvas API</li>
+                <li>- Authoritative server movement</li>
+                <li>- Client-side prediction for responsive control</li>
+                <li>- Server reconciliation and interpolation for smooth movement</li>
+                <li>- Projectile firing and real-time collision detection</li>
+                <li>- Backend-controlled player data to prevent manipulation</li>
+                <li>- Projectile garbage collection to maintain performance</li>
+                <li>- Dynamic leaderboard sorted by high score</li>
+                <li>- Device pixel ratio awareness for sharp rendering</li>
+                <li>- Disconnection timeout to manage idle users</li>
+            </ul><br>
+
+            <p><strong>Important:</strong> The game is hosted on <strong>render.com’s free tier</strong>, which requires manual redeployment after 15 minutes of inactivity. To coordinate a live game session with friends or family, contact me via email or phone:</p><br>
+
+            <ul>
+                <li>Phone: <a href="tel:3854439375">385-443-9375</a></li>
+                <li>Email: <a href="mailto:austin.ewell86@gmail.com">austin.ewell86@gmail.com</a></li>
+            </ul><br>
+
+            <h3><strong>Project Structure</strong></h3>
+    <pre><code>
+attack-spheres/
+├── backend.js
+├── package.json
+├── public/
+│   ├── index.html
+│   ├── js/
+│   │   ├── classes/
+│   │   │   ├── Enemy.js
+│   │   │   ├── Particle.js
+│   │   │   ├── Player.js
+│   │   │   └── Projectile.js
+│   │   ├── eventListeners.js
+│   │   └── frontend.js
+│   └── img/
+            </code></pre>
+        `,
+        isFavorite: true,
+        live_url: "https://attack-spheres.onrender.com",
+        github_url: "https://github.com/austinxewell/multi-player-game",
+        tech_tags: [
+            { tag_name: "JavaScript", is_primary: true },
+            { tag_name: "Node.js", is_primary: true },
+            { tag_name: "Socket.IO", is_primary: true },
+            { tag_name: "Canvas API", is_primary: false },
+            { tag_name: "Real-time", is_primary: false },
+            { tag_name: "Multiplayer", is_primary: false },
+            { tag_name: "OOP", is_primary: false },
+        ],
+        images: [
+            { img_name: "Landing Screen", img_url: "https://i.postimg.cc/SsMwcphp/attack-spheres-landing.png", is_thumbnail: false },
+            { img_name: "Username Input Screen", img_url: "https://i.postimg.cc/XvhRZYt8/attack-sphere-username-input.png", is_thumbnail: false },
+            { img_name: "Random Spawn Locations", img_url: "https://i.postimg.cc/Z5ftSccX/attack-spheres-random-spawn-location-upon-user-creation.png", is_thumbnail: false },
+            { img_name: "Multiple Players Joined", img_url: "https://i.postimg.cc/9fr3F7g0/attack-spheres-adding-multiple-players.png", is_thumbnail: false },
+            { img_name: "Leaderboard View", img_url: "https://i.postimg.cc/sgfdq8pp/attack-spheres-leaderboard.png", is_thumbnail: false },
+            { img_name: "Dynamic Leaderboard", img_url: "https://i.postimg.cc/L63FyRZ9/attack-spheres-dynamic-leaderboard.png", is_thumbnail: false },
+            { img_name: "Firing Projectiles", img_url: "https://i.postimg.cc/y88tvRHj/attack-spheres-firing-projectiles.png", is_thumbnail: true }
+        ]
     }
 ]
