@@ -5,13 +5,13 @@ on:
     branches:
       - dev
       - qa
-      - RC
+      - "rc/**" # any RC branch like rc/1.0.0
       - master
   pull_request:
     branches:
       - dev
       - qa
-      - RC
+      - "rc/**"
       - master
 
 jobs:
@@ -52,20 +52,19 @@ jobs:
       - name: Build Nuxt 3 app
         run: npm run build
 
-  deploy-staging:
+  deploy-rc-staging:
     name: Deploy Staging (RC branch)
     needs: build
-    if: github.ref == 'refs/heads/RC'
+    if: startsWith(github.ref, 'refs/heads/rc/')
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Optional RC/staging deploy
+      - name: RC/Staging deploy
         run: |
-          echo "RC branch detected. Here you can run a staging deploy."
-          # Example: deploy to a staging server or Netlify staging site
-          # netlify deploy --site ${{ secrets.NETLIFY_STAGING_SITE_ID }} --auth ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          echo "RC branch detected. Optional staging deploy goes here."
+          # Example: netlify deploy --site ${{ secrets.NETLIFY_STAGING_SITE_ID }} --auth ${{ secrets.NETLIFY_AUTH_TOKEN }}
 
   deploy-production:
     name: Deploy Production (master)
