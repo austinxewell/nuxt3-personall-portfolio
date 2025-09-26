@@ -19,8 +19,4 @@
 
 <script setup lang='ts'>
 import { projects } from '~/data/projects'
-
-const thisError => () {
-    console.log(`Here`);
-}
 </script>
