@@ -1,0 +1,50 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - dev
+      - qa
+      - master
+  pull_request:
+    branches:
+      - dev
+      - qa
+      - master
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Check out the code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Step 2: Set up Node.js
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "20"
+
+      # Step 3: Install dependencies
+      - name: Install dependencies
+        run: npm install
+
+      # Step 4: Run lint to catch errors early
+      - name: Lint project
+        run: npm run lint
+
+      # Step 5: Build the Nuxt project
+      - name: Build Nuxt 3 app
+        run: npm run build
+
+      # Step 6: Deploy to Netlify
+      - name: Deploy to Netlify
+        if: github.ref == 'refs/heads/master' # Only deploy from master
+        uses: nwtgck/actions-netlify@v1.2
+        with:
+          publish-dir: .output/public
+          production-deploy: true
+          netlify-auth-token: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          netlify-site-id: ${{ secrets.NETLIFY_SITE_ID }}
