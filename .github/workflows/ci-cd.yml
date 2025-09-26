@@ -1,47 +1,82 @@
-name: CI/CD Pipeline
+name: Nuxt 3 CI/CD
 
 on:
   push:
     branches:
       - dev
       - qa
+      - RC
       - master
   pull_request:
     branches:
       - dev
       - qa
+      - RC
       - master
 
 jobs:
-  build-and-deploy:
+  lint:
+    name: Lint
     runs-on: ubuntu-latest
-
     steps:
-      # Step 1: Check out the code
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Step 2: Set up Node.js
-      - name: Use Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: "20"
 
-      # Step 3: Install dependencies
       - name: Install dependencies
         run: npm install
 
-      # Step 4: Run lint to catch errors early
-      - name: Lint project
+      - name: Run lint
         run: npm run lint
 
-      # Step 5: Build the Nuxt project
+  build:
+    name: Build
+    needs: lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "20"
+
+      - name: Install dependencies
+        run: npm install
+
       - name: Build Nuxt 3 app
         run: npm run build
 
-      # Step 6: Deploy to Netlify
+  deploy-staging:
+    name: Deploy Staging (RC branch)
+    needs: build
+    if: github.ref == 'refs/heads/RC'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Optional RC/staging deploy
+        run: |
+          echo "RC branch detected. Here you can run a staging deploy."
+          # Example: deploy to a staging server or Netlify staging site
+          # netlify deploy --site ${{ secrets.NETLIFY_STAGING_SITE_ID }} --auth ${{ secrets.NETLIFY_AUTH_TOKEN }}
+
+  deploy-production:
+    name: Deploy Production (master)
+    needs: build
+    if: github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
       - name: Deploy to Netlify
-        if: github.ref == 'refs/heads/master' # Only deploy from master
         uses: nwtgck/actions-netlify@v1.2
         with:
           publish-dir: .output/public
