@@ -1,10 +1,11 @@
 import { defineStore } from 'pinia'
 import { useCollaborationsService } from '@/services/collaborationsService'
 import { handleApiError } from '@/utils/errorHandler'
+import type { Collaboration } from '~/types/collaboration'
 
 export const useCollaborationsStore = defineStore('collaborations', {
     state: () => ({
-        collaborations: [],
+        collaborations: [] as Collaboration[],
         loading: false,
         error: null as string | null
     }),
