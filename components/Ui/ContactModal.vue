@@ -3,7 +3,7 @@
         <div class="flex items-center space-x-3">
             <UIcon name="i-simple-icons:github" class="text-gray-600 dark:text-gray-300" />
             <a
-                href="https://github.com/austinxewell"
+                :href="about.github_url"
                 target="_blank"
                 class="hover:underline"
             >GitHub Profile</a>
@@ -11,7 +11,7 @@
         <div class="flex items-center space-x-3">
             <UIcon name="logos:linkedin-icon" class="text-gray-600 dark:text-gray-300" />
             <a
-                href="https://www.linkedin.com/in/austin-ewell-01a60313a/"
+                :href="about.linkedin_url"
                 target="_blank"
                 class="hover:underline"
             >LinkedIn Profile</a>
@@ -22,7 +22,14 @@
         </div>
         <div class="flex items-center space-x-3">
             <UIcon name="lucide:mail" class="text-gray-600 dark:text-gray-300" />
-            <a href="mailto:austin.ewell86@gmail.com" class="hover:underline">austin.ewell86@gmail.com</a>
+            <a :href="`mailto:${about.contact_email}`" class="hover:underline">{{ about.contact_email }}</a>
         </div>
     </div>
 </template>
+
+<script setup lang="ts">
+import { useAboutStore } from '#imports'
+
+const aboutStore = useAboutStore()
+const { about } = storeToRefs(aboutStore)
+</script>

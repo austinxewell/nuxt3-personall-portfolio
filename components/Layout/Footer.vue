@@ -23,7 +23,7 @@
             >Projects</a>
 
             <UModal>
-                <label class="hover:text-yellow-600 transition-colors" label="Open">Contact</label>
+                <label class="hover:text-yellow-600 cursor-pointer transition-colors" label="Open">Contact</label>
 
                 <template #header>
                     <h2 class="text-2xl text-center w-full">Contact Information</h2>
@@ -35,11 +35,19 @@
             </UModal>
 
             <a
-                href="/Austin_Ewell_Resume.pdf"
-                download="Austin_Ewell_Resume"
+                :href="about.resume_url"
+                target="_blank"
                 class="hover:text-yellow-600 transition-colors"
             >
                 Resume
+            </a>
+
+            <a
+                :href="about.blog_url"
+                target="_blank"
+                class="hover:text-yellow-600 transition-colors"
+            >
+                Dev Blog
             </a>
         </div>
 
@@ -58,6 +66,11 @@
 </template>
 
 <script setup lang='ts'>
+import { useAboutStore } from '#imports'
+
+const aboutStore = useAboutStore()
+const { about } = storeToRefs(aboutStore)
+
 const smallLogo = '/images/small-logo.png'
 const textLogo = '/images/text-logo.png'
 
