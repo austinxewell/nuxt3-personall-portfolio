@@ -26,13 +26,22 @@
 
             <UiPartnerCompanies class="mt-10" />
 
-            <div class="flex justify-center items-center gap-10 mt-10">
+            <div class="flex flex-wrap justify-center items-center gap-10 mt-10">
                 <BaseButton class="w-fit flex items-center justify-center" @click="navigateToContact">
                     <span>Contact</span>
                     <UIcon name="i-lucide-mail" class="size-5 ml-2" />
                 </BaseButton>
+                <BaseButton  
+                    class="w-fit flex items-center justify-center"
+                    as="a"
+                    :href="about.blog_url"
+                    target="_blank"
+                >
+                    <span>Dev Blog</span>
+                    <UIcon name="mdi:book-outline" class="size-5 ml-2" />
+                </BaseButton>
                 <a
-                    href="https://www.linkedin.com/in/austin-ewell-01a60313a/"
+                    :href="about.linkedin_url"
                     target="_blank"
                     class="hover:cursor-pointer flex items-center"
                 >
@@ -49,6 +58,11 @@
 </template>
 
 <script setup lang='ts'>
+import { useAboutStore } from '#imports'
+
+const aboutStore = useAboutStore()
+const { about } = storeToRefs(aboutStore)
+
 function navigateToContact() {
     const element = document.getElementById('contact')
     if (element) 
