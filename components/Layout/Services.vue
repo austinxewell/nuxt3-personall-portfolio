@@ -7,19 +7,11 @@
 
         <div class="flex flex-wrap justify-center gap-10 mt-10">
             <UiServiceCard
-                title="Web Development"
-                description="Fast, accessible websites using modern stacks like Vue, Nuxt, and React — built with precision and performance in mind."
-                icon="i-lucide-code"
-            />
-            <UiServiceCard
-                title="Mobile Development"
-                description="Responsive, app-like experiences powered by frameworks like Nuxt, React Native, or PWA techniques to reach users on any device."
-                icon="i-lucide-smartphone"
-            />
-            <UiServiceCard
-                title="UI/UX Design"
-                description="Pixel-perfect interfaces crafted in Figma and brought to life in code — focused on clarity, usability, and impact."
-                icon="i-lucide-layout-dashboard"
+                v-for="service in services"
+                :key="service.id"
+                :title="service.service_name"
+                :description="service.description"
+                :icon="service.icon"
             />
         </div>
 
@@ -28,5 +20,8 @@
 </template>
 
 <script setup lang='ts'>
+import { useServicesStore } from '#imports'
 
+const servicesStore = useServicesStore()
+const { services } = storeToRefs(servicesStore)
 </script>
