@@ -1,11 +1,12 @@
 import { defineStore } from 'pinia'
 import { useProjectsService } from '@/services/projectsServices'
 import { handleApiError } from '@/utils/errorHandler'
+import type { Project } from '~/types/projects'
 
 export const useProjectsStore = defineStore('projects', {
     state: () => ({
-        projects: [],
-        favoriteProjects: [],
+        projects: [] as Project[],
+        favoriteProjects: [] as Project[],
         loading: false,
         error: null as string | null
     }),

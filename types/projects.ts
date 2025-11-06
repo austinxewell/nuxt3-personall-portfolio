@@ -4,7 +4,7 @@ export type Project = {
     slug: string
     overview: string
     description: string
-    isFavorite: boolean
+    is_favorite: boolean
     live_url: string
     github_url: string
     tech_tags: ProjectTag[]
