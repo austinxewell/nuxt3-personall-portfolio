@@ -1,0 +1,27 @@
+import { defineStore } from 'pinia'
+import { useCollaborationsService } from '@/services/collaborationsService'
+import { handleApiError } from '@/utils/errorHandler'
+
+export const useCollaborationsStore = defineStore('collaborations', {
+    state: () => ({
+        collaborations: [],
+        loading: false,
+        error: null as string | null
+    }),
+
+    actions: {
+        async fetchCollaborations() {
+            this.loading = true
+            this.error = null
+            const { getCollaborations } = useCollaborationsService()
+            try {
+                const res = await getCollaborations()
+                this.collaborations = res.data
+            } catch (err) {
+                this.error = handleApiError(err)
+            } finally {
+                this.loading = false
+            }
+        }
+    }
+})
