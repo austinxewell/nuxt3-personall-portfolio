@@ -1,12 +1,15 @@
-export type Project = {
-    id: number
+export interface ProjectPayload {
     project_name: string
     slug: string
     overview: string
     description: string
+    live_url?: string
+    github_url?: string
     is_favorite: boolean
-    live_url: string
-    github_url: string
+}
+
+export interface Project extends ProjectPayload {
+    id: number
     tech_tags: ProjectTag[]
     images: ProjectImage[];
 }

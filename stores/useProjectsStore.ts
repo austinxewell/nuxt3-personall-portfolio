@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { useProjectsService } from '@/services/projectsServices'
 import { handleApiError } from '@/utils/errorHandler'
-import type { Project } from '~/types/projects'
+import type { Project, ProjectPayload } from '~/types/projects'
 
 export const useProjectsStore = defineStore('projects', {
     state: () => ({
@@ -37,6 +37,23 @@ export const useProjectsStore = defineStore('projects', {
                 this.favoriteProjects = res.data
             } catch (err) {
                 this.error = handleApiError(err)
+            } finally {
+                this.loading = false
+            }
+        },
+
+        async postNewProject(payload: ProjectPayload) {
+            this.loading = true
+            this.error = null
+            const { postNewProject } = useProjectsService()
+
+            try {
+                const res = await postNewProject(payload)
+                this.projects.push(res.data)
+                return res.data
+            } catch (err) {
+                this.error = handleApiError(err)
+                throw err
             } finally {
                 this.loading = false
             }
