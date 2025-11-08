@@ -80,8 +80,12 @@
 <script setup lang="ts">
 import type { ProjectPayload } from '~/types/projects'
 import { useProjectsStore } from '#imports'
+import { useToast } from 'vue-toastification'
 
 const projectsStore = useProjectsStore()
+const toast = useToast()
+
+const emit = defineEmits(['goToStep'])
 
 const newProject = reactive<ProjectPayload>({
     project_name: '',
@@ -113,7 +117,6 @@ watch(
                 .toLowerCase()
                 .replace(/\s+/g, '-')
                 .replace(/[^a-z0-9-]/g, '')
-    
     }
 )
 
@@ -166,14 +169,19 @@ function validateForm(): boolean {
 async function submitProject() {
     if (!validateForm()) {
         console.warn('Validation failed. Check required fields.')
+        toast.error('Form is not valid')
         return
     }
 
     isSubmitting.value = true
     try {
         await projectsStore.postNewProject(newProject)
+
+        toast.success('Project created successfully')
+        emit('goToStep', 1)
     } catch (error) {
         console.error(error)
+        toast.error('Unable to create new project')
     } finally {
         isSubmitting.value = false
     }

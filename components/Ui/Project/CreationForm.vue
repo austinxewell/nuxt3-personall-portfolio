@@ -7,11 +7,18 @@
             :steps="steps"
         />
 
-        <UiProjectCreation class="pt-4" />
+        <UiProjectCreation 
+            class="pt-4" 
+            @go-to-step="goToStep"
+        />
     </div>
 </template>
 
 <script setup lang="ts">
 const steps = ['Project Creation', 'Tags', 'Images']
 const step = ref(0)
+
+function goToStep(index: number) {
+    step.value = index
+}
 </script>
