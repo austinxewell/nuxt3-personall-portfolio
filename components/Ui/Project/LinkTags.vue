@@ -1,8 +1,11 @@
 <template>
-    <div class="flex flex-col gap-4">
+    <div class="flex flex-col gap-4 sm:px-6">
         <h3 class="font-bold">Project Tags:</h3>
 
-        <div class="flex flex-wrap gap-2">
+        <div 
+            v-if="projectTags.length"
+            class="flex flex-wrap gap-2"
+        >
             <UiProjectTag
                 v-for="tag in projectTags"
                 :key="tag.id"
@@ -10,7 +13,7 @@
                 :tag="tag.name"
             />
         </div>
-
+            
         <BaseMultiSelect 
             :options="tagOptions"
             :selected="projectTags"
@@ -21,7 +24,7 @@
         <p v-if="!showAddTag">
             Cant find your tag? 
             <button 
-                class="cursor-pointer hover:underline"
+                class="cursor-pointer hover:underline text-yellow-600 font-semibold"
                 @click="showAddTag = true"
             >
                 Click Here.
@@ -53,6 +56,14 @@
                 </BaseButton>
             </div>
         </section>
+
+        <BaseButton 
+            class="flex gap-2 mt-2"
+            @click="emit('goToStep', 2)"
+        >
+            Next Step
+            <UIcon name="lucide:arrow-right" size="20" />
+        </BaseButton>
     </div>
 </template>
 
@@ -62,6 +73,7 @@ import type { Tag } from '~/types/tags'
 import type { MultiSelectOption } from '~/types/multiSelect'
 
 const tagStore = useTagStore()
+const emit = defineEmits(['goToStep'])
 
 const tagOptions = computed<MultiSelectOption[]>(() =>
     tagStore.tags.map((tag: Tag) => ({

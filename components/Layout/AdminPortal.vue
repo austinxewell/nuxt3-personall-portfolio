@@ -9,11 +9,23 @@
         />
 
         <BaseModal ref="projectCreation">
-            <UiProjectCreationForm />
+            <UiProjectCreationForm @complete-form="closeModal" />
+        </BaseModal>
+
+        <BaseModal ref="updateProject">
+            <h1>Update Project</h1>
         </BaseModal>
 
         <BaseModal ref="updateAbout">
             <h1>Update About</h1>
+        </BaseModal>
+
+        <BaseModal ref="imageDb">
+            <h1>Modify and View Images In Database</h1>
+        </BaseModal>
+
+        <BaseModal ref="tagDb">
+            <h1>Modify and View Tags In Database</h1>
         </BaseModal>
     </div>
 </template>
@@ -22,11 +34,18 @@
 import BaseModal from '@/components/Base/Modal.vue'
 
 const projectCreation = ref<typeof BaseModal>()
+const updateProject = ref<typeof BaseModal>()
 const updateAbout = ref<typeof BaseModal>()
+const imageDb = ref<typeof BaseModal>()
+const tagDb = ref<typeof BaseModal>()
+
 
 const modalRefs: Record<string, typeof projectCreation> = {
     projectCreation,
-    updateAbout
+    updateProject,
+    updateAbout,
+    imageDb,
+    tagDb
 }
 
 const actions = ref([
@@ -39,7 +58,7 @@ const actions = ref([
     {
         id: 2,
         actionName: 'Update a Project',
-        action: () => console.log('Update Project clicked'),
+        action: () => openModal('updateProject'),
         icon: 'lucide:edit-2'
     },
     {
@@ -47,11 +66,28 @@ const actions = ref([
         actionName: 'Update About Me',
         action: () => openModal('updateAbout'),
         icon: 'lucide:user-pen'
+    },
+    {
+        id: 4,
+        actionName: 'Modify Images Database',
+        action: () => openModal('imageDb'),
+        icon: 'lucide:images'
+    },
+    {
+        id: 5,
+        actionName: 'Modify Tag Database',
+        action: () => openModal('tagDb'),
+        icon: 'lucide:tags'
     }
 ])
 
 function openModal(name: string) {
     const modal = modalRefs[name]
     if (modal?.value) modal.value.open()
+}
+
+function closeModal(name: string) {
+    const modal = modalRefs[name]
+    if (modal?.value) modal.value.close()
 }
 </script>

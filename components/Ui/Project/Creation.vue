@@ -1,6 +1,6 @@
 <template>
     <form 
-        class="flex flex-col gap-4 pb-6 px-6 mx-auto"
+        class="flex flex-col gap-4 pb-6 sm:px-6 mx-auto"
         @submit.prevent="submitProject"
     >
         <div class="flex gap-2">
@@ -23,7 +23,7 @@
                 id="slug"
                 v-model="newProject.slug"
                 class="w-full"
-                label="* Slug (No Spaces)"
+                label="* Slug (Use kebab-case)"
                 placeholder="my-new-project"
                 :error="errors.slug"
                 @input="onSlugInput"

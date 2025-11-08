@@ -15,6 +15,12 @@
 
         <UiProjectLinkTags
             v-if="step === 1"
+            @go-to-step="goToStep"
+        />
+
+        <UiProjectLinkImages 
+            v-if="step === 2"
+            @complete-form="completeForm"
         />
     </div>
 </template>
@@ -23,9 +29,10 @@
 import { useTagStore } from '#imports'
 
 const tagStore = useTagStore()
+const emit = defineEmits(['completeForm'])
 
-const steps = ['Project Creation', 'Tags', 'Images']
-const step = ref(1)
+const steps = ['Project Creation', 'Link Tags', 'Link Images']
+const step = ref(0)
 
 onMounted(async() => {
     await Promise.all([
@@ -35,5 +42,9 @@ onMounted(async() => {
 
 function goToStep(index: number) {
     step.value = index
+}
+
+function completeForm(formName: string) {
+    emit('completeForm', formName)
 }
 </script>

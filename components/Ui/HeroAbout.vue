@@ -24,7 +24,7 @@
                     target="_blank"
                     class="relative group"
                 >
-                    <UIcon name="mdi:file-document-outline" class="size-6 text-gray-800 dark:text-white" />
+                    <UIcon name="mdi:file-document-outline" class="size-6 text-gray-800 dark:text-white transform transition-transform duration-200 hover:scale-120" />
 
                     <div
                         class="absolute left-full top-1/2 -translate-y-1/2 ml-2
@@ -40,7 +40,7 @@
                     target="_blank"
                     class="relative group"
                 >
-                    <UIcon name="mdi:book-outline" class="size-6 text-gray-800 dark:text-white" />
+                    <UIcon name="mdi:book-outline" class="size-6 text-gray-800 dark:text-white transform transition-transform duration-200 hover:scale-120" />
 
                     <div
                         class="absolute left-full top-1/2 -translate-y-1/2 ml-2
