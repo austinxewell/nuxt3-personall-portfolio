@@ -13,5 +13,5 @@
 
 <script setup lang="ts">
 const steps = ['Project Creation', 'Tags', 'Images']
-const step = ref(1)
+const step = ref(0)
 </script>

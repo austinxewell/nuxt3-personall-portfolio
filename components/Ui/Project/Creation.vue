@@ -4,14 +4,20 @@
         @submit.prevent="submitProject"
     >
         <div class="flex gap-2">
-            <BaseInput
-                id="project_name"
-                v-model="newProject.project_name"
-                class="w-full"
-                label="* Project Name"
-                placeholder="Project Name"
-                required
-            />
+            <div class="relative w-full">
+                <BaseInput
+                    id="project_name"
+                    v-model="newProject.project_name"
+                    class="w-full"
+                    label="* Project Name"
+                    placeholder="Project Name"
+                    :error="errors.project_name"
+                />
+
+                <div class="absolute -top-7 right-1 transform translate-y-1/2">
+                    <BaseFavoriteStarInput v-model="newProject.is_favorite" />
+                </div>
+            </div>
     
             <BaseInput
                 id="slug"
@@ -19,7 +25,7 @@
                 class="w-full"
                 label="* Slug (No Spaces)"
                 placeholder="my-new-project"
-                required
+                :error="errors.slug"
                 @input="onSlugInput"
             />
         </div>
@@ -37,8 +43,9 @@
                 id="github_url"
                 v-model="newProject.github_url"
                 class="w-full"
-                label="GitHub URL"
+                label="* GitHub URL"
                 placeholder="https://github.com/myusername/my-new-project"
+                :error="errors.github_url"
             />
         </div>
 
@@ -47,7 +54,7 @@
             v-model="newProject.overview"
             label="* Overview"
             placeholder="A short overview of the project"
-            required
+            :error="errors.overview"
         />
 
         <BaseTextArea
@@ -56,18 +63,8 @@
             label="* Description (Use HTML Format)"
             placeholder="Detailed description, features, and tech used"
             :rows="5"
-            required
+            :error="errors.description"
         />
-
-        <div class="flex items-center gap-2 mt-2">
-            <input
-                id="is_favorite"
-                v-model="newProject.is_favorite"
-                type="checkbox"
-                class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
-            />
-            <label for="is_favorite" class="text-gray-700 dark:text-gray-300">Mark as Favorite</label>
-        </div>
 
         <BaseButton 
             type="submit" 
@@ -96,8 +93,16 @@ const newProject = reactive<ProjectPayload>({
     is_favorite: false
 })
 
-let slugManuallyEdited = false
+const errors = reactive<Record<string, string>>({
+    project_name: '',
+    slug: '',
+    overview: '',
+    description: '',
+    github_url: ''
+})
+
 const isSubmitting = ref(false)
+let slugManuallyEdited = false
 
 watch(
     () => newProject.project_name,
@@ -116,10 +121,57 @@ function onSlugInput() {
     slugManuallyEdited = true
 }
 
-function submitProject() {
+function getValidationErrors(): Record<string, string> {
+    const validationErrors: Record<string, string> = {}
+
+    interface ValidationRule {
+        required?: boolean
+        pattern?: RegExp
+        message?: string
+    }
+
+    const rules: Record<string, ValidationRule> = {
+        project_name: { required: true },
+        slug: {
+            required: true,
+            pattern: /^[a-z0-9-]+$/,
+            message: 'slug must be kebab-case.'
+        },
+        overview: { required: true },
+        description: { required: true },
+        github_url: { required: true }
+    }
+
+    for (const [field, rule] of Object.entries(rules)) {
+        const value = ((newProject as unknown) as Record<string, string>)[field]?.trim?.() || ''
+
+        if (rule.required && !value)
+            validationErrors[field] = `${field.replace('_', ' ')} is required.`
+        else if (rule.pattern && !rule.pattern.test(value))
+            validationErrors[field] = rule.message || `${field.replace('_', ' ')} is invalid.`
+    }
+
+    return validationErrors
+}
+
+function validateForm(): boolean {
+    const validationErrors = getValidationErrors()
+
+    for (const key in errors) errors[key] = ''
+    Object.assign(errors, validationErrors)
+
+    return Object.keys(validationErrors).length === 0
+}
+
+async function submitProject() {
+    if (!validateForm()) {
+        console.warn('Validation failed. Check required fields.')
+        return
+    }
+
     isSubmitting.value = true
     try {
-        projectsStore.postNewProject(newProject)
+        await projectsStore.postNewProject(newProject)
     } catch (error) {
         console.error(error)
     } finally {

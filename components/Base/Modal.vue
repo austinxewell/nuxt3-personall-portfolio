@@ -7,14 +7,14 @@
                 @click.self="close"
             >
                 <div
-                    class="bg-white dark:bg-gray-800 rounded-xl shadow-lg max-w-2xl w-full p-6 relative"
+                    class="bg-white dark:bg-gray-800 border-2 dark:border-yellow-600 rounded-xl shadow-lg max-w-2xl w-full p-6 relative"
                 >
 
                     <button
                         class="absolute top-3 right-3 text-gray-500 hover:text-gray-700 dark:hover:text-gray-300"
                         @click="close"
                     >
-                        &times;
+                        <UIcon name="lucide:x" />
                     </button>
 
                     <div>
