@@ -17,9 +17,9 @@
 import { computed } from 'vue'
 
 interface Props {
-  type?: 'button' | 'submit' | 'reset'
-  color?: 'primary' | 'secondary' | 'inverse'
-  disabled?: boolean
+    type?: 'button' | 'submit' | 'reset'
+    color?: 'primary' | 'secondary' | 'inverse' | 'inverse-alt'
+    disabled?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -36,6 +36,8 @@ const colorClass = computed(() => {
             return 'bg-gray-100 text-gray-800 border border-gray-800 hover:bg-gray-200 dark:bg-gray-900 dark:text-white dark:border-white dark:hover:bg-gray-800'
         case 'inverse':
             return 'border border-gray-900 text-gray-900 hover:bg-gray-100 dark:border-gray-900 dark:bg-white dark:hover:bg-gray-200'
+        case 'inverse-alt':
+            return 'bg-gray-900 text-white dark:bg-white dark:text-gray-900'
         default:
             return ''
     }

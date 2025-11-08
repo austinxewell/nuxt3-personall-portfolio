@@ -175,7 +175,7 @@ async function submitProject() {
 
     isSubmitting.value = true
     try {
-        await projectsStore.postNewProject(newProject)
+        // await projectsStore.postNewProject(newProject)
 
         toast.success('Project created successfully')
         emit('goToStep', 1)
