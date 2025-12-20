@@ -42,7 +42,7 @@
                 </nav>
 
                 <div class="flex justify-center gap-4">
-                    <NuxtLink to="/adminPortal" >
+                    <NuxtLink v-if="isAdmin" to="/adminPortal" >
                         <UIcon name="i-lucide-layout-dashboard" />
                     </NuxtLink>
 
@@ -80,6 +80,7 @@ import { navItems } from '~/data/navigation'
 
 const smallLogo = '/images/small-logo.png'
 const textLogo = '/images/text-logo.png'
+const isAdmin = false // Temp Value
 
 interface NavItem {
 label: string
