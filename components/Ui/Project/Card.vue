@@ -3,7 +3,7 @@
         <div 
             class="relative w-full sm:w-[17rem] h-[20rem] border dark:border-yellow-600 rounded-2xl shadow-lg shadow-black  cursor-pointer bg-white dark:bg-gray-800 transform transition-transform duration-300 hover:scale-120 hover:z-10"
         >
-            <BaseFavoriteStar class="w-10 h-10" :is-favorite="project.isFavorite" />
+            <BaseFavoriteStar class="w-10 h-10" :is-favorite="project.is_favorite" />
 
             <img 
                 class="rounded-t-2xl h-1/2 w-full"

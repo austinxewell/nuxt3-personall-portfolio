@@ -1,36 +1,54 @@
 <template>
     <div class="w-full lg:w-1/4 text-center mb-auto text-2xl font-bold lg:block hidden h-full">
-        <p>Hey! I'm Austin Ewell</p>
+        <p>Hey! I'm {{ about.name }}</p>
         <div class="text-sm mt-2 text-gray-500">
-            <p>Full Stack Engineer</p>
-            <p>Front-End Specialist</p>
+            <p>{{ about.title }}</p>
+            <p>{{ about.specialty }}</p>
             <div class="flex justify-center gap-6 mt-4">
                 <a
-                    href="https://www.linkedin.com/in/austin-ewell-01a60313a/"
+                    :href="about.linkedin_url"
                     target="_blank"
                     class="transform transition-transform duration-200 hover:scale-120"
                 >
                     <UIcon name="logos:linkedin-icon" class="size-6" />
                 </a>
                 <a
-                    href="https://github.com/austinxewell"
+                    :href="about.github_url"
                     target="_blank"
                     class="transform transition-transform duration-200 hover:scale-120"
                 >
                     <UIcon :name="isDark ? 'skill-icons:github-light' : 'skill-icons:github-dark'" class="size-6" />
                 </a>
                 <a
-                    href="/Austin_Ewell_Resume.pdf"
-                    download="Austin_Ewell_Resume.pdf"
-                    class="relative transform transition-transform duration-200 hover:scale-120 group"
+                    :href="about.resume_url"
+                    target="_blank"
+                    class="relative group"
                 >
-                    <UIcon name="mdi:file-document-outline" class="size-6 text-gray-800 dark:text-white" />
+                    <UIcon name="mdi:file-document-outline" class="size-6 text-gray-800 dark:text-white transform transition-transform duration-200 hover:scale-120" />
+
                     <div
-                        class="absolute left-full top-1/2 -translate-y-1/2 ml-2 bg-gray-800 text-white text-xs px-3 py-1 rounded whitespace-nowrap
-                                opacity-0 scale-x-0 group-hover:opacity-100 group-hover:scale-x-100 origin-left
-                                transition-transform transition-opacity duration-300 pointer-events-none"
+                        class="absolute left-full top-1/2 -translate-y-1/2 ml-2
+                        bg-gray-800 text-white text-sm px-3 py-1 rounded whitespace-nowrap
+                        opacity-0 translate-x-2 group-hover:opacity-100 group-hover:translate-x-0
+                        transition-all duration-300 pointer-events-none z-20"
                     >
-                        Download Resume
+                        View Resume
+                    </div>
+                </a>
+                <a
+                    :href="about.blog_url"
+                    target="_blank"
+                    class="relative group"
+                >
+                    <UIcon name="mdi:book-outline" class="size-6 text-gray-800 dark:text-white transform transition-transform duration-200 hover:scale-120" />
+
+                    <div
+                        class="absolute left-full top-1/2 -translate-y-1/2 ml-2
+                        bg-gray-800 text-white text-sm px-3 py-1 rounded whitespace-nowrap
+                        opacity-0 translate-x-2 group-hover:opacity-100 group-hover:translate-x-0
+                        transition-all duration-300 pointer-events-none z-20"
+                    >
+                        View Dev Blog
                     </div>
                 </a>
             </div>
@@ -39,7 +57,11 @@
 </template>
 
 <script setup lang='ts'>
+import { useAboutStore } from '#imports'
 import { useDarkModeStore } from '@/stores/useDarkModeStore'
+
+const aboutStore = useAboutStore()
+const { about } = storeToRefs(aboutStore)
 
 const darkModeStore = useDarkModeStore()
 

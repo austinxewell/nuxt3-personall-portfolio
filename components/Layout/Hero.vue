@@ -3,7 +3,7 @@
         <BaseBookingProjectsBadge @click="navigateTo('services')" />
         <button class="cursor-pointer flex justify-center items-center lg:w-1/4 w-full gap-4" @click="navigateTo('about')">
             <BaseAvatar class="mb-4 w-24 h-24 md:w-28 md:h-28 xl:w-48 xl:h-48" />
-            <p class="text-2xl font-bold lg:hidden">Hey! I'm Austin Ewell</p>
+            <p class="text-2xl font-bold lg:hidden">Hey! I'm {{ about.name }}</p>
         </button>
 
         <div class="flex flex-col lg:flex-row items-center mt-4 lg:mt-0 gap-2 xl:gap-16">
@@ -43,6 +43,11 @@
 
 
 <script setup lang='ts'>
+import { useAboutStore } from '#imports'
+
+const aboutStore = useAboutStore()
+const { about } = storeToRefs(aboutStore)
+
 function navigateTo(elementId: string) {
     const element = document.getElementById(elementId)
     if (element) 

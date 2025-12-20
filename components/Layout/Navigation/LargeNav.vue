@@ -42,7 +42,12 @@
                 </nav>
 
                 <div class="flex justify-center gap-4">
+                    <NuxtLink to="/adminPortal" >
+                        <UIcon name="i-lucide-layout-dashboard" />
+                    </NuxtLink>
+
                     <BaseDarkModeButton />
+                    
                     <button
                         v-if="isNavVisible"
                         class="cursor-pointer"

@@ -6,7 +6,7 @@
             v-model="currentSlide"
         >
 
-            <Slide v-for="project in findFavoriteProjects(projects as Project[])" :key="project.id">
+            <Slide v-for="project in favoriteProjects" :key="project.id">
                 <NuxtLink :to="`/projects/${project.slug}`">
                     <BaseButton
                         class="absolute right-0 top-0 mt-2 mr-2 z-10 w-fit flex items-center justify-center"
@@ -32,7 +32,7 @@
         v-model="currentSlide"
         class="mt-4"
     >
-        <Slide v-for="project in findFavoriteProjects(projects as Project[])" :key="project.id">
+        <Slide v-for="project in favoriteProjects" :key="project.id">
             <template #default="{ currentIndex, isActive }">
                 <div
                     :class="['thumbnail', { 'is-active': isActive }]"
@@ -66,11 +66,12 @@
 
 <script setup lang="ts">
 import 'vue3-carousel/carousel.css'
-import { findThumbnailImage, findPrimaryTags, findFavoriteProjects } from '../../utils/projectHelpers'
+import { findThumbnailImage, findPrimaryTags } from '../../utils/projectHelpers'
 import { Carousel, Slide, Navigation } from 'vue3-carousel'
-import { projects } from '~/data/projects'
-import type { Project } from '~/types/projects'
+import { useProjectsStore } from '#imports'
 
+const projectsStore = useProjectsStore()
+const { favoriteProjects } = storeToRefs(projectsStore)
 
 const currentSlide = ref<number>(0)
 

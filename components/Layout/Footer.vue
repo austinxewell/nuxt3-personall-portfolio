@@ -1,7 +1,11 @@
 <template>
-    <footer class="py-6 px-8 grid grid-cols-3 items-center text-center">
-        <a href="#hero" @click.prevent="navigateTo('hero')">
-            <div class="flex items-center gap-2 justify-start">
+    <footer class="py-6 px-8 flex flex-col md:flex-row md:justify-between md:items-center text-center gap-6">
+        <a
+            href="#hero"
+            class="flex justify-center md:justify-start"
+            @click.prevent="navigateTo('hero')"
+        >
+            <div class="flex items-center gap-2">
                 <img
                     :src="smallLogo"
                     alt="Small Logo"
@@ -10,12 +14,12 @@
                 <img
                     :src="textLogo"
                     alt="Text Logo"
-                    class="h-5 hidden sm:block"
+                    class="h-5"
                 />
             </div>
         </a>
 
-        <div class="flex justify-center gap-6 text-sm">
+        <div class="flex flex-wrap justify-center gap-4 text-sm">
             <a
                 href="#portfolio"
                 class="hover:text-yellow-600 transition-colors"
@@ -23,7 +27,7 @@
             >Projects</a>
 
             <UModal>
-                <label class="hover:text-yellow-600 transition-colors" label="Open">Contact</label>
+                <label class="hover:text-yellow-600 cursor-pointer transition-colors" label="Open">Contact</label>
 
                 <template #header>
                     <h2 class="text-2xl text-center w-full">Contact Information</h2>
@@ -35,29 +39,51 @@
             </UModal>
 
             <a
-                href="/Austin_Ewell_Resume.pdf"
-                download="Austin_Ewell_Resume"
+                :href="about.resume_url"
+                target="_blank"
                 class="hover:text-yellow-600 transition-colors"
             >
                 Resume
             </a>
+
+            <a
+                :href="about.blog_url"
+                target="_blank"
+                class="hover:text-yellow-600 transition-colors"
+            >
+                Dev Blog
+            </a>
         </div>
 
-        <div class="text-xs text-gray-400 justify-end hidden md:flex">
-            &copy; {{ new Date().getFullYear() }}
-            <a
-                href="about"
-                class="ml-1"
-                @click.prevent="navigateTo('about')"
-            >
-                Austin Ewell
-            </a>
-            . All rights reserved.
+        <div class="text-xs text-gray-400 flex flex-col items-center md:items-end">
+            <div class="hidden md:flex">
+                &copy; {{ new Date().getFullYear() }}
+                <a
+                    href="about"
+                    class="ml-1 hover:text-yellow-600 transition-colors"
+                    @click.prevent="navigateTo('about')"
+                >
+                    Austin Ewell
+                </a>
+                . All rights reserved.
+            </div>
+            
+            <div class="md:hidden text-center">
+                &copy; {{ new Date().getFullYear() }} Austin Ewell
+            </div>
+
+            <NuxtLink to="/login" class="hover:text-yellow-600 transition-colors mt-1">Admin Portal</NuxtLink>
         </div>
     </footer>
 </template>
 
+
 <script setup lang='ts'>
+import { useAboutStore } from '#imports'
+
+const aboutStore = useAboutStore()
+const { about } = storeToRefs(aboutStore)
+
 const smallLogo = '/images/small-logo.png'
 const textLogo = '/images/text-logo.png'
 

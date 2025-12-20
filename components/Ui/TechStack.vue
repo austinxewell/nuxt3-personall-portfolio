@@ -12,28 +12,29 @@
 
         <div v-if="!viewAsList" class="flex flex-wrap gap-4 max-w-6xl justify-center">
             <UiToolCard
-                v-for="tool in proficiencies"
+                v-for="tool in skills"
                 :key="tool.id"
                 :tool-name="tool.name"
                 :icon="tool.icon"
-                :is-favorite="tool.isFavorite"
+                :is-favorite="tool.level === 'expert'"
             />
         </div>
 
         <p v-else class="max-w-6xl text-lg font-semibold flex flex-wrap justify-center">
-            <template v-for="(tool, index) in proficiencies" :key="tool.id">
-                <span :class="{ 'text-yellow-600': tool.isFavorite }">
+            <template v-for="(tool, index) in skills" :key="tool.id">
+                <span :class="{ 'text-yellow-600': tool.level === 'expert' }">
                     {{ tool.name }}
                 </span>
-                <span v-if="index < proficiencies.length - 1">,&nbsp;</span>
+                <span v-if="index < skills.length - 1">,&nbsp;</span>
             </template>
         </p>
-
     </div>
 </template>
 
 <script setup lang='ts'>
-import { proficiencies } from '~/data/proficiencies'
+import { useSkillsStore } from '#imports'
 
+const skillsStore = useSkillsStore()
+const skills = computed(() => skillsStore.list)
 const viewAsList = ref(false)
 </script>

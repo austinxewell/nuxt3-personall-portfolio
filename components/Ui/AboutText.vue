@@ -23,5 +23,20 @@
         With a <strong>mobile-first design philosophy</strong>, I blend <strong>technical proficiency</strong> with smooth 
         <span class="text-yellow-600 font-semibold">UI/UX</span> to craft polished, high-quality solutions and foster 
         <strong>meaningful professional connections</strong>.
+        <br /><br />
+        <a
+            :href="about.blog_url"
+            target="_blank"
+            class="flex justify-center font-bold text-center"
+        >
+            <p>Find out more about me by visiting my <span class="text-yellow-600 font-semibold">Dev Blog!</span></p>
+        </a>
     </p>
 </template>
+
+<script  setup lang='ts'>
+import { useAboutStore } from '#imports'
+
+const aboutStore = useAboutStore()
+const { about } = storeToRefs(aboutStore)
+</script>

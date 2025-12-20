@@ -1,5 +1,6 @@
 <template>
-    <div v-if="project" class="flex h-screen overflow-hidden relative">
+    <div v-if="isLoading">Is Loading ...</div>
+    <div v-if="!isLoading && project" class="flex h-screen overflow-hidden relative">
         <BaseButton
             class="w-fit z-20 absolute top-4 left-4 sm:left-auto sm:right-24 lg:hidden bg-white"
             @click="drawerOpen = !drawerOpen"
@@ -54,7 +55,7 @@
             <h2 class="text-2xl mt-14 sm:mt-0 font-bold mb-6 pb-1 border-b-1 w-fit">Project Views:</h2>
 
             <div class="flex justify-center flex-wrap gap-6 text-center">
-                <div v-for="image in project.images" :key="image.img_name">
+                <div v-for="image in projectImages" :key="image.img_name">
                     <img
                         class="max-h-[80vh] rounded-md"
                         :src="image.img_url"
@@ -70,22 +71,38 @@
 
 <script setup lang="ts">
 import { useRoute } from 'vue-router'
-import { projects } from '~/data/projects'
+import { useProjectsStore } from '#imports'
 import { createError } from 'h3'
 import { useWindowSize } from '@vueuse/core'
 import { useImageStore } from '~/stores/useImageStore'
 import type { SelectedImage } from '~/types/image'
 
+const projectStore = useProjectsStore()
 const imageStore = useImageStore()
 const route = useRoute()
-const slug = route.params.slug
-const project = projects.find((project) => project.slug === slug)!
 
-if (!project)
-    throw createError({
-        statusCode: 404,
-        statusMessage: 'Project not found'
-    })
+const project = computed(() => projectStore.project)
+const projectImages = computed(() => {
+    if (!project.value) return []
+    return [...project.value.images].reverse()
+})
+const isLoading = computed(() => projectStore.loading)
+
+watch(
+    () => route.params.slug,
+    async(newSlug) => {
+        if (!newSlug) return
+
+        const result = await projectStore.fetchProjectBySlug(newSlug as string)
+
+        if (!result)
+            throw createError({
+                statusCode: 404,
+                statusMessage: 'Project not found'
+            })
+    },
+    { immediate: true }
+)
 
 const drawerOpen = ref(false)
 

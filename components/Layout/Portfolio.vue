@@ -13,7 +13,18 @@
                 target="_blank"
             >
                 <BaseButton color="primary" class="w-full">
-                    <span><span class="hidden sm:inline">View</span> Portfolio Code</span>
+                    <span>View Portfolio FE Code</span>
+                    <UIcon name="lucide:code" class="size-5 ml-2" />
+                </BaseButton>
+            </a>
+
+            <a
+                class="w-2/3 sm:w-fit"
+                href="https://github.com/austinxewell/portfolio-backend"
+                target="_blank"
+            >
+                <BaseButton color="primary" class="w-full">
+                    <span>View Portfolio BE Code</span>
                     <UIcon name="lucide:code" class="size-5 ml-2" />
                 </BaseButton>
             </a>

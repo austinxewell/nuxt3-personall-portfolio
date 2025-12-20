@@ -8,18 +8,18 @@
         <div class="ticker-wrapper overflow-hidden w-full mt-4">
             <div class="ticker-track flex whitespace-nowrap" :style="{ animationDuration: `${speed}s` }">
                 <div
-                    v-for="(company, index) in repeatedCompanies"
-                    :key="`1-${index}`"
+                    v-for="company in repeatedCompanies"
+                    :key="company.id"
                     class="px-8 text-base sm:text-lg lg:text-xl font-semibold text-gray-800 dark:text-white"
                 >
-                    {{ company }}
+                    {{ company.company_name }}
                 </div>
                 <div
-                    v-for="(company, index) in repeatedCompanies"
-                    :key="`2-${index}`"
+                    v-for="company in repeatedCompanies"
+                    :key="company.id"
                     class="px-8 text-xl font-semibold text-gray-800 dark:text-white"
                 >
-                    {{ company }}
+                    {{ company.company_name }}
                 </div>
             </div>
         </div>
@@ -27,10 +27,13 @@
 </template>
 
 <script setup lang="ts">
-import { partnerCompanies } from '~/data/partnerCompanies'
+import { useCollaborationsStore } from '#imports'
+
+const collaborationsStore = useCollaborationsStore()
+const { collaborations } = storeToRefs(collaborationsStore)
 
 const speed = 40
-const repeatedCompanies = [...partnerCompanies]
+const repeatedCompanies = [...collaborations.value]
 </script>
 
 <style scoped>
