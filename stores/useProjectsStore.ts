@@ -7,6 +7,7 @@ export const useProjectsStore = defineStore('projects', {
     state: () => ({
         projects: [] as Project[],
         favoriteProjects: [] as Project[],
+        project: null as Project | null,
         loading: false,
         error: null as string | null
     }),
@@ -35,6 +36,22 @@ export const useProjectsStore = defineStore('projects', {
             try {
                 const res = await getFavoriteProjects()
                 this.favoriteProjects = res.data
+            } catch (err) {
+                this.error = handleApiError(err)
+            } finally {
+                this.loading = false
+            }
+        },
+
+        async fetchProjectBySlug(slug: string) {
+            this.loading = true
+            this.error = null
+            const { getProjectBySlug } = useProjectsService()
+
+            try {
+                const res = await getProjectBySlug(slug)
+                this.project = res.data
+                return this.project
             } catch (err) {
                 this.error = handleApiError(err)
             } finally {
