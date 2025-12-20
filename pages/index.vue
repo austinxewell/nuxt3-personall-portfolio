@@ -47,6 +47,7 @@ onMounted(async() => {
         skillsStore.fetchSkills(),
         collaborationStore.fetchCollaborations(),
         projectsStore.fetchFavoriteProjects(),
+        projectsStore.fetchProjects(),
         servicesStore.fetchServices()
     ])
 
