@@ -79,10 +79,10 @@
 
 <script setup lang="ts">
 import type { ProjectPayload } from '~/types/projects'
-import { useProjectsStore } from '#imports'
+// import { useProjectsStore } from '#imports'
 import { useToast } from 'vue-toastification'
 
-const projectsStore = useProjectsStore()
+// const projectsStore = useProjectsStore()
 const toast = useToast()
 
 const emit = defineEmits(['goToStep'])

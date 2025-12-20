@@ -158,7 +158,8 @@ async function submitImages() {
     isSubmitting.value = true
     
     // Simulate network delay
-    await new Promise((resolve) => setTimeout(resolve, 1500)) // 1.5 seconds
+    const DELAY = 15000 // 1.5 seconds
+    await new Promise((resolve) => setTimeout(resolve, DELAY))
     
     toast.success('Images linked successfully')
     isSubmitting.value = false
