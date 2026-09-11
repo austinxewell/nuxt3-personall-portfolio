@@ -79,13 +79,15 @@
 
 <script setup lang="ts">
 import type { ProjectPayload } from '~/types/projects'
-// import { useProjectsStore } from '#imports'
 import { useToast } from 'vue-toastification'
 
-// const projectsStore = useProjectsStore()
+const projectsStore = useProjectsStore()
 const toast = useToast()
 
-const emit = defineEmits(['goToStep'])
+const emit = defineEmits<{
+  (e: 'goToStep', step: 0 | 1 | 2): void
+  (e: 'setProjectId', id: number): void
+}>()
 
 const newProject = reactive<ProjectPayload>({
     project_name: '',
@@ -166,6 +168,8 @@ function validateForm(): boolean {
     return Object.keys(validationErrors).length === 0
 }
 
+const createdProjectId = ref<number | null>(null)
+
 async function submitProject() {
     if (!validateForm()) {
         console.warn('Validation failed. Check required fields.')
@@ -175,7 +179,10 @@ async function submitProject() {
 
     isSubmitting.value = true
     try {
-        // await projectsStore.postNewProject(newProject)
+        const res = await projectsStore.postNewProject(newProject)
+
+        createdProjectId.value = res.id
+        emit('setProjectId', createdProjectId.value)
 
         toast.success('Project created successfully')
         emit('goToStep', 1)
