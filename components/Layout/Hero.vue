@@ -1,5 +1,5 @@
 <template>
-    <header id="hero" class="relative lg:px-32 px-6 pb-8 sm:pb-12 pt-6 sm:pt-32 min-h-[60vh] flex flex-col">
+    <header id="hero" class="relative px-6 pb-8 sm:pb-12 pt-6 sm:pt-32 min-h-[60vh] flex flex-col">
         <BaseBookingProjectsBadge @click="navigateTo('services')" />
 
         <div class="flex flex-col lg:flex-row items-center lg:items-start mt-4 lg:mt-0 gap-2 xl:gap-16">
