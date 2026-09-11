@@ -1,7 +1,7 @@
 <template>
     <section
         id="contact"
-        class="lg:h-[90vh] py-6 lg:py-0 bg-gray-900 dark:bg-white text-white dark:text-gray-800 flex flex-col justify-center items-center px-6 text-center"
+        class="relative left-1/2 -translate-x-1/2 w-[100cqw] lg:h-[90vh] py-6 lg:py-0 bg-gray-900 dark:bg-white text-white dark:text-gray-800 flex flex-col justify-center items-center px-6 text-center"
     >
         <div class="flex items-center gap-2 mb-6">
             <img
@@ -102,3 +102,10 @@ const isDark = computed(() => darkModeStore.isDark)
 const smallLogo = '/images/small-logo.png'
 const textLogo = '/images/text-logo.png'
 </script>
+
+<style>
+/* This is to resize overflow x due to overriding the default centering */
+html {
+    container-type: inline-size;
+}
+</style>
