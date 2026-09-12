@@ -1,19 +1,20 @@
 <template>
-    <section id="about" class="lg:px-32 px-6 py-4 sm:py-8">
+    <section id="about" class="px-6 py-4 sm:py-8">
         <h2 class="text-2xl sm:text-3xl lg:text-4xl md:ml-20 mb-6 font-semibold">
             Rooted in Passion. Refined in <span class="text-yellow-600 font-bold">Gold</span>.
         </h2>
 
-        <div class="md:flex items-center justify-center gap-14">
-            <img 
-                class="h-[30vh] md:h-[50vh] rounded-2xl object-cover mx-auto mb-4 md:mb-0 md:mx-0" 
+        <div class="flex flex-col md:flex-row items-center justify-center gap-8 lg:gap-14">
+            <img
+                class="h-[30svh] sm:h-[35svh] w-auto max-w-full rounded-2xl object-cover shrink-0
+               md:h-auto md:max-h-[45svh] md:w-2/5
+               lg:max-h-[50svh] lg:w-1/3
+               xl:max-h-[55svh] xl:w-2/5"
                 :src="cartoonAviSrc"
                 alt="Cartoon Avatar"
             />
-            
-            <div class="md:w-1/3">
-                <UiAboutText />
-            </div> 
+
+            <UiAboutText class="min-w-0 flex-1" />
         </div>
 
         <div>

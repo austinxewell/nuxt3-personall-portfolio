@@ -10,11 +10,13 @@
         <UiProjectCreation 
             v-if="step === 0"
             class="pt-4" 
+            @set-project-id="setCreatedProjectId"
             @go-to-step="goToStep"
         />
 
         <UiProjectLinkTags
             v-if="step === 1"
+            :created-project-id="createdProjectId"
             @go-to-step="goToStep"
         />
 
@@ -32,7 +34,8 @@ const tagStore = useTagStore()
 const emit = defineEmits(['completeForm'])
 
 const steps = ['Project Creation', 'Link Tags', 'Link Images']
-const step = ref(0)
+const step = ref(1)
+const createdProjectId = ref<number | null>(null)
 
 onMounted(async() => {
     await Promise.all([
@@ -46,5 +49,9 @@ function goToStep(index: number) {
 
 function completeForm(formName: string) {
     emit('completeForm', formName)
+}
+
+function setCreatedProjectId(id: number) {
+    createdProjectId.value = id
 }
 </script>

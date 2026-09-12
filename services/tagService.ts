@@ -5,5 +5,12 @@ export function useTagsService() {
         return $axios.get('/tags')
     }
 
-    return { getTags }
+    async function postTagToProject() {
+        return $axios.post('/tags/link')
+    }
+
+    return { 
+        getTags,
+        postTagToProject
+    }
 }

@@ -1,15 +1,26 @@
 <template>
-    <header id="hero" class="relative lg:px-32 px-6 pb-8 sm:pb-12 pt-6 sm:pt-32 min-h-[60vh] flex flex-col">
+    <header id="hero" class="relative px-6 pb-8 sm:pb-12 pt-6 sm:pt-32 min-h-[60vh] flex flex-col">
         <BaseBookingProjectsBadge @click="navigateTo('services')" />
-        <button class="cursor-pointer flex justify-center items-center lg:w-1/4 w-full gap-4" @click="navigateTo('about')">
-            <BaseAvatar class="mb-4 w-24 h-24 md:w-28 md:h-28 xl:w-48 xl:h-48" />
-            <p class="text-2xl font-bold lg:hidden">Hey! I'm {{ about.name }}</p>
-        </button>
 
-        <div class="flex flex-col lg:flex-row items-center mt-4 lg:mt-0 gap-2 xl:gap-16">
-            <UiHeroAbout />
+        <div class="flex flex-col lg:flex-row items-center lg:items-start mt-4 lg:mt-0 gap-2 xl:gap-16">
+            <div class="flex flex-col items-center w-full lg:w-1/4">
+                <button class="cursor-pointer flex justify-center items-center w-full gap-4" @click="navigateTo('about')">
+                    <BaseAvatar class="mb-4 w-24 h-24 md:w-28 md:h-28 lg:w-40 lg:h-56 xl:w-48 xl:h-64" />
+                    <div class="text-center lg:hidden">
+                        <p class="text-2xl font-bold mb-2">{{ about.name }}</p>
+                        <UiSocialLinks />
+                    </div>
+                </button>
 
-            <aside class="flex flex-col lg:w-2/3 text-center mt-6 lg:mt-0">
+                <UiHeroAbout />
+            </div>
+
+            <aside class="flex flex-col lg:w-2/3 text-center mt-2 lg:mt-36 xl:mt-48">
+                <div class="text-sm font-semibold justify-center flex flex-col sm:flex-row uppercase tracking-[0.2em] text-yellow-600 dark:text-yellow-500 mb-3">
+                    <p>Software Engineer</p>
+                    <span class="hidden sm:flex px-1">&middot;</span>
+                    <p>Front End Specialist</p>
+                </div>
                 <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold font-serif text-center">
                     The <span class="text-yellow-600 font-extrabold">Gold</span> Standard in Creative Solutions.
                 </h1>

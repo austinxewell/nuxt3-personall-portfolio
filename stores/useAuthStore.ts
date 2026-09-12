@@ -2,10 +2,12 @@
 import { defineStore } from 'pinia'
 import { useAuthService } from '@/services/authService'
 import { handleApiError } from '@/utils/errorHandler'
+import type { MinimalUser } from '~/types/user'
 
 export const useAuthStore = defineStore('auth', {
     state: () => ({
-        user: null as { id: number; email: string } | null,
+        user: null as MinimalUser | null,
+        isValidated: false as boolean,
         token: '' as string,
         loading: false,
         error: null as string | null
@@ -27,6 +29,11 @@ export const useAuthStore = defineStore('auth', {
                 // set default Axios Authorization header
                 const { $axios } = useNuxtApp()
                 $axios.defaults.headers.common.Authorization = `Bearer ${this.token}`
+
+                // store token in a cookie for middleware reference
+                // note: frontend-set cookies cannot be httpOnly
+                // secure should be true in production
+                document.cookie = `token=${this.token}; path=/; secure=${process.env.NODE_ENV === 'production'}; sameSite=strict;`
             } catch (err) {
                 this.error = handleApiError(err)
             } finally {
@@ -39,6 +46,17 @@ export const useAuthStore = defineStore('auth', {
             this.token = ''
             const { $axios } = useNuxtApp()
             delete $axios.defaults.headers.common.Authorization
+        },
+
+        async validateToken(): Promise<boolean> {
+            const { validateToken } = useAuthService()
+
+            try {
+                await validateToken()
+                return true
+            } catch {
+                return false
+            }
         }
     }
 })

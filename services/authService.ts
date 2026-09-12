@@ -13,8 +13,13 @@ export function useAuthService() {
         return $axios.post('/auth/logout')
     }
 
+    async function validateToken() {
+        return $axios.get('/auth/me')
+    }
+
     return {
         login,
-        logout 
+        logout,
+        validateToken
     }
 }
