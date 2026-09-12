@@ -84,7 +84,7 @@ import { useToast } from 'vue-toastification'
 import type { Tag } from '~/types/tags'
 import type { MultiSelectOption } from '~/types/multiSelect'
 
-const props = defineProps<{
+defineProps<{
     createdProjectId: number
 }>()
 
@@ -137,7 +137,7 @@ async function linkTagsToProject() {
 
     formatTagPayloads()
 
-    const tagErrorCount = 0
+    // const tagErrorCount = 0
     
 
     try {

@@ -79,14 +79,14 @@
 
 <script setup lang="ts">
 import type { ProjectPayload } from '~/types/projects'
+import type { ProjectStep } from '~/constants/projectStep'
 import { useToast } from 'vue-toastification'
 
 const projectsStore = useProjectsStore()
 const toast = useToast()
 
-const emit = defineEmits<{
-  (e: 'goToStep', step: 0 | 1 | 2): void
-  (e: 'setProjectId', id: number): void
+const emit = defineEmits<{(e: 'goToStep', step: ProjectStep): void
+    (e: 'setProjectId', id: number): void
 }>()
 
 const newProject = reactive<ProjectPayload>({

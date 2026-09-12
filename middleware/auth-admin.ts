@@ -1,6 +1,6 @@
 import { getCookie } from 'h3'
 
-export default defineNuxtRouteMiddleware(async(to, from) => {
+export default defineNuxtRouteMiddleware(async(_to, _from) => {
     const nuxtApp = useNuxtApp()
     const authStore = useAuthStore()
     const { $axios } = nuxtApp
