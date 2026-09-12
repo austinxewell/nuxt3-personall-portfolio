@@ -1,5 +1,8 @@
 <template>
-    <div v-if="isLoading">Is Loading ...</div>
+    <div v-if="isLoading">
+        <LayoutLoadingScreen />
+    </div>
+
     <div v-if="!isLoading && project" class="flex h-screen overflow-hidden relative">
         <BaseButton
             class="w-fit z-20 absolute top-4 left-4 sm:left-auto sm:right-24 lg:hidden bg-white"
@@ -56,12 +59,18 @@
 
             <div class="flex justify-center flex-wrap gap-6 text-center">
                 <div v-for="image in projectImages" :key="image.img_name">
-                    <img
-                        class="max-h-[80svh] max-w-full rounded-md object-contain"
-                        :src="image.img_url"
-                        :alt="image.img_name"
-                        @click="setSelectedImage(image)"
-                    />
+                    <div class="relative flex items-center justify-center min-w-32 min-h-32">
+                        <UiLoadingSpinner v-if="!loadedImages.has(image.img_name)" class="w-10 h-10 absolute" />
+                        <img
+                            class="max-h-[80svh] max-w-full rounded-md object-contain transition-opacity duration-300"
+                            :class="loadedImages.has(image.img_name) ? 'opacity-100' : 'opacity-0 absolute'"
+                            :src="image.img_url"
+                            :alt="image.img_name"
+                            @click="setSelectedImage(image)"
+                            @load="markLoaded(image.img_name)"
+                            @error="markLoaded(image.img_name)"
+                        />
+                    </div>
                     <p class="font-bold mt-1">{{ image.img_name }}</p>
                 </div>
             </div>
@@ -105,6 +114,7 @@ watch(
 )
 
 const drawerOpen = ref(false)
+const loadedImages = ref(new Set<string>())
 
 const { width } = useWindowSize()
 const LARGE_SCREEN_SIZE = 1024
@@ -112,6 +122,10 @@ const screenIsLgUp = computed(() => width.value >= LARGE_SCREEN_SIZE)
 
 function setSelectedImage(image: SelectedImage) {
     imageStore.selectedImage = image
+}
+
+function markLoaded(name: string) {
+    loadedImages.value.add(name)
 }
 </script>
 

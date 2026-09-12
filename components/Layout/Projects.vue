@@ -1,5 +1,8 @@
 <template>
-    <div v-if="isLoading">Is Loading ...</div>
+    <div v-if="isLoading">
+        <LayoutLoadingScreen />
+    </div>
+
     <div v-else class="p-10">
         <header class="w-full lg:w-3/5 mb-10">
             <h2 class="text-5xl font-bold pb-1 border-b-2 w-fit">Portfolio</h2>

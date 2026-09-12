@@ -1,6 +1,6 @@
 <template>
     <img
-        :class="['rounded-full lg:rounded-2xl object-cover', $attrs.class]"
+        :class="['rounded-2xl object-cover', $attrs.class]"
         :src="isDark ? lightSrc : darkSrc"
         alt="Avatar"
     />

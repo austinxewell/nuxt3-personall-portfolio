@@ -1,5 +1,8 @@
 <template>
-    <div v-if="isLoading">Is Loading...</div>
+    <div v-if="isLoading">
+        <LayoutLoadingScreen />
+    </div>
+
     <div v-else class="flex flex-col justify-center">
         <LayoutHero />
         <LayoutAbout />
@@ -18,15 +21,15 @@ import {
     useServicesStore
 } from '#imports'
 
-useHead({ title: 'Full Stack Web Developer' })
+useHead({ title: 'Austin Ewell - AuEwellify' })
 
 useSeoMeta({
     description: 'A showcase of projects by Austin Ewell at AuEwellify, a full-stack developer specializing in front-end excellence.',
-    ogTitle: 'Austin Ewell - AuEwellify',
+    ogTitle: 'Software Engineer',
     ogDescription: 'Explore development by Austin Ewell at AuEwellify, a full-stack developer specializing in front-end excellence.',
     ogImage: 'https://i.postimg.cc/gkXvpDLb/portfolio-hero-dark.png',
     ogUrl: 'https://auewellify.dev/',
-    twitterTitle: 'Austin Ewell - AuEwellify',
+    twitterTitle: 'Software Engineer',
     twitterDescription: 'A showcase of projects by Austin Ewell at AuEwellify, a full-stack developer specializing in front-end excellence.',
     twitterImage: 'https://i.postimg.cc/gkXvpDLb/portfolio-hero-dark.png'
 })
