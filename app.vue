@@ -10,7 +10,7 @@
 
 <script setup lang="ts">
 useHead({
-    titleTemplate: 'Full Stack Web Developer | Austin Ewell – AuEwellify',
+    titleTemplate: 'Austin Ewell – AuEwellify | Software Engineer',
     bodyAttrs: { class: 'scroll-smooth' } 
 })
 </script>
