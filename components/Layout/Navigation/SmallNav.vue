@@ -1,16 +1,16 @@
 <template>
-    <nav class="w-full flex justify-evenly items-center h-18 bg-gray-600 text-white">
+    <nav class="w-full flex justify-evenly items-center min-h-18 pb-[env(safe-area-inset-bottom)] bg-gray-600 text-white">
         <NuxtLink
             v-for="item in navItems"
             :key="item.label"
             :to="item.href"
             :class="[
-                'transition-colors duration-300',
+                'flex items-center justify-center p-2 transition-colors duration-300',
                 activeSection === item.href ? 'text-yellow-600' : 'text-white'
             ]"
             @click.prevent="scrollToSection(item.href)"
         >
-            <UIcon :name="item.icon" size="48" />
+            <UIcon :name="item.icon" class="size-[clamp(1.5rem,6vw,2.5rem)]" />
         </NuxtLink>
     </nav>
 </template>
