@@ -1,5 +1,5 @@
 <template>
-    <div class="flex justify-center gap-6">
+    <div class="flex flex-wrap justify-center gap-6">
         <a
             :href="about.linkedin_url"
             target="_blank"
@@ -22,9 +22,9 @@
             <UIcon name="mdi:file-document-outline" class="size-6 text-gray-800 dark:text-white transform transition-transform duration-200 hover:scale-120" />
 
             <div
-                class="absolute left-full top-1/2 -translate-y-1/2 ml-2
+                class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2
                         bg-gray-800 text-white text-sm px-3 py-1 rounded whitespace-nowrap
-                        opacity-0 translate-x-2 group-hover:opacity-100 group-hover:translate-x-0
+                        opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0
                         transition-all duration-300 pointer-events-none z-20"
             >
                 Resume
@@ -38,9 +38,9 @@
             <UIcon name="mdi:book-outline" class="size-6 text-gray-800 dark:text-white transform transition-transform duration-200 hover:scale-120" />
 
             <div
-                class="absolute left-full top-1/2 -translate-y-1/2 ml-2
+                class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2
                         bg-gray-800 text-white text-sm px-3 py-1 rounded whitespace-nowrap
-                        opacity-0 translate-x-2 group-hover:opacity-100 group-hover:translate-x-0
+                        opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0
                         transition-all duration-300 pointer-events-none z-20"
             >
                 Dev Blog

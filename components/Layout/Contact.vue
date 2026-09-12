@@ -91,7 +91,6 @@
 
 <script setup lang='ts'>
 import { useDarkModeStore } from '@/stores/useDarkModeStore'
-import { useAboutStore } from '#imports'
 
 const aboutStore = useAboutStore()
 const { about } = storeToRefs(aboutStore)
