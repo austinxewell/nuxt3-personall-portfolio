@@ -3,5 +3,8 @@
 </template>
 
 <script setup lang="ts">
-definePageMeta({ layout: 'admin' })
+definePageMeta({ 
+    middleware: 'auth-admin',
+    layout: 'admin' 
+})
 </script>

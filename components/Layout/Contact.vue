@@ -1,7 +1,7 @@
 <template>
     <section
         id="contact"
-        class="lg:h-[90vh] py-6 lg:py-0 bg-gray-900 dark:bg-white text-white dark:text-gray-800 flex flex-col justify-center items-center px-6 text-center"
+        class="relative left-1/2 -translate-x-1/2 w-[100cqw] lg:h-[90vh] py-6 lg:py-0 bg-gray-900 dark:bg-white text-white dark:text-gray-800 flex flex-col justify-center items-center px-6 text-center"
     >
         <div class="flex items-center gap-2 mb-6">
             <img
@@ -61,9 +61,9 @@
                 <UIcon name="mdi:file-document-outline" class="size-8 text-white dark:text-gray-800 transform transition-transform duration-200 hover:scale-120" />
 
                 <div
-                    class="absolute left-full top-1/2 -translate-y-1/2 ml-2
+                    class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2
                         bg-gray-800 text-white text-sm px-3 py-1 rounded whitespace-nowrap
-                        opacity-0 translate-x-2 group-hover:opacity-100 group-hover:translate-x-0
+                        opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0
                         transition-all duration-300 pointer-events-none z-20"
                 >
                     View Resume
@@ -77,9 +77,9 @@
                 <UIcon name="mdi:book-outline" class="size-8 text-white dark:text-gray-800 transform transition-transform duration-200 hover:scale-120" />
 
                 <div
-                    class="absolute left-full top-1/2 -translate-y-1/2 ml-2
+                    class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2
                         bg-gray-800 text-white text-sm px-3 py-1 rounded whitespace-nowrap
-                        opacity-0 translate-x-2 group-hover:opacity-100 group-hover:translate-x-0
+                        opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0
                         transition-all duration-300 pointer-events-none z-20"
                 >
                     View Dev Blog
@@ -102,3 +102,10 @@ const isDark = computed(() => darkModeStore.isDark)
 const smallLogo = '/images/small-logo.png'
 const textLogo = '/images/text-logo.png'
 </script>
+
+<style>
+/* This is to resize overflow x due to overriding the default centering */
+html {
+    container-type: inline-size;
+}
+</style>

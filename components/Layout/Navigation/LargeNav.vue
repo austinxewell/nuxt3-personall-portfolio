@@ -80,7 +80,9 @@ import { navItems } from '~/data/navigation'
 
 const smallLogo = '/images/small-logo.png'
 const textLogo = '/images/text-logo.png'
-const isAdmin = false // Temp Value
+
+const authStore = useAuthStore()
+const isAdmin = authStore.isValidated
 
 interface NavItem {
 label: string

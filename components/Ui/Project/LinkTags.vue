@@ -2,17 +2,28 @@
     <div class="flex flex-col gap-4 sm:px-6">
         <h3 class="font-bold">Project Tags:</h3>
 
-        <div 
-            v-if="projectTags.length"
-            class="flex flex-wrap gap-2"
-        >
-            <UiProjectTag
-                v-for="tag in projectTags"
-                :key="tag.id"
-                class="w-fit"
-                :tag="tag.name"
-            />
-        </div>
+        <section>
+            <div class="flex justify-between mb-2">
+                <p class="text-sm">Click Project Tags to Set As Primary</p>
+                <span>(/3)</span>
+            </div>
+
+            <div 
+                v-if="projectTags.length"
+                class="flex flex-wrap gap-2"
+            >
+                <UiProjectTag
+                    v-for="tag in projectTags"
+                    :key="tag.id"
+                    class="w-fit cursor-pointer"
+                    :tag="tag.name"
+                    @click="setTagPrimary(tag.id)"
+                />
+            </div>
+
+            <pre>{{ projectTags }}</pre>
+        </section>
+
             
         <BaseMultiSelect 
             :options="tagOptions"
@@ -59,26 +70,34 @@
 
         <BaseButton 
             class="flex gap-2 mt-2"
-            @click="emit('goToStep', 2)"
+            :disabled="isSubmitting"
+            @click="linkTagsToProject"
         >
-            Next Step
+            {{ isSubmitting ? 'Linking Tags' : 'Next Step' }}
             <UIcon name="lucide:arrow-right" size="20" />
         </BaseButton>
     </div>
 </template>
 
 <script setup lang='ts'>
-import { useTagStore } from '#imports'
+import { useToast } from 'vue-toastification'
 import type { Tag } from '~/types/tags'
 import type { MultiSelectOption } from '~/types/multiSelect'
 
+defineProps<{
+    createdProjectId: number
+}>()
+
 const tagStore = useTagStore()
+const toast = useToast()
+
 const emit = defineEmits(['goToStep'])
 
 const tagOptions = computed<MultiSelectOption[]>(() =>
     tagStore.tags.map((tag: Tag) => ({
         id: tag.id,
-        name: tag.tag_name
+        name: tag.tag_name,
+        is_primary: false
     }))
 )
 
@@ -94,5 +113,45 @@ function selectTag(selectedTag: MultiSelectOption) {
         projectTags.value.push(selectedTag)
     else 
         projectTags.value.splice(index, 1)
+}
+
+const isSubmitting = ref(false)
+
+function setTagPrimary(tagId: number) {
+    projectTags.value = projectTags.value.map(tag => 
+        tag.id === tagId
+            ? {
+                ...tag,
+                is_primary: !tag.is_primary 
+            }
+            : tag
+    )
+}
+
+function formatTagPayloads() {
+    // Will format tags to correct payloads
+}
+
+async function linkTagsToProject() {
+    isSubmitting.value = true
+
+    formatTagPayloads()
+
+    // const tagErrorCount = 0
+    
+
+    try {
+        
+        
+        toast.success('Project created successfully')
+        
+        const STEP_TWO = 2
+        emit('goToStep', STEP_TWO)
+    } catch (error) {
+        console.error(error)
+        toast.error('Unable to Link Tags to Project')
+    } finally {
+        isSubmitting.value = false
+    }
 }
 </script>

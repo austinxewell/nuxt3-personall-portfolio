@@ -82,7 +82,7 @@ export default defineNuxtConfig({
             ]
         }
     },
-    runtimeConfig: { public: { apiBase: process.env.API_BASE_URL || 'http://localhost:8080' } },
+    runtimeConfig: { public: { apiBase: process.env.API_BASE_URL || 'http://localhost:5000/api' } },
     compatibilityDate: '2024-11-01',
     devtools: { enabled: true },
     modules: ['@nuxt/eslint', '@nuxt/ui', '@pinia/nuxt'],

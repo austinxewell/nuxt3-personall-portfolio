@@ -1,5 +1,5 @@
 <template>
-    <section id="services" class="lg:px-32 px-6 py-4 sm:py-8">
+    <section id="services" class="px-6 py-4 sm:py-8">
         <h2 class="text-2xl sm:text-3xl lg:text-4xl md:ml-20 mb-6 font-semibold">
             Bringing Ideas to Life. <span class="text-yellow-600 font-bold">Pure</span>
             Intent. <span class="text-yellow-600 font-bold">Precise</span> Execution.
