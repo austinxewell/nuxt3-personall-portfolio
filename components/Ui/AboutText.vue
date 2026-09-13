@@ -30,14 +30,24 @@
         <span class="text-yellow-600 font-semibold">ESLint automation CLI</span> for Nuxt projects that cut
         project setup time by over 50%.
         <br /><br />
-        <a
-            :href="about.blog_url"
-            target="_blank"
-            class="flex justify-center font-bold text-center"
-        >
-            <p>Find out more about me by visiting my <span class="text-yellow-600 font-semibold">Dev Blog!</span></p>
-        </a>
     </p>
+    
+    <div
+        :href="about.blog_url"
+        target="_blank"
+        class="flex justify-center font-bold text-center"
+    >
+        <p>
+            Find out more <span class="hidden sm:inline">about me</span> by visiting my
+            <a
+                :href="about.blog_url"
+                target="_blank"
+                class="text-yellow-600 font-semibold"
+            >
+                Dev Blog!
+            </a>
+        </p>
+    </div>
 </template>
 
 <script setup lang='ts'>

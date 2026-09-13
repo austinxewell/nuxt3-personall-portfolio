@@ -7,6 +7,7 @@
         <LayoutHero />
         <LayoutAbout />
         <LayoutPortfolio />
+        <LayoutRecommendations />
         <LayoutServices />
         <LayoutContact />
     </div>
