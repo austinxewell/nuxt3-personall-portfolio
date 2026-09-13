@@ -8,24 +8,18 @@
                 <div
                     v-for="(face, faceIndex) in faceContent"
                     :key="faceIndex"
-                    class="absolute inset-0 rounded-2xl p-8 bg-white border border-gray-900 dark:bg-gradient-to-br dark:from-gray-800 dark:to-gray-600 text-gray-900 dark:text-white shadow-md dark:shadow-lg dark:shadow-gray-900 ring-0 dark:ring-2 ring-yellow-500/10 group-hover:dark:ring-yellow-400/40 transition-all duration-500 [backface-visibility:hidden] flex items-center gap-6"
+                    class="absolute inset-0 rounded-2xl p-8 bg-white border border-gray-900 dark:bg-gradient-to-br dark:from-gray-800 dark:to-gray-600 text-gray-900 dark:text-white shadow-md dark:shadow-lg dark:shadow-gray-900 ring-0 dark:ring-2 dark:ring-yellow-400/40 [backface-visibility:hidden] flex items-center gap-6"
                     :style="{ transform: `rotateY(${faceIndex * 180}deg)` }"
                 >
                     <div
-                        class="shrink-0 flex items-center justify-center w-16 h-16 rounded-full bg-yellow-500 sm:bg-gray-100 text-gray-900 dark:bg-yellow-500 dark:sm:bg-white dark:group-hover:bg-yellow-500 font-medium text-lg overflow-hidden transition-all duration-500 group-hover:rotate-[20deg] group-hover:scale-125"
+                        class="shrink-0 flex items-center justify-center w-16 h-16 rounded-full bg-yellow-500 sm:bg-gray-100 text-gray-900 dark:bg-yellow-500 dark:sm:bg-white"
                     >
-                        <img
-                            v-if="face.avatar"
-                            :src="face.avatar"
-                            :alt="face.name"
-                            class="size-full object-cover"
-                        />
-                        <span v-else>{{ initials(face.name) }}</span>
+                        <UIcon name="i-lucide-quote" class="size-6" />
                     </div>
 
                     <div class="min-w-0">
                         <p
-                            :ref="(el) => setQuoteRef(el, faceIndex)"
+                            :ref="(element) => setQuoteRef(element, faceIndex)"
                             class="opacity-80 leading-relaxed line-clamp-3"
                         >
                             {{ face.quote }}
@@ -45,15 +39,9 @@
                             <template #body>
                                 <div class="flex items-start gap-6">
                                     <div
-                                        class="shrink-0 flex items-center justify-center w-16 h-16 rounded-full bg-yellow-500 sm:bg-gray-100 text-gray-900 dark:bg-yellow-500 dark:sm:bg-white font-medium text-lg overflow-hidden"
+                                        class="shrink-0 flex items-center justify-center w-16 h-16 rounded-full bg-yellow-500 sm:bg-gray-100 text-gray-900 dark:bg-yellow-500 dark:sm:bg-white"
                                     >
-                                        <img
-                                            v-if="activeRecommendation.avatar"
-                                            :src="activeRecommendation.avatar"
-                                            :alt="activeRecommendation.name"
-                                            class="size-full object-cover"
-                                        />
-                                        <span v-else>{{ initials(activeRecommendation.name) }}</span>
+                                        <UIcon name="i-lucide-quote" class="size-6" />
                                     </div>
 
                                     <div class="min-w-0">
@@ -67,6 +55,16 @@
                                                 class="font-normal opacity-70"
                                             >, {{ activeRecommendation.company }}</span>
                                         </p>
+                                        <a
+                                            v-if="linkedinRecommendationsUrl"
+                                            :href="linkedinRecommendationsUrl"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            class="inline-flex items-center gap-1 mt-2 text-xs text-yellow-600 dark:text-yellow-400 hover:underline"
+                                        >
+                                            <UIcon name="i-simple-icons-linkedin" class="size-3" />
+                                            Verify on LinkedIn
+                                        </a>
                                     </div>
                                 </div>
                             </template>
@@ -78,6 +76,17 @@
                                 — {{ face.title }}<template v-if="face.company">, {{ face.company }}</template>
                             </span>
                         </p>
+
+                        <a
+                            v-if="linkedinRecommendationsUrl"
+                            :href="linkedinRecommendationsUrl"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="inline-flex items-center gap-1 mt-1 text-xs text-yellow-600 dark:text-yellow-400 hover:underline"
+                        >
+                            <UIcon name="i-simple-icons-linkedin" class="size-3" />
+                            View on LinkedIn
+                        </a>
                     </div>
                 </div>
             </div>
@@ -102,7 +111,7 @@
                     v-for="(rec, i) in recommendations"
                     :key="rec.id"
                     class="size-1.5 rounded-full transition-colors"
-                    :class="i === currentIndex ? 'bg-yellow-500' : 'bg-gray-100 dark:bg-gray-600'"
+                    :class="i === currentIndex ? 'bg-yellow-500' : 'bg-gray-300 dark:bg-gray-600'"
                 />
             </div>
 
@@ -120,17 +129,12 @@
 </template>
 
 <script setup lang="ts">
-interface Recommendation {
-  id: string | number
-  quote: string
-  name: string
-  title: string
-  company?: string
-  avatar?: string
-}
+import type { ComponentPublicInstance } from 'vue'
+import type { Recommendation } from '~/types/recommendation'
 
 const props = defineProps<{
   recommendations: Recommendation[]
+  linkedinRecommendationsUrl?: string
 }>()
 
 const currentIndex = ref(0)
@@ -144,15 +148,14 @@ const activeRecommendation = computed(
 const quoteRefs = ref<(HTMLElement | null)[]>([null, null])
 const isOverflowing = ref<[boolean, boolean]>([false, false])
 
-function setQuoteRef(el: Element | null, index: number) {
-    quoteRefs.value[index] = el as HTMLElement | null
+function setQuoteRef(element: Element | ComponentPublicInstance | null, index: number) {
+    quoteRefs.value[index] = element instanceof HTMLElement ? element : null
 }
 
 function checkOverflow(index: number) {
-    const el = quoteRefs.value[index]
-    if (!el) return
-    // +1 guards against sub-pixel rounding falsely flagging overflow
-    isOverflowing.value[index] = el.scrollHeight > el.clientHeight + 1
+    const element = quoteRefs.value[index]
+    if (!element) return
+    isOverflowing.value[index] = element.scrollHeight > element.clientHeight + 1
 }
 
 function handleResize() {
@@ -169,14 +172,14 @@ onUnmounted(() => {
     window.removeEventListener('resize', handleResize)
 })
 
-// two physical faces glued back-to-back; each holds its own content
-// so the "back" of the card isn't empty mid-flip
 const faceContent = ref<[Recommendation, Recommendation]>([
     props.recommendations[0],
     props.recommendations[0]
 ])
 
-const rotation = computed(() => flipCount.value * 180)
+const FLIP_DEGREES = 180
+
+const rotation = computed(() => flipCount.value * FLIP_DEGREES)
 
 const nextIndex = computed(
     () => (currentIndex.value + 1) % props.recommendations.length
@@ -187,13 +190,17 @@ const prevIndex = computed(
     props.recommendations.length
 )
 
+const TWO = 2
+
 // normalize JS's negative-friendly modulo (-1 % 2 === -1, not 1)
-function parity(n: number) {
-    return ((n % 2) + 2) % 2
+function parity(number: number) {
+    return ((number % TWO) + TWO) % TWO
 }
 
+const CSS_TRANSITION_TIME = 700
+
 function flipTo(targetIndex: number, direction: 1 | -1) {
-    if (transitioning.value || props.recommendations.length < 2) return
+    if (transitioning.value || props.recommendations.length < TWO) return
     transitioning.value = true
 
     // the face NOT currently forward is the one about to rotate into view —
@@ -208,7 +215,7 @@ function flipTo(targetIndex: number, direction: 1 | -1) {
     // matches the 700ms CSS transition
     setTimeout(() => {
         transitioning.value = false
-    }, 700)
+    }, CSS_TRANSITION_TIME)
 }
 
 function goNext() {
@@ -217,14 +224,5 @@ function goNext() {
 
 function goPrev() {
     flipTo(prevIndex.value, -1)
-}
-
-function initials(name: string) {
-    return name
-        .split(' ')
-        .map((part) => part[0])
-        .join('')
-        .slice(0, 2)
-        .toUpperCase()
 }
 </script>
