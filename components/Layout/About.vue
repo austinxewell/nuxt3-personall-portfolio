@@ -7,9 +7,9 @@
         <div class="flex flex-col md:flex-row items-center justify-center gap-8 lg:gap-14">
             <img
                 class="h-[30svh] sm:h-[35svh] w-auto max-w-full rounded-2xl object-cover shrink-0
-               md:h-auto md:max-h-[45svh] md:w-2/5
-               lg:max-h-[50svh] lg:w-1/3
-               xl:max-h-[55svh] xl:w-2/5"
+                md:h-auto md:max-h-[45svh] md:w-2/5
+                lg:max-h-[50svh] lg:w-1/3
+                xl:max-h-[55svh] xl:w-2/5"
                 :src="cartoonAviSrc"
                 alt="Cartoon Avatar"
             />

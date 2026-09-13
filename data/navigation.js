@@ -15,6 +15,11 @@ export const navItems = [
       href: '#portfolio'
     },
     {
+      label: 'Recommendations',
+      icon: 'i-lucide-message-square-quote',
+      href: '#recommendations'
+    },
+    {
       label: 'Services',
       icon: 'i-lucide-cog',
       href: '#services'

@@ -23,7 +23,7 @@
                     </div>
                 </a>
 
-                <nav class="hidden absolute left-1/2 transform -translate-x-1/2 sm:flex gap-6 text-sm md:text-base font-medium">
+                <nav class="hidden absolute left-1/2 transform -translate-x-1/2 sm:flex gap-6 md:text-sm lg:text-base font-medium">
                     <a
                         v-for="item in items"
                         :key="item.href"
@@ -37,7 +37,7 @@
                         @click.prevent="scrollToSection(item.href)"
                     >
                         <UIcon :name="item.icon" class="mr-2" />
-                        {{ item.label }}
+                        <span class="hidden md:flex">{{ item.label }}</span>
                     </a>
                 </nav>
 
