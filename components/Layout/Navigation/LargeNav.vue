@@ -82,7 +82,7 @@ const smallLogo = '/images/small-logo.png'
 const textLogo = '/images/text-logo.png'
 
 const authStore = useAuthStore()
-const isAdmin = authStore.isValidated
+const isAdmin = computed(() => authStore.isValidated)
 
 interface NavItem {
 label: string
@@ -154,7 +154,13 @@ function hideNav() {
     isNavVisible.value = false
 }
 
-onMounted(() => {
+onMounted(async() => {
+    const token = localStorage.getItem('accessToken')
+    if (token && !authStore.isValidated) {
+        const valid = await authStore.validateToken()
+        authStore.isValidated = valid
+    }
+
     lastScrollY.value = window.scrollY
     observeSections()
     window.addEventListener('scroll', handleScroll)

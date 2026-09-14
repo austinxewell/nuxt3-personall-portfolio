@@ -2,6 +2,8 @@
     <div class="flex flex-col gap-4 sm:px-6">
         <h3 class="font-bold">Project Images:</h3>
 
+        <p class="text-sm font-medium">Selected thumbnail image will be highlighted gold</p>
+
         <UiProjectImageTable
             :project-images="projectImages"
         />
@@ -46,13 +48,14 @@
                 <BaseSpinner v-if="isSubmitting" />
             </BaseButton>
         </form>
-
+        
+        <!-- @click="emit('completeForm', 'projectCreation')" -->
         <BaseButton 
             type="button"
             color="inverse-alt"
             class="-mt-4 flex items-center gap-2"
-            :disabled="isSubmitting"
-            @click="emit('completeForm', 'projectCreation')"
+            :disabled="isSubmitting || !validatedPayload"
+            @click="completeProject"
         >
             Complete Project
         </BaseButton>
@@ -61,10 +64,16 @@
 
 <script setup lang='ts'>
 import { useToast } from 'vue-toastification'
-import type { ImagePayload } from '~/types/image'
+import type { ImagePayload, LinkImageToProject } from '~/types/image'
 
 const toast = useToast()
 const emit = defineEmits(['completeForm'])
+
+const props = defineProps<{
+    createdProjectId: number | null
+}>()
+
+const imageStore = useImageStore()
 
 const newImage = reactive<ImagePayload>({
     img_name: '',
@@ -78,90 +87,93 @@ const errors = reactive<Record<string, string>>({
 
 const isSubmitting = ref(false)
 
-const projectImages = ref([
-    {
-        id: 7,
-        img_name: 'Landing Page',
-        img_url: 'https://i.postimg.cc/Gp5JydPy/pulse-landing.png',
-        created_at: '2025-11-05T15:24:14.000Z' 
-    },
-    {
-        id: 8,
-        img_name: 'Landing Page - Light Mode',
-        img_url: 'https://i.postimg.cc/g2qSJdMv/pulse-landing-light-mode.png',
-        created_at: '2025-11-05T15:24:14.000Z' 
-    },
-    {
-        id: 9,
-        img_name: 'Login',
-        img_url: 'https://i.postimg.cc/bvTph7cJ/pulse-login.png',
-        created_at: '2025-11-05T15:24:14.000Z' 
-    },
-    {
-        id: 10,
-        img_name: 'Login - Light Mode',
-        img_url: 'https://i.postimg.cc/ThvKBjGX/pulse-login-light-mode.png',
-        created_at: '2025-11-05T15:24:14.000Z' 
-    },
-    {
-        id: 11,
-        img_name: 'Projects',
-        img_url: 'https://i.postimg.cc/vTRr0hN8/pulse-projects.png',
-        created_at: '2025-11-05T15:24:14.000Z' 
-    },
-    {
-        id: 12,
-        img_name: 'Project',
-        img_url: 'https://i.postimg.cc/GhDgWvGg/Project.png',
-        created_at: '2025-11-05T15:24:14.000Z' 
-    },
-    {
-        id: 13,
-        img_name: 'Tasks',
-        img_url: 'https://i.postimg.cc/TPdk5SSB/Tasks.png',
-        created_at: '2025-11-05T15:24:14.000Z' 
-    },
-    {
-        id: 14,
-        img_name: 'Task',
-        img_url: 'https://i.postimg.cc/ry3YZf0t/Task.png',
-        created_at: '2025-11-05T15:24:14.000Z' 
-    },
-    {
-        id: 15,
-        img_name: 'Create New Task Form',
-        img_url: 'https://i.postimg.cc/gjHXhM1B/pulse-task-creating.png',
-        created_at: '2025-11-05T15:24:14.000Z' 
-    },
-    {
-        id: 16,
-        img_name: 'Create New Task Form - Error State',
-        img_url: 'https://i.postimg.cc/zvrHVm2g/pulse-task-creating-error.png',
-        created_at: '2025-11-05T15:24:14.000Z' 
-    },
-    {
-        id: 17,
-        img_name: 'Create New Project Form',
-        img_url: 'https://i.postimg.cc/9MTqmXb2/pulse-project-creation.png',
-        created_at: '2025-11-05T15:24:14.000Z' 
-    },
-    {
-        id: 18,
-        img_name: 'Toasts',
-        img_url: 'https://i.postimg.cc/pVp6BwTH/Toast.png',
-        created_at: '2025-11-05T15:24:14.000Z' 
+const projectImages = computed(() => imageStore.projectImages)
+
+function validateImage() {
+    errors.img_name = ''
+    errors.img_url = ''
+
+    let validated = true
+
+    if (newImage.img_name === '') {
+        validated = false
+        errors.img_name = 'Image Name is Required'
+    } 
+
+    if (newImage.img_url === '') {
+        validated = false
+        errors.img_url = 'Image URL is Required'
     }
-])
+
+    return validated
+}
 
 async function submitImages() {
-    console.log('Submit Images')
+    if (!validateImage()) return
+
     isSubmitting.value = true
-    
-    // Simulate network delay
-    const DELAY = 15000 // 1.5 seconds
-    await new Promise((resolve) => setTimeout(resolve, DELAY))
-    
-    toast.success('Images linked successfully')
-    isSubmitting.value = false
+
+    try {
+        await imageStore.postImage(newImage)
+        newImage.img_name = ''
+        newImage.img_url = ''
+        toast.success('Image Uploaded')
+    } catch (err) {
+        console.error(err)
+        toast.error('Unable to upload image')
+    } finally {
+        isSubmitting.value = false
+    }
+}
+
+const validatedPayload = computed(() => {
+    let validated = true
+
+    if (imageStore.projectImages.length === 0) validated = false
+    if (imageStore.selectedImage === null) validated = false
+
+    return validated
+})
+
+function formatImagePayloads(): LinkImageToProject[] {
+    const projectId = props.createdProjectId
+
+    if (projectId === null || projectId === undefined) {
+        toast.error('Internal Error: Could not find project to link images to.')
+        throw new Error('Cannot link images: createdProjectId is null')
+    }
+
+    return imageStore.projectImages.map((image) => ({
+        project_id: projectId,
+        image_id: image.id,
+        is_thumbnail: image.img_url === imageStore.selectedImage?.img_url
+    }))
+}
+
+async function completeProject() {
+    if (!validatedPayload.value) return
+
+    isSubmitting.value = true
+
+    try {
+        const payloads = formatImagePayloads()
+        const results = await Promise.allSettled(
+            payloads.map((payload) => imageStore.linkImageToProject(payload))
+        )
+
+        const failedCount = results.filter((result) => result.status === 'rejected').length
+
+        if (failedCount > 0) 
+            toast.error(`${failedCount} tag${failedCount > 1 ? 's' : ''} could not be linked.`)
+        else 
+            toast.success('Tags Successfully Linked to Project')
+
+        emit('completeForm', 'projectCreation')
+    } catch (error) {
+        console.error(error)
+        toast.error('Unable to Link Images to Project')
+    } finally {
+        isSubmitting.value = false
+    }
 }
 </script>

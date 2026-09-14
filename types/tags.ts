@@ -1,3 +1,7 @@
+export interface TagPayload {
+    tag_name: string
+}
+
 export interface Tag {
     id: number
     tag_name: string

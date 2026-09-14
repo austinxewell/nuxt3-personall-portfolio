@@ -5,11 +5,12 @@
                 <tr>
                     <th>Image Name</th>
                     <th>Image URL</th>
+                    <th class="actions-col" />
                 </tr>
             </thead>
             <tbody>
                 <tr v-if="projectImages.length === 0">
-                    <td colspan="2" class="text-center py-4 text-gray-500 dark:text-gray-400">
+                    <td colspan="3" class="text-center py-4 text-gray-500 dark:text-gray-400">
                         Project has no images.
                     </td>
                 </tr>
@@ -17,7 +18,9 @@
                 <tr
                     v-for="image in projectImages"
                     :key="image.id"
-                    class="hover:bg-gray-50 dark:hover:bg-gray-900 transition-colors"
+                    class="cursor-pointer transition-colors hover:bg-gray-50 dark:hover:bg-gray-900"
+                    :class="{ 'bg-yellow-50 dark:bg-yellow-500/10': imageStore.selectedImage?.img_url === image.img_url }"
+                    @click="selectImage(image)"
                 >
                     <td class="truncate">{{ image.img_name }}</td>
                     <td class="truncate">
@@ -25,12 +28,29 @@
                             :href="image.img_url"
                             target="_blank"
                             class="text-blue-600 dark:text-yellow-500 underline hover-preview-link"
+                            @click.stop
                             @mouseenter="startPreview(image.img_url, $event)"
                             @mousemove="movePreview($event)"
                             @mouseleave="stopPreview"
                         >
                             {{ image.img_url }}
                         </a>
+                    </td>
+                    <td class="actions-col">
+                        <button
+                            type="button"
+                            aria-label="Delete image"
+                            class="text-gray-400 hover:text-red-600 dark:hover:text-red-500 disabled:opacity-40 disabled:pointer-events-none"
+                            :disabled="deletingId === image.id"
+                            @click.stop="handleDelete(image)"
+                        >
+                            <UIcon
+                                v-if="deletingId === image.id"
+                                name="lucide:loader-2"
+                                class="animate-spin"
+                            />
+                            <UIcon v-else name="lucide:trash-2" />
+                        </button>
                     </td>
                 </tr>
             </tbody>
@@ -47,6 +67,7 @@
 </template>
 
 <script setup lang="ts">
+import { useToast } from 'vue-toastification'
 import type { Image } from '~/types/image'
 
 interface Props {
@@ -54,6 +75,29 @@ interface Props {
 }
 
 defineProps<Props>()
+
+const toast = useToast()
+const imageStore = useImageStore()
+
+function selectImage(image: Image) {
+    imageStore.selectedImage = image
+}
+
+const deletingId = ref<number | null>(null)
+
+async function handleDelete(image: Image) {
+    deletingId.value = image.id
+
+    try {
+        await imageStore.deleteImage(image.id)
+        toast.success('Image deleted')
+    } catch (err) {
+        console.error(err)
+        toast.error('Unable to delete image')
+    } finally {
+        deletingId.value = null
+    }
+}
 
 const previewSrc = ref<string | null>(null)
 const previewVisible = ref(false)
@@ -149,12 +193,21 @@ onBeforeUnmount(() => {
 
 .styled-table th:nth-child(1),
 .styled-table td:nth-child(1) {
-    width: 33.3333%;
+    width: 30%;
 }
 
 .styled-table th:nth-child(2),
 .styled-table td:nth-child(2) {
-    width: 66.6666%;
+    width: 62%;
+}
+
+td.actions-col,
+th.actions-col {
+    width: 8%;
+    white-space: nowrap;
+    text-align: center;
+    overflow: visible;
+    text-overflow: clip;
 }
 
 .preview-image {
