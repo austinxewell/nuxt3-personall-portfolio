@@ -34,7 +34,7 @@ const tagStore = useTagStore()
 const emit = defineEmits(['completeForm'])
 
 const steps = ['Project Creation', 'Link Tags', 'Link Images']
-const step = ref(1)
+const step = ref(0)
 const createdProjectId = ref<number | null>(null)
 
 onMounted(async() => {

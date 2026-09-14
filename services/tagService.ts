@@ -1,3 +1,5 @@
+import type { TagPayload, TagToProject } from '~/types/tags'
+
 export function useTagsService() {
     const { $axios } = useNuxtApp()
 
@@ -5,12 +7,17 @@ export function useTagsService() {
         return $axios.get('/tags')
     }
 
-    async function postTagToProject() {
-        return $axios.post('/tags/link')
+    async function postTagToProject(payload: TagToProject) {
+        return $axios.post('/tags/link', payload)
+    }
+
+    async function postNewTag(payload: TagPayload ) {
+        return $axios.post('/tags', payload)
     }
 
     return { 
         getTags,
-        postTagToProject
+        postTagToProject,
+        postNewTag
     }
 }
