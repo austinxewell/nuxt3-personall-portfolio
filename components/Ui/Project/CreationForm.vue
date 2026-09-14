@@ -22,6 +22,7 @@
 
         <UiProjectLinkImages 
             v-if="step === 2"
+            :created-project-id="createdProjectId"
             @complete-form="completeForm"
         />
     </div>
@@ -31,6 +32,7 @@
 import { useTagStore } from '#imports'
 
 const tagStore = useTagStore()
+const imageStore = useImageStore()
 const emit = defineEmits(['completeForm'])
 
 const steps = ['Project Creation', 'Link Tags', 'Link Images']
@@ -41,6 +43,7 @@ onMounted(async() => {
     await Promise.all([
         tagStore.fetchTags()
     ])
+    imageStore.projectImages = []
 })
 
 function goToStep(index: number) {

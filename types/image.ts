@@ -1,5 +1,8 @@
 export type ImageStoreState = {
     selectedImage: SelectedImage | null
+    projectImages: Image[]
+    loading: boolean
+    error: string | null
 }
 
 export interface ImagePayload {
@@ -15,4 +18,10 @@ export interface Image extends ImagePayload {
 export type SelectedImage = {
     img_url: string
     img_name: string
+}
+
+export interface LinkImageToProject {
+    project_id: number
+    image_id: number
+    is_thumbnail: boolean
 }
