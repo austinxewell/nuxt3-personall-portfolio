@@ -1,3 +1,5 @@
+import type { UpdateAboutPayload } from '~/types/about'
+
 export function useAboutService() {
     const { $axios } = useNuxtApp()
 
@@ -5,5 +7,12 @@ export function useAboutService() {
         return $axios.get('/about')
     }
 
-    return { getAbout }
+    async function updateAbout(payload: UpdateAboutPayload) {
+        return $axios.put('/about', payload)
+    }
+
+    return {
+        getAbout,
+        updateAbout 
+    }
 }

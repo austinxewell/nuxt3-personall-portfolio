@@ -17,7 +17,7 @@
         </BaseModal>
 
         <BaseModal ref="updateAbout">
-            <h1>Update About</h1>
+            <UiUpdateAbout @complete-form="closeModal" />
         </BaseModal>
 
         <BaseModal ref="imageDb">

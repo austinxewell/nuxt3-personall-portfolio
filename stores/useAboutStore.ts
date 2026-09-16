@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { useAboutService } from '@/services/aboutService'
 import { handleApiError } from '@/utils/errorHandler'
-import type { About } from '~/types/about'
+import type { About, UpdateAboutPayload } from '~/types/about'
 
 export const useAboutStore = defineStore('about', {
     state: () => ({
@@ -21,6 +21,22 @@ export const useAboutStore = defineStore('about', {
                 this.about = res.data
             } catch (err) {
                 this.error = handleApiError(err)
+            } finally {
+                this.loading = false
+            }
+        },
+
+        async updateAbout(payload: UpdateAboutPayload) {
+            this.loading = true
+            this.error = null
+            const { updateAbout } = useAboutService()
+
+            try {
+                const res = await updateAbout(payload)
+                this.about = res.data
+            } catch (err) {
+                this.error = handleApiError(err)
+                throw err
             } finally {
                 this.loading = false
             }
