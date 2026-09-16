@@ -37,6 +37,34 @@
 
         <!-- Right -->
         <div class="ml-auto flex gap-4 items-center z-10">
+            <UModal v-model:open="isLogoutModalOpen" title="Log Out?">
+                <BaseButton color="primary">
+                    Logout
+                </BaseButton>
+
+                <template #body>
+                    <p class="text-sm mb-6">
+                        Are you sure you want to log out of the Admin Portal?
+                    </p>
+
+                    <div class="flex justify-end gap-2">
+                        <BaseButton
+                            type="button"
+                            color="inverse-alt"
+                            @click="isLogoutModalOpen = false"
+                        >
+                            Cancel
+                        </BaseButton>
+                        <BaseButton
+                            type="button"
+                            color="primary"
+                            @click="logoutUser"
+                        >
+                            Logout
+                        </BaseButton>
+                    </div>
+                </template>
+            </UModal>
             <BaseDarkModeButton />
         </div>
     </header>
@@ -45,4 +73,11 @@
 <script setup lang="ts">
 const smallLogo = '/images/small-logo.png'
 const textLogo = '/images/text-logo.png'
+
+const authStore = useAuthStore()
+const isLogoutModalOpen = ref(false)
+
+function logoutUser() {
+    authStore.logout()
+}
 </script>

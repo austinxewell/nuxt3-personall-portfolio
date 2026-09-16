@@ -84,13 +84,18 @@
 
 <script setup lang='ts'>
 import { useToast } from 'vue-toastification'
-import type { Tag, TagWithPrimary, TagToProject } from '~/types/tags'
+import type { Tag, TagWithPrimary, TagToProject, DeleteTagToProjectPayload } from '~/types/tags'
 import type { MultiSelectOption } from '~/types/multiSelect'
 
-const props = defineProps<{
-    createdProjectId: number | null
-}>()
+const props = withDefaults(defineProps<{
+    createdProjectId?: number | null
+    isUpdate?: boolean 
+}>(), {
+    createdProjectId: null,
+    isUpdate: false
+})
 
+const projectsStore = useProjectsStore()
 const tagStore = useTagStore()
 const toast = useToast()
 
@@ -104,6 +109,7 @@ const tagOptions = computed<MultiSelectOption[]>(() =>
 )
 
 const projectTags = ref<TagWithPrimary[]>([])
+const originalTagIds = ref<Set<number>>(new Set())
 
 const selectedOptions = computed<MultiSelectOption[]>(() =>
     projectTags.value.map((tag) => ({
@@ -114,6 +120,11 @@ const selectedOptions = computed<MultiSelectOption[]>(() =>
 
 const selectedPrimaryTags = computed<TagWithPrimary[]>(() => {
     return projectTags.value.filter((tag) => tag.is_primary)
+})
+
+const removedTagIds = computed<number[]>(() => {
+    const currentIds = new Set(projectTags.value.map((tag) => tag.id))
+    return [...originalTagIds.value].filter((id) => !currentIds.has(id))
 })
 
 const showAddTag = ref(false)
@@ -147,16 +158,20 @@ function setTagPrimary(tagId: number) {
     )
 }
 
-function formatTagPayloads(): TagToProject[] {
-    const projectId = props.createdProjectId
+const projectId = computed(() =>
+    props.isUpdate ? projectsStore.project?.id ?? null : props.createdProjectId
+)
 
-    if (projectId === null) {
+function formatTagPayloads(): TagToProject[] {
+    const id = projectId.value
+
+    if (id === null) {
         toast.error('Internal Error: Could not find project to link tags to.')
-        throw new Error('Cannot link tags: createdProjectId is null')
+        throw new Error('Cannot link tags: project id is null')
     }
 
     return projectTags.value.map((tag) => ({
-        project_id: projectId,
+        project_id: id,
         tag_id: tag.id,
         is_primary: tag.is_primary
     }))
@@ -169,38 +184,52 @@ const validatedPayload = computed(() => {
     if (projectTags.value.length === 0) validated = false
     if (selectedPrimaryTags.value.length === 0) validated = false
     if (selectedPrimaryTags.value.length > MAX_PRIMARY_TAGS) validated = false
-    if (props.createdProjectId === null) validated = false
+    if (projectId.value === null) validated = false
 
     return validated
 })
 
-async function linkTagsToProject() {
-    if (!validatedPayload.value) return
-
+async function submitProjectTags() {
     isSubmitting.value = true
 
     try {
-        const payloads = formatTagPayloads()
-        const results = await Promise.allSettled(
-            payloads.map((payload) => tagStore.linkTagToProject(payload))
-        )
+        const linkPayloads = formatTagPayloads()
+        const id = projectId.value as number
+
+        const linkPromises = linkPayloads.map((payload) => tagStore.linkTagToProject(payload))
+        const removePromises = removedTagIds.value.map((tagId) => {
+            const removePayload: DeleteTagToProjectPayload = {
+                project_id: id,
+                tag_id: tagId 
+            }
+            return tagStore.removeTagFromProject(removePayload)
+        })
+
+        const results = await Promise.allSettled([...linkPromises, ...removePromises])
 
         const failedCount = results.filter((result) => result.status === 'rejected').length
 
         if (failedCount > 0) 
-            toast.error(`${failedCount} tag${failedCount > 1 ? 's' : ''} could not be linked.`)
+            toast.error(`${failedCount} tag change${failedCount > 1 ? 's' : ''} could not be saved.`)
         else 
             toast.success('Tags Successfully Linked to Project')
-        
 
-        const STEP_TWO = 2
-        emit('goToStep', STEP_TWO)
+        const IS_UPDATE_NEXT_STEP = 3
+        const NEXT_STEP = 2
+
+        const STEP_INDEX = props.isUpdate ? IS_UPDATE_NEXT_STEP : NEXT_STEP
+        emit('goToStep', STEP_INDEX)
     } catch (error) {
         console.error(error)
         toast.error('Unable to Link Tags to Project')
     } finally {
         isSubmitting.value = false
     }
+}
+
+async function linkTagsToProject() {
+    if (!validatedPayload.value) return
+    await submitProjectTags()
 }
 
 async function createTag() {
@@ -215,4 +244,31 @@ async function createTag() {
         toast.error('Unable to create new tag')
     }
 }
+
+function autofillTags() {
+    if (projectsStore.project?.id && props.isUpdate) {
+        const matchedTags = projectsStore.project.tech_tags
+            .map((techTag) => {
+                const matchedTag = tagStore.tags.find(
+                    (tag) => tag.tag_name === techTag.tag_name
+                )
+
+                if (!matchedTag) return null
+
+                return {
+                    id: matchedTag.id,
+                    tag_name: techTag.tag_name,
+                    is_primary: techTag.is_primary
+                }
+            })
+            .filter((tag): tag is TagWithPrimary => tag !== null)
+
+        projectTags.value = matchedTags
+        originalTagIds.value = new Set(matchedTags.map((tag) => tag.id))
+    }
+}
+
+onMounted(() => {
+    autofillTags()
+})
 </script>

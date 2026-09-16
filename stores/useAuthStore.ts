@@ -41,11 +41,21 @@ export const useAuthStore = defineStore('auth', {
             }
         },
 
-        logout() {
+        async logout() {
             this.user = null
             this.token = ''
+            this.isValidated = false
+
+            localStorage.removeItem('accessToken')
+
+            // must match the path used when the cookie was set, or the browser
+            // won't recognize it as the same cookie to delete
+            document.cookie = 'token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC;'
+
             const { $axios } = useNuxtApp()
             delete $axios.defaults.headers.common.Authorization
+
+            await navigateTo('/login')
         },
 
         async validateToken(): Promise<boolean> {

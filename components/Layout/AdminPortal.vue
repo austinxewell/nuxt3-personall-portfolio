@@ -13,7 +13,7 @@
         </BaseModal>
 
         <BaseModal ref="updateProject">
-            <h1>Update Project</h1>
+            <UiProjectUpdateForm @complete-form="closeModal" />
         </BaseModal>
 
         <BaseModal ref="updateAbout">

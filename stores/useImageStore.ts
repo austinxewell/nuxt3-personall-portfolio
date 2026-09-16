@@ -67,6 +67,23 @@ export const useImageStore = defineStore('imageStore', {
             } finally {
                 this.loading = false
             }
+        },
+
+        async getImageByProjectId(id: number) {
+            this.loading = true
+            this.error = null
+            const { getImageByProjectId } = useImagesService()
+
+            try {
+                const res = await getImageByProjectId(id)
+                this.projectImages = res.data
+                return res.data
+            } catch (err) {
+                this.error = handleApiError(err)
+                throw err
+            } finally {
+                this.loading = false
+            }
         }
     }
 })

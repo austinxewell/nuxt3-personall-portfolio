@@ -74,6 +74,30 @@ export const useProjectsStore = defineStore('projects', {
             } finally {
                 this.loading = false
             }
+        },
+
+        async updateProject(id: number, payload: ProjectPayload) {
+            this.loading = true
+            this.error = null
+            const { updateProject } = useProjectsService()
+
+            try {
+                const res = await updateProject(id, payload)
+
+                this.project = this.project
+                    ? {
+                        ...this.project,
+                        ...res.data 
+                    }
+                    : res.data
+
+                return res.data
+            } catch (err) {
+                this.error = handleApiError(err)
+                throw err
+            } finally {
+                this.loading = false
+            }
         }
     }
 })

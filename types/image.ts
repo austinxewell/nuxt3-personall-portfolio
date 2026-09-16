@@ -13,6 +13,7 @@ export interface ImagePayload {
 export interface Image extends ImagePayload {
     id: number
     created_at: string
+    is_thumbnail?: boolean
 }
 
 export type SelectedImage = {

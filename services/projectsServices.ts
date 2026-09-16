@@ -19,10 +19,15 @@ export function useProjectsService() {
         return $axios.post('/projects', payload)
     }
 
+    function updateProject(id: number, payload: ProjectPayload) {
+        return $axios.put(`/projects/${id}`, payload)
+    }
+
     return {
         getProjects,
         getFavoriteProjects,
         getProjectBySlug,
-        postNewProject
+        postNewProject,
+        updateProject
     }
 }
