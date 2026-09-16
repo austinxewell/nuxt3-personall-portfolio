@@ -17,9 +17,9 @@
 
             <aside class="flex flex-col lg:w-2/3 text-center mt-2 lg:mt-36 xl:mt-48">
                 <div class="text-sm flex flex-col sm:flex-row justify-center font-semibold uppercase tracking-[0.2em] text-yellow-600 dark:text-yellow-500 mb-3">
-                    <p>Software Engineer</p>
+                    <p>{{ about.title }}</p>
                     <span class="hidden sm:flex px-1">&middot;</span>
-                    <p>Front End Specialist</p>
+                    <p>{{ about.specialty }}</p>
                 </div>
                 <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold font-serif text-center">
                     The <span class="text-yellow-600 font-extrabold">Gold</span> Standard in Creative Solutions.
