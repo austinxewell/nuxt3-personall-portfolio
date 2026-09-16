@@ -69,11 +69,16 @@ import type { ImagePayload, LinkImageToProject } from '~/types/image'
 const toast = useToast()
 const emit = defineEmits(['completeForm'])
 
-const props = defineProps<{
-    createdProjectId: number | null
-}>()
+const props = withDefaults(defineProps<{
+    createdProjectId?: number | null
+    isUpdate?: boolean
+}>(), {
+    createdProjectId: null,
+    isUpdate: false
+})
 
 const imageStore = useImageStore()
+const projectsStore = useProjectsStore()
 
 const newImage = reactive<ImagePayload>({
     img_name: '',
@@ -126,33 +131,37 @@ async function submitImages() {
     }
 }
 
+const projectId = computed(() =>
+    props.isUpdate ? projectsStore.project?.id ?? null : props.createdProjectId
+)
+
 const validatedPayload = computed(() => {
     let validated = true
 
     if (imageStore.projectImages.length === 0) validated = false
     if (imageStore.selectedImage === null) validated = false
+    if (projectId.value === null) validated = false
 
     return validated
 })
 
 function formatImagePayloads(): LinkImageToProject[] {
-    const projectId = props.createdProjectId
+    const id = projectId.value
 
-    if (projectId === null || projectId === undefined) {
+    if (id === null) {
         toast.error('Internal Error: Could not find project to link images to.')
-        throw new Error('Cannot link images: createdProjectId is null')
+        throw new Error('Cannot link images: project id is null')
     }
 
     return imageStore.projectImages.map((image) => ({
-        project_id: projectId,
+        project_id: id,
         image_id: image.id,
         is_thumbnail: image.img_url === imageStore.selectedImage?.img_url
     }))
 }
 
-async function completeProject() {
-    if (!validatedPayload.value) return
 
+async function submitProjectImages() {
     isSubmitting.value = true
 
     try {
@@ -164,11 +173,11 @@ async function completeProject() {
         const failedCount = results.filter((result) => result.status === 'rejected').length
 
         if (failedCount > 0) 
-            toast.error(`${failedCount} tag${failedCount > 1 ? 's' : ''} could not be linked.`)
+            toast.error(`${failedCount} image${failedCount > 1 ? 's' : ''} could not be linked.`)
         else 
-            toast.success('Tags Successfully Linked to Project')
+            toast.success('Images Successfully Linked to Project')
 
-        emit('completeForm', 'projectCreation')
+        emit('completeForm', props.isUpdate ? 'updateProject' : 'projectCreation')
     } catch (error) {
         console.error(error)
         toast.error('Unable to Link Images to Project')
@@ -176,4 +185,16 @@ async function completeProject() {
         isSubmitting.value = false
     }
 }
+
+async function completeProject() {
+    if (!validatedPayload.value) return
+    await submitProjectImages()
+}
+
+onMounted(() => {
+    if (props.isUpdate) {
+        const thumbnail = imageStore.projectImages.find((image) => image.is_thumbnail)
+        if (thumbnail) imageStore.selectedImage = thumbnail
+    }
+})
 </script>

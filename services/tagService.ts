@@ -1,4 +1,4 @@
-import type { TagPayload, TagToProject } from '~/types/tags'
+import type { DeleteTagToProjectPayload, TagPayload, TagToProject } from '~/types/tags'
 
 export function useTagsService() {
     const { $axios } = useNuxtApp()
@@ -15,9 +15,14 @@ export function useTagsService() {
         return $axios.post('/tags', payload)
     }
 
+    async function deleteTagToProjectLink(payload: DeleteTagToProjectPayload) {
+        return $axios.delete('/tags/link', { data: payload })
+    }
+
     return { 
         getTags,
         postTagToProject,
-        postNewTag
+        postNewTag,
+        deleteTagToProjectLink
     }
 }

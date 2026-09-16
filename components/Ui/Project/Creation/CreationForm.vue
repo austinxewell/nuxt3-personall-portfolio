@@ -33,6 +33,7 @@ import { useTagStore } from '#imports'
 
 const tagStore = useTagStore()
 const imageStore = useImageStore()
+const projectStore = useProjectsStore()
 const emit = defineEmits(['completeForm'])
 
 const steps = ['Project Creation', 'Link Tags', 'Link Images']
@@ -43,6 +44,7 @@ onMounted(async() => {
     await Promise.all([
         tagStore.fetchTags()
     ])
+    projectStore.project = null
     imageStore.projectImages = []
 })
 

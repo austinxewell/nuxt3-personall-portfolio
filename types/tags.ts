@@ -11,8 +11,11 @@ export interface TagWithPrimary extends Tag {
     is_primary: boolean
 }
 
-export interface TagToProject {
-    project_id : number,
-    tag_id: number,
+export interface DeleteTagToProjectPayload {
+    project_id: number,
+    tag_id: number
+}
+
+export interface TagToProject extends DeleteTagToProjectPayload {
     is_primary: boolean
 }

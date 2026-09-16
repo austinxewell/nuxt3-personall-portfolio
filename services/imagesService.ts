@@ -15,9 +15,14 @@ export function useImagesService() {
         return $axios.post('/images/link', payload)
     }
 
+    function getImageByProjectId(id: number) {
+        return $axios.get(`/images/project/${id}`)
+    }
+
     return {
         postNewImage,
         deleteImage,
-        postImageToProject
+        postImageToProject,
+        getImageByProjectId
     }
 }

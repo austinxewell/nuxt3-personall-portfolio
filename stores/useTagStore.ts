@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { useTagsService } from '@/services/tagService'
 import { handleApiError } from '@/utils/errorHandler'
-import type { Tag, TagPayload, TagToProject } from '~/types/tags'
+import type { DeleteTagToProjectPayload, Tag, TagPayload, TagToProject } from '~/types/tags'
 
 export const useTagStore = defineStore('tags', {
     state: () => ({
@@ -50,6 +50,22 @@ export const useTagStore = defineStore('tags', {
             try {
                 const res = await postNewTag(payload)
                 this.tags.push(res.data)
+                return res.data
+            } catch (err) {
+                this.error = handleApiError(err)
+                throw err
+            } finally {
+                this.loading = false
+            }
+        },
+
+        async removeTagFromProject(payload: DeleteTagToProjectPayload) {
+            this.loading = true
+            this.error = null
+            const { deleteTagToProjectLink } = useTagsService()
+
+            try {
+                const res = await deleteTagToProjectLink(payload)
                 return res.data
             } catch (err) {
                 this.error = handleApiError(err)

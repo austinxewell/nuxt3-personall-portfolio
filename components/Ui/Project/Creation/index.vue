@@ -71,7 +71,9 @@
             :disabled="isSubmitting"
             class="mt-4 flex items-center gap-2"
         >
-            {{ isSubmitting ? 'Creating Project' : 'Submit Project' }}
+            <span v-if="isUpdate">{{ isSubmitting ? 'Updating Project' : 'Update Project' }}</span>
+            <span v-else>{{ isSubmitting ? 'Creating Project' : 'Submit Project' }}</span>
+            
             <BaseSpinner v-if="isSubmitting" />
         </BaseButton>
     </form>
@@ -88,6 +90,10 @@ const toast = useToast()
 const emit = defineEmits<{(e: 'goToStep', step: ProjectStep): void
     (e: 'setProjectId', id: number): void
 }>()
+
+const props = withDefaults(defineProps<{
+    isUpdate?: boolean
+}>(), { isUpdate: false })
 
 const newProject = reactive<ProjectPayload>({
     project_name: '',
@@ -177,6 +183,12 @@ async function submitProject() {
         return
     }
 
+    if (props.isUpdate) 
+        updateForm()
+    else  postNewForm() 
+}
+
+async function postNewForm() {
     isSubmitting.value = true
     try {
         const res = await projectsStore.postNewProject(newProject)
@@ -193,4 +205,44 @@ async function submitProject() {
         isSubmitting.value = false
     }
 }
+
+async function updateForm() {
+
+    const projectId = projectsStore.project?.id
+    if(!projectId) return
+
+    isSubmitting.value = true
+    try {
+        await projectsStore.updateProject(projectId, newProject)
+        toast.success('Project Updated successfully')
+
+        const NEXT_STEP_INDEX = 2
+        emit('goToStep', NEXT_STEP_INDEX)
+    } catch (error) {
+        console.error(error)
+        toast.error('Unable to update project')
+    } finally {
+        isSubmitting.value = false
+    }
+}
+
+function autofillForm() {
+    if (projectsStore.project?.id && props.isUpdate) {
+        // set this first — otherwise the project_name watcher below
+        // will immediately overwrite the autofilled slug
+        slugManuallyEdited = true
+
+        newProject.project_name = projectsStore.project.project_name
+        newProject.slug = projectsStore.project.slug
+        newProject.overview = projectsStore.project.overview
+        newProject.description = projectsStore.project.description
+        newProject.live_url = projectsStore.project.live_url ?? ''
+        newProject.github_url = projectsStore.project.github_url ?? ''
+        newProject.is_favorite = projectsStore.project.is_favorite
+    }
+}
+
+onMounted(() => {
+    autofillForm()
+})
 </script>
