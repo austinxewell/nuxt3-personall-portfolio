@@ -49,7 +49,6 @@
             </BaseButton>
         </form>
         
-        <!-- @click="emit('completeForm', 'projectCreation')" -->
         <BaseButton 
             type="button"
             color="inverse-alt"

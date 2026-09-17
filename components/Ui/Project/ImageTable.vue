@@ -18,9 +18,12 @@
                 <tr
                     v-for="image in projectImages"
                     :key="image.id"
-                    class="cursor-pointer transition-colors hover:bg-gray-50 dark:hover:bg-gray-900"
-                    :class="{ 'bg-yellow-50 dark:bg-yellow-500/10': imageStore.selectedImage?.img_url === image.img_url }"
-                    @click="selectImage(image)"
+                    class="transition-colors hover:bg-gray-50 dark:hover:bg-gray-900"
+                    :class="{
+                        'cursor-pointer': selectable,
+                        'bg-yellow-50 dark:bg-yellow-500/10': selectable && imageStore.selectedImage?.img_url === image.img_url
+                    }"
+                    @click="selectable && selectImage(image)"
                 >
                     <td class="truncate">{{ image.img_name }}</td>
                     <td class="truncate">
@@ -72,9 +75,10 @@ import type { Image } from '~/types/image'
 
 interface Props {
     projectImages: Image[]
+    selectable?: boolean
 }
 
-defineProps<Props>()
+withDefaults(defineProps<Props>(), { selectable: true })
 
 const toast = useToast()
 const imageStore = useImageStore()

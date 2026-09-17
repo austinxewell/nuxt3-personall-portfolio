@@ -21,7 +21,7 @@
         </BaseModal>
 
         <BaseModal ref="imageDb">
-            <h1>Modify and View Images In Database</h1>
+            <UiModifyImageDatabase @complete-form="closeModal" />
         </BaseModal>
 
         <BaseModal ref="tagDb">
