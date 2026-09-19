@@ -19,10 +19,20 @@ export function useTagsService() {
         return $axios.delete('/tags/link', { data: payload })
     }
 
+    async function deleteTag(id: number) {
+        return $axios.delete(`/tags/${id}`)
+    }
+
+    async function updateTag(id: number, payload: TagPayload) {
+        return $axios.put(`/tags/${id}`, payload)
+    }
+
     return { 
         getTags,
         postTagToProject,
         postNewTag,
-        deleteTagToProjectLink
+        deleteTagToProjectLink,
+        deleteTag,
+        updateTag
     }
 }

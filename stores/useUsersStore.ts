@@ -1,25 +1,24 @@
 import { defineStore } from 'pinia'
-import { useSkillsService } from '@/services/skillsService'
 import { handleApiError } from '@/utils/errorHandler'
-import type { Skill, SkillPayload, UpdateSkillPayload } from '~/types/skills'
+import { useUsersService } from '@/services/usersService'
+import type { MinimalUser, UpdateUserPayload } from '~/types/user'
 
-export const useSkillsStore = defineStore('skills', {
+export const useUsersStore = defineStore('users', {
     state: () => ({
-        skills: [] as Skill[],
         loading: false,
-        error: null as string | null
+        error: null as string | null,
+        users: [] as MinimalUser[]
     }),
 
     actions: {
-        async fetchSkills() {
+        async fetchUsers() {
             this.loading = true
             this.error = null
-            const { getSkills } = useSkillsService()
+            const { getUsers } = useUsersService()
 
             try {
-                const res = await getSkills()
-                this.skills = res.data
-                return res.data
+                const res = await getUsers()
+                this.users = res.data
             } catch (err) {
                 this.error = handleApiError(err)
                 throw err
@@ -28,33 +27,14 @@ export const useSkillsStore = defineStore('skills', {
             }
         },
 
-        async createSkill(payload: SkillPayload) {
+        async registerNewUser(payload: UpdateUserPayload) {
             this.loading = true
             this.error = null
-            const { postSkill } = useSkillsService()
+            const { registerUser } = useUsersService()
 
             try {
-                const res = await postSkill(payload)
-                this.skills.push(res.data)
-                return res.data
-            } catch (err) {
-                this.error = handleApiError(err)
-                throw err
-            } finally {
-                this.loading = false
-            }
-        },
-
-        async updateSkill(id: number, payload: UpdateSkillPayload) {
-            this.loading = true
-            this.error = null
-            const { updateSkill } = useSkillsService()
-
-            try {
-                const res = await updateSkill(id, payload)
-
-                const index = this.skills.findIndex((skill) => skill.id === id)
-                if (index !== -1) this.skills[index] = res.data
+                const res = await registerUser(payload)
+                this.users.push(res.data)
 
                 return res.data
             } catch (err) {
@@ -65,13 +45,33 @@ export const useSkillsStore = defineStore('skills', {
             }
         },
 
-        async deleteSkill(id: number) {
+        async updateUser(id: number, payload: UpdateUserPayload) {
             this.loading = true
             this.error = null
-            const { deleteSkill } = useSkillsService()
+            const { updateUser } = useUsersService()
 
             try {
-                const res = await deleteSkill(id)
+                const res = await updateUser(id, payload)
+
+                const index = this.users.findIndex((user) => user.id === id)
+                if (index !== -1) this.users[index] = res.data
+
+                return res.data
+            } catch (err) {
+                this.error = handleApiError(err)
+                throw err
+            } finally {
+                this.loading = false
+            }
+        },
+
+        async deleteUser(id: number) {
+            this.loading = true
+            this.error = null
+            const { deleteUser } = useUsersService()
+
+            try {
+                const res = await deleteUser(id)
                 return res.data
             } catch (err) {
                 this.error = handleApiError(err)
@@ -80,7 +80,5 @@ export const useSkillsStore = defineStore('skills', {
                 this.loading = false
             }
         }
-    },
-
-    getters: { list: (state) => state.skills }
+    }
 })

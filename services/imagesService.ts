@@ -19,10 +19,15 @@ export function useImagesService() {
         return $axios.get(`/images/project/${id}`)
     }
 
+    function getImages() {
+        return $axios.get('/images')
+    }
+
     return {
         postNewImage,
         deleteImage,
         postImageToProject,
-        getImageByProjectId
+        getImageByProjectId,
+        getImages
     }
 }

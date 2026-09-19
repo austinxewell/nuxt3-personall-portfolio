@@ -1,12 +1,13 @@
 
 import { defineStore } from 'pinia'
 import { useImagesService } from '~/services/imagesService'
-import type { Image, ImagePayload, ImageStoreState, LinkImageToProject } from '~/types/image'
+import type { Image, ImagePayload, ImageStoreState, ImageWithoutThumbnail, LinkImageToProject } from '~/types/image'
 
 export const useImageStore = defineStore('imageStore', {
     state: (): ImageStoreState => ({
         selectedImage: null, 
         projectImages: [] as Image[],
+        allImages: [] as ImageWithoutThumbnail[],
         loading: false,
         error: null as string | null
     }), 
@@ -77,6 +78,23 @@ export const useImageStore = defineStore('imageStore', {
             try {
                 const res = await getImageByProjectId(id)
                 this.projectImages = res.data
+                return res.data
+            } catch (err) {
+                this.error = handleApiError(err)
+                throw err
+            } finally {
+                this.loading = false
+            }
+        },
+
+        async getImages() {
+            this.loading = true
+            this.error = null
+            const { getImages } = useImagesService()
+
+            try {
+                const res = await getImages()
+                this.allImages = res.data
                 return res.data
             } catch (err) {
                 this.error = handleApiError(err)

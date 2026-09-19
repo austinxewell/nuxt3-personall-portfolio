@@ -1,5 +1,6 @@
 <template>
-    Updating About Me Section
+    <h2 class="text-xl font-bold mb-4">Update About Me</h2>
+
     <form 
         class="flex flex-col gap-4 mt-4 pb-6 sm:px-6 mx-auto"
         @submit.prevent="submitAbout"

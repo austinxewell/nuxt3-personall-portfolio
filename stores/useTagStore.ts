@@ -59,6 +59,26 @@ export const useTagStore = defineStore('tags', {
             }
         },
 
+        async updateTag(id: number, payload: TagPayload) {
+            this.loading = true
+            this.error = null
+            const { updateTag } = useTagsService()
+
+            try {
+                const res = await updateTag(id, payload)
+
+                const index = this.tags.findIndex((tag) => tag.id === id)
+                if (index !== -1) this.tags[index] = res.data
+
+                return res.data
+            } catch (err) {
+                this.error = handleApiError(err)
+                throw err
+            } finally {
+                this.loading = false
+            }
+        },
+
         async removeTagFromProject(payload: DeleteTagToProjectPayload) {
             this.loading = true
             this.error = null
@@ -66,6 +86,22 @@ export const useTagStore = defineStore('tags', {
 
             try {
                 const res = await deleteTagToProjectLink(payload)
+                return res.data
+            } catch (err) {
+                this.error = handleApiError(err)
+                throw err
+            } finally {
+                this.loading = false
+            }
+        },
+
+        async deleteTag(id: number) {
+            this.loading = true
+            this.error = null
+            const { deleteTag } = useTagsService()
+
+            try {
+                const res = await deleteTag(id)
                 return res.data
             } catch (err) {
                 this.error = handleApiError(err)
