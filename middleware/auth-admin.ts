@@ -17,8 +17,8 @@ export default defineNuxtRouteMiddleware(async(_to, _from) => {
     if (!token) return navigateTo('/login')
 
     try {
-    // send the token in Authorization header
-        await $axios.get('/auth/me', { headers: { Authorization: `Bearer ${token}` } })
+        const res = await $axios.get('/auth/me', { headers: { Authorization: `Bearer ${token}` } })
+        authStore.user = res.data
         authStore.isValidated = true
     } catch {
         authStore.isValidated = false
