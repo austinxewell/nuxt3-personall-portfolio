@@ -1,8 +1,7 @@
-<!-- components/chat/ChatWidget.vue -->
 <template>
     <UCard
         class="flex flex-col h-[500px] border-2 border-yellow-600 p-0 overflow-hidden"
-        :ui="{ body: 'flex-1 overflow-y-auto p-3' }"
+        :ui="{ body: 'flex-1 flex flex-col p-0 overflow-hidden' }"
     >
         <template #header>
             <div class="flex items-center gap-3 py-1">
@@ -18,12 +17,12 @@
             </div>
         </template>
 
-        <div ref="messagesContainer" class="space-y-2">
+        <div ref="messagesContainer" class="flex-1 overflow-y-auto p-3 space-y-2">
             <div
                 v-for="(message, index) in chatStore.list"
                 :key="index"
                 :class="[
-                    'flex items-end gap-2',
+                    'flex items-end gap-2 min-w-0',
                     message.role === 'user' ? 'justify-end' : 'justify-start'
                 ]"
             >
@@ -36,7 +35,7 @@
 
                 <div
                     :class="[
-                        'rounded-2xl px-3 py-2 max-w-[75%] text-sm',
+                        'rounded-2xl px-3 py-2 max-w-[75%] text-sm break-words',
                         message.role === 'user'
                             ? 'bg-yellow-600 text-white rounded-br-sm'
                             : 'bg-gray-100 dark:bg-gray-800 rounded-bl-sm'
@@ -103,6 +102,9 @@ async function handleSubmit() {
     if (!message || chatStore.loading) return
 
     input.value = ''
+    await nextTick()
+    scrollToBottom()
+
     await chatStore.sendMessage(message)
     await nextTick()
     scrollToBottom()

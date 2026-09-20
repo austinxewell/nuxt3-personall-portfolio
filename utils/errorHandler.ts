@@ -1,12 +1,12 @@
 import type { AxiosError } from 'axios'
 
 export function handleApiError(error: unknown): string {
-    const err = error as AxiosError<{ message?: string }>
+    const err = error as AxiosError<{ error?: string }>
 
     if (err.response) {
         const { status, data } = err.response
-        console.error(`API Error (${status}):`, data?.message || data)
-        return data?.message || 'Server error'
+        console.error(`API Error (${status}):`, data?.error || data)
+        return data?.error || 'Server error'
     } else if (err.request) {
         console.error('No response from server')
         return 'No response from server'
