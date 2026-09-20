@@ -58,9 +58,9 @@ const aboutStore = useAboutStore()
 const { about } = storeToRefs(aboutStore)
 
 // StarkSys start date — drives the "professional experience" figure
-const PROFESSIONAL_START = new Date('2021-02-01')
+const PROFESSIONAL_START = new Date('2022-02-01')
 // Freelance start date — drives the "total hands-on experience" figure
-const CODING_START = new Date('2018-01-01')
+const CODING_START = new Date('2019-01-01')
 
 function yearsSince(start: Date): number {
     const now = new Date()
