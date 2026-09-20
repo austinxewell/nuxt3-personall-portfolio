@@ -93,7 +93,7 @@ const chatStore = useChatStore()
 const darkModeStore = useDarkModeStore()
 const isDark = computed(() => darkModeStore.isDark)
 
-const avatarSrc = computed(() => (isDark.value ? '/images/avatar-dark.png' : '/images/avatar-light.png'))
+const avatarSrc = computed(() => (isDark.value ? '/images/avatar-light.png' : '/images/avatar-dark.png'))
 
 const input = ref('')
 const messagesContainer = ref<HTMLElement | null>(null)
