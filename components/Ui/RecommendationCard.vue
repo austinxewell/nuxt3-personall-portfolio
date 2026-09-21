@@ -22,12 +22,12 @@
                             :ref="(element) => setQuoteRef(element, faceIndex)"
                             class="opacity-80 leading-relaxed line-clamp-3"
                         >
-                            {{ face.quote }}
+                            {{ face.recommendation }}
                         </p>
 
                         <UModal
                             v-if="isOverflowing[faceIndex]"
-                            :title="activeRecommendation.name"
+                            :title="activeRecommendation.recommended_by"
                         >
                             <button
                                 type="button"
@@ -46,14 +46,14 @@
 
                                     <div class="min-w-0">
                                         <p class="leading-relaxed">
-                                            {{ activeRecommendation.quote }}
+                                            {{ activeRecommendation.recommendation }}
                                         </p>
                                         <p class="mt-3 text-sm font-bold">
-                                            {{ activeRecommendation.title }}
+                                            {{ activeRecommendation.job_title }}
                                             <span
-                                                v-if="activeRecommendation.company"
+                                                v-if="activeRecommendation.company_name"
                                                 class="font-normal opacity-70"
-                                            >, {{ activeRecommendation.company }}</span>
+                                            >, {{ activeRecommendation.company_name }}</span>
                                         </p>
                                         <a
                                             v-if="linkedinRecommendationsUrl"
@@ -71,9 +71,9 @@
                         </UModal>
 
                         <p class="mt-3 text-sm font-bold">
-                            {{ face.name }}
+                            {{ face.recommended_by }}
                             <span class="font-normal opacity-70">
-                                — {{ face.title }}<template v-if="face.company">, {{ face.company }}</template>
+                                — {{ face.job_title }}<template v-if="face.company_name">, {{ face.company_name }}</template>
                             </span>
                         </p>
 
@@ -133,8 +133,8 @@ import type { ComponentPublicInstance } from 'vue'
 import type { Recommendation } from '~/types/recommendation'
 
 const props = defineProps<{
-  recommendations: Recommendation[]
-  linkedinRecommendationsUrl?: string
+    recommendations: Recommendation[]
+    linkedinRecommendationsUrl?: string
 }>()
 
 const currentIndex = ref(0)
@@ -191,8 +191,6 @@ const prevIndex = computed(
 )
 
 const TWO = 2
-
-// normalize JS's negative-friendly modulo (-1 % 2 === -1, not 1)
 function parity(number: number) {
     return ((number % TWO) + TWO) % TWO
 }

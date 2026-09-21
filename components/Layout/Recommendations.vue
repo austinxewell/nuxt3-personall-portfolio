@@ -18,7 +18,8 @@
 </template>
 
 <script setup lang='ts'>
-import { recommendations } from '~/data/recommendations'
+const recommendationStore = useRecommendationStore()
 
+const recommendations = computed(() => recommendationStore.recommendations)
 const RECOMMENDATION_URL = 'https://www.linkedin.com/in/austin-ewell-01a60313a/details/recommendations/'
 </script>

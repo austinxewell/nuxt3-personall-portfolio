@@ -47,6 +47,10 @@
             <BaseModal ref="services">
                 <UiModifyServices @complete-form="closeModal" />
             </BaseModal>
+
+            <BaseModal ref="recommendations">
+                <UiModifyRecommendations @complete-form="closeModal" />
+            </BaseModal>
     
             <BaseModal ref="users">
                 <UiModifyUsers @complete-form="closeModal" />
@@ -67,6 +71,7 @@ const tagDb = ref<typeof BaseModal>()
 const skills = ref<typeof BaseModal>()
 const collaborations = ref<typeof BaseModal>()
 const services = ref<typeof BaseModal>()
+const recommendations = ref<typeof BaseModal>()
 const users = ref<typeof BaseModal>()
 
 const authStore = useAuthStore()
@@ -81,6 +86,7 @@ const modalRefs: Record<string, typeof projectCreation> = {
     skills,
     collaborations,
     services,
+    recommendations,
     users
 }
 
@@ -135,6 +141,12 @@ const actions = ref([
     },
     {
         id: 9,
+        actionName: 'Modify Recommendations',
+        action: () => openModal('recommendations'),
+        icon: 'lucide:message-square-quote'
+    },
+    {
+        id: 10,
         actionName: 'Modify Users',
         action: () => openModal('users'),
         icon: 'lucide:users'

@@ -40,6 +40,7 @@ const skillsStore = useSkillsStore()
 const collaborationStore = useCollaborationsStore()
 const projectsStore = useProjectsStore()
 const servicesStore = useServicesStore()
+const recommendationStore = useRecommendationStore()
 
 const isLoading = ref(false)
 
@@ -52,7 +53,8 @@ onMounted(async() => {
         collaborationStore.fetchCollaborations(),
         projectsStore.fetchFavoriteProjects(),
         projectsStore.fetchProjects(),
-        servicesStore.fetchServices()
+        servicesStore.fetchServices(),
+        recommendationStore.fetchRecommendations()
     ])
 
     isLoading.value = false
