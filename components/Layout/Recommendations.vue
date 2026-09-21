@@ -8,7 +8,7 @@
             What colleagues and collaborators have said about working with me.
         </p>
 
-        <div class="flex flex-wrap justify-center gap-10 mt-10">
+        <div v-if="recommendations.length > 0" class="flex flex-wrap justify-center gap-10 mt-10">
             <UiRecommendationCard
                 :recommendations="recommendations"
                 :linkedin-recommendations-url="RECOMMENDATION_URL"
