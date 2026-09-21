@@ -4,13 +4,13 @@
 
         <div class="flex flex-col lg:flex-row items-center lg:items-start mt-4 lg:mt-0 gap-2 xl:gap-16">
             <div class="flex flex-col items-center w-full lg:w-1/4">
-                <button class="cursor-pointer flex justify-center items-center w-full gap-4" @click="navigateTo('about')">
+                <div class="cursor-pointer flex justify-center items-center w-full gap-4">
                     <BaseAvatar class="mb-4 w-24 h-24 md:w-28 md:h-28 lg:w-40 lg:h-56 xl:w-48 xl:h-64" />
                     <div class="text-center lg:hidden min-w-0">
                         <p class="text-2xl font-bold mb-2">{{ about.name }}</p>
                         <UiSocialLinks />
                     </div>
-                </button>
+                </div>
 
                 <UiHeroAbout />
             </div>

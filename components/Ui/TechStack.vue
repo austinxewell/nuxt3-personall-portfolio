@@ -10,24 +10,69 @@
             />
         </div>
 
-        <div v-if="!viewAsList" class="flex flex-wrap gap-4 max-w-6xl justify-center">
-            <UiToolCard
-                v-for="tool in skills"
-                :key="tool.id"
-                :tool-name="tool.name"
-                :icon="tool.icon"
-                :is-favorite="tool.level === 'expert'"
-            />
+        <div v-if="!viewAsList" class="w-full max-w-6xl flex flex-col gap-8">
+            <div>
+                <h3 class="text-sm font-semibold uppercase tracking-wide text-yellow-600 mb-3 text-center sm:text-left">
+                    Expert In
+                </h3>
+                <div class="flex flex-wrap gap-4 justify-center sm:justify-start">
+                    <UiToolCard
+                        v-for="tool in expertSkills"
+                        :key="tool.id"
+                        :tool-name="tool.name"
+                        :icon="tool.icon"
+                        :is-favorite="true"
+                    />
+                </div>
+            </div>
+
+            <div>
+                <h3 class="text-sm font-semibold uppercase tracking-wide opacity-70 mb-3 text-center sm:text-left">
+                    Also Familiar With
+                </h3>
+                <div class="flex flex-wrap gap-4 justify-center sm:justify-start">
+                    <UiToolCard
+                        v-for="tool in familiarSkills"
+                        :key="tool.id"
+                        :tool-name="tool.name"
+                        :icon="tool.icon"
+                        :is-favorite="false"
+                    />
+                </div>
+            </div>
         </div>
 
-        <p v-else class="max-w-6xl text-lg font-semibold flex flex-wrap justify-center">
-            <template v-for="(tool, index) in skills" :key="tool.id">
-                <span :class="{ 'text-yellow-600': tool.level === 'expert' }">
-                    {{ tool.name }}
-                </span>
-                <span v-if="index < skills.length - 1">,&nbsp;</span>
-            </template>
-        </p>
+        <div v-else class="max-w-4xl w-full grid grid-cols-1 sm:grid-cols-2 gap-8">
+            <div>
+                <h3 class="text-sm font-semibold uppercase tracking-wide text-yellow-600 mb-3 text-center sm:text-left">
+                    Expert In
+                </h3>
+                <div class="flex flex-wrap gap-2 justify-center sm:justify-start">
+                    <span
+                        v-for="tool in expertSkills"
+                        :key="tool.id"
+                        class="px-3 py-1.5 rounded-full text-sm font-semibold bg-yellow-600 text-white"
+                    >
+                        {{ tool.name }}
+                    </span>
+                </div>
+            </div>
+
+            <div>
+                <h3 class="text-sm font-semibold uppercase tracking-wide opacity-70 mb-3 text-center sm:text-left">
+                    Also Familiar With
+                </h3>
+                <div class="flex flex-wrap gap-2 justify-center sm:justify-start">
+                    <span
+                        v-for="tool in familiarSkills"
+                        :key="tool.id"
+                        class="px-3 py-1.5 rounded-full text-sm font-medium border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300"
+                    >
+                        {{ tool.name }}
+                    </span>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -36,5 +81,7 @@ import { useSkillsStore } from '#imports'
 
 const skillsStore = useSkillsStore()
 const skills = computed(() => skillsStore.list)
+const expertSkills = computed(() => skills.value.filter((skill) => skill.level === 'expert'))
+const familiarSkills = computed(() => skills.value.filter((skill) => skill.level !== 'expert'))
 const viewAsList = ref(false)
 </script>
