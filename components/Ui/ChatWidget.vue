@@ -102,17 +102,19 @@ async function handleSubmit() {
     if (!message || chatStore.loading) return
 
     input.value = ''
-    await nextTick()
-    scrollToBottom()
-
     await chatStore.sendMessage(message)
-    await nextTick()
-    scrollToBottom()
 }
 
 function scrollToBottom() {
     if (messagesContainer.value) 
         messagesContainer.value.scrollTop = messagesContainer.value.scrollHeight
-    
 }
+
+watch(
+    () => [chatStore.list.length, chatStore.loading],
+    async() => {
+        await nextTick()
+        scrollToBottom()
+    }
+)
 </script>

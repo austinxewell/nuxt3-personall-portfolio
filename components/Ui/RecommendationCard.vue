@@ -10,10 +10,10 @@
                     :key="faceIndex"
                     class="absolute inset-0 rounded-2xl p-8 bg-white border border-gray-900 dark:bg-gradient-to-br dark:from-gray-800 dark:to-gray-600 text-gray-900 dark:text-white shadow-md dark:shadow-lg dark:shadow-gray-900 ring-0 dark:ring-2 dark:ring-yellow-400/40 [backface-visibility:hidden] flex items-center gap-6"
                     :style="{ transform: `rotateY(${faceIndex * 180}deg)` }"
+                    :aria-hidden="parity(flipCount) !== faceIndex"
+                    :inert="parity(flipCount) !== faceIndex"
                 >
-                    <div
-                        class="shrink-0 flex items-center justify-center w-16 h-16 rounded-full bg-yellow-500 sm:bg-gray-100 text-gray-900 dark:bg-yellow-500 dark:sm:bg-white"
-                    >
+                    <div class="shrink-0 flex items-center justify-center w-16 h-16 rounded-full bg-yellow-500 sm:bg-gray-100 text-gray-900 dark:bg-yellow-500 dark:sm:bg-white">
                         <UIcon name="i-lucide-quote" class="size-6" />
                     </div>
 
@@ -22,12 +22,12 @@
                             :ref="(element) => setQuoteRef(element, faceIndex)"
                             class="opacity-80 leading-relaxed line-clamp-3"
                         >
-                            {{ face.quote }}
+                            {{ face.recommendation }}
                         </p>
 
                         <UModal
                             v-if="isOverflowing[faceIndex]"
-                            :title="activeRecommendation.name"
+                            :title="face.recommended_by"
                         >
                             <button
                                 type="button"
@@ -38,22 +38,20 @@
 
                             <template #body>
                                 <div class="flex items-start gap-6">
-                                    <div
-                                        class="shrink-0 flex items-center justify-center w-16 h-16 rounded-full bg-yellow-500 sm:bg-gray-100 text-gray-900 dark:bg-yellow-500 dark:sm:bg-white"
-                                    >
+                                    <div class="shrink-0 flex items-center justify-center w-16 h-16 rounded-full bg-yellow-500 sm:bg-gray-100 text-gray-900 dark:bg-yellow-500 dark:sm:bg-white">
                                         <UIcon name="i-lucide-quote" class="size-6" />
                                     </div>
 
                                     <div class="min-w-0">
                                         <p class="leading-relaxed">
-                                            {{ activeRecommendation.quote }}
+                                            {{ face.recommendation }}
                                         </p>
                                         <p class="mt-3 text-sm font-bold">
-                                            {{ activeRecommendation.title }}
+                                            {{ face.job_title }}
                                             <span
-                                                v-if="activeRecommendation.company"
+                                                v-if="face.company_name"
                                                 class="font-normal opacity-70"
-                                            >, {{ activeRecommendation.company }}</span>
+                                            >, {{ face.company_name }}</span>
                                         </p>
                                         <a
                                             v-if="linkedinRecommendationsUrl"
@@ -71,9 +69,9 @@
                         </UModal>
 
                         <p class="mt-3 text-sm font-bold">
-                            {{ face.name }}
+                            {{ face.recommended_by }}
                             <span class="font-normal opacity-70">
-                                — {{ face.title }}<template v-if="face.company">, {{ face.company }}</template>
+                                — {{ face.job_title }}<span v-if="face.company_name">, {{ face.company_name }}</span>
                             </span>
                         </p>
 
@@ -133,17 +131,13 @@ import type { ComponentPublicInstance } from 'vue'
 import type { Recommendation } from '~/types/recommendation'
 
 const props = defineProps<{
-  recommendations: Recommendation[]
-  linkedinRecommendationsUrl?: string
+    recommendations: Recommendation[]
+    linkedinRecommendationsUrl?: string
 }>()
 
 const currentIndex = ref(0)
 const flipCount = ref(0)
 const transitioning = ref(false)
-
-const activeRecommendation = computed(
-    () => props.recommendations[currentIndex.value]
-)
 
 const quoteRefs = ref<(HTMLElement | null)[]>([null, null])
 const isOverflowing = ref<[boolean, boolean]>([false, false])
@@ -191,8 +185,6 @@ const prevIndex = computed(
 )
 
 const TWO = 2
-
-// normalize JS's negative-friendly modulo (-1 % 2 === -1, not 1)
 function parity(number: number) {
     return ((number % TWO) + TWO) % TWO
 }
@@ -203,8 +195,6 @@ function flipTo(targetIndex: number, direction: 1 | -1) {
     if (transitioning.value || props.recommendations.length < TWO) return
     transitioning.value = true
 
-    // the face NOT currently forward is the one about to rotate into view —
-    // load it with the target content now, while it's still hidden
     const incomingFace = parity(flipCount.value) === 0 ? 1 : 0
     faceContent.value[incomingFace] = props.recommendations[targetIndex]
     nextTick(() => checkOverflow(incomingFace))
@@ -212,7 +202,6 @@ function flipTo(targetIndex: number, direction: 1 | -1) {
     flipCount.value += direction
     currentIndex.value = targetIndex
 
-    // matches the 700ms CSS transition
     setTimeout(() => {
         transitioning.value = false
     }, CSS_TRANSITION_TIME)
