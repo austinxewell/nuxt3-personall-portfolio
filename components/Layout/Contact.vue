@@ -66,7 +66,7 @@
                         opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0
                         transition-all duration-300 pointer-events-none z-20"
                 >
-                    View Resume
+                    Resume
                 </div>
             </a>
             <a
@@ -82,7 +82,7 @@
                         opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0
                         transition-all duration-300 pointer-events-none z-20"
                 >
-                    View Dev Blog
+                    Dev Blog
                 </div>
             </a>
         </div>
