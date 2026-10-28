@@ -1,7 +1,7 @@
 <template>
     <main class="relative">
-        <div class="mx-auto max-w-screen-xl relative">
-            <BaseButton class="fixed xl:absolute bg-white dark:bg-gray-900 top-4 right-4 z-50" @click="goBack">
+        <div class="relative">
+            <BaseButton class="fixed xl:absolute bg-white dark:bg-gray-900 top-4 right-8 z-50" @click="goBack">
                 <UIcon name="material-symbols:close-rounded" size="24"/>
             </BaseButton>
             <slot />
